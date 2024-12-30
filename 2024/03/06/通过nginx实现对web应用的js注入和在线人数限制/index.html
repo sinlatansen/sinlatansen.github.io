@@ -1,12 +1,25 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>通过nginx实现对web应用的js注入和在线人数限制 | Fugu&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="通过docker运行的cogpt和chatgpt next web不太好改源码，无法从后端或者前端限制人数。只能曲线救国，通过nginx进行 js 注入umami跟踪代码，然后加一个 php 中转界面进行鉴定是否跳转。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fugu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="通过docker运行的cogpt和chatgpt next web不太好改源码，无法从后端或者前端限制人数。只能曲线救国，通过nginx进行 js 注入umami跟踪代码，然后加一个 php 中转界面进行鉴定是否跳转。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过nginx实现对web应用的js注入和在线人数限制">
 <meta property="og:url" content="http://sinlatansen.github.io/2024/03/06/%E9%80%9A%E8%BF%87nginx%E5%AE%9E%E7%8E%B0%E5%AF%B9web%E5%BA%94%E7%94%A8%E7%9A%84js%E6%B3%A8%E5%85%A5%E5%92%8C%E5%9C%A8%E7%BA%BF%E4%BA%BA%E6%95%B0%E9%99%90%E5%88%B6/index.html">
@@ -18,92 +31,257 @@
 <meta property="article:author" content="fugu">
 <meta property="article:tag" content="Nginx">
 <meta property="article:tag" content="php">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
   
   
   
-<link rel="stylesheet" href="/css/style.css">
+  <title>通过nginx实现对web应用的js注入和在线人数限制 - Fugu&#39;s Blog</title>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sinlatansen.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Fugu&#39;s Blog</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="通过nginx实现对web应用的js注入和在线人数限制"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-06 09:15" pubdate>
+          2024年3月6日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          1.1k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-通过nginx实现对web应用的js注入和在线人数限制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/06/%E9%80%9A%E8%BF%87nginx%E5%AE%9E%E7%8E%B0%E5%AF%B9web%E5%BA%94%E7%94%A8%E7%9A%84js%E6%B3%A8%E5%85%A5%E5%92%8C%E5%9C%A8%E7%BA%BF%E4%BA%BA%E6%95%B0%E9%99%90%E5%88%B6/" class="article-date">
-  <time class="dt-published" datetime="2024-03-06T09:15:46.000Z" itemprop="datePublished">2024-03-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/geek/">geek</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      通过nginx实现对web应用的js注入和在线人数限制
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>通过<code>docker</code>运行的<code>cogpt</code>和<code>chatgpt next web</code>不太好改源码，无法从后端或者前端限制人数。只能曲线救国，通过<code>nginx</code>进行 js 注入<code>umami</code>跟踪代码，然后加一个 php 中转界面进行鉴定是否跳转。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nginxconf配置文件</span></span><br><span class="line">server &#123;</span><br><span class="line">        listen 80; <span class="comment"># 或者443如果你使用SSL</span></span><br><span class="line">        server_name gpt.lzyyyyyy.fun;</span><br><span class="line">        root /var/gpt-boss;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 所有其他请求都重定向到boss.php，包括 /api 和 /guest</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$http_cookie</span> !~* <span class="string">&quot;auth=&quot;</span>) &#123;</span><br><span class="line">                rewrite ^/(.*)$ /boss.php last;</span><br><span class="line">            &#125;</span><br><span class="line">            proxy_pass http://localhost:3000;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        location /api/ &#123;</span><br><span class="line">           proxy_pass http://localhost:3000;</span><br><span class="line">           proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">           proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">           proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">           proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        location /admin &#123;</span><br><span class="line">            <span class="comment"># 当访问 /admin 时，直接跳转到 localhost:3000</span></span><br><span class="line">            proxy_pass http://localhost:3000/;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location /guest &#123;</span><br><span class="line">            <span class="comment"># 检查是否存在通过验证的 cookie</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$http_cookie</span> !~* <span class="string">&quot;auth&quot;</span>) &#123;</span><br><span class="line">                <span class="comment"># return 302 /boss.php;</span></span><br><span class="line">                rewrite ^/(.*)$ /boss.php last;</span><br><span class="line">            &#125;</span><br><span class="line">            proxy_pass http://localhost:3000/;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 开启响应内容替换</span></span><br><span class="line">            sub_filter_once on;</span><br><span class="line">            <span class="comment"># sub_filter_types text/html;</span></span><br><span class="line">            sub_filter <span class="string">&#x27;&lt;/head&gt;&#x27;</span> <span class="string">&#x27;&lt;script async src=&quot;http://umami.lzyyyyyy.fun/script.js&quot; data-website-id=&quot;cd2c9621-98e6-440b-9e10-fb5269721d31&quot;&gt;&lt;/script&gt;&lt;/head&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 以下配置确保内容长度正确</span></span><br><span class="line">            proxy_set_header Accept-Encoding <span class="string">&quot;&quot;</span>;</span><br><span class="line">            sub_filter_last_modified on;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location /_next/ &#123;</span><br><span class="line">            proxy_pass http://localhost:3000;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为 PHP 文件添加新的 location 块</span></span><br><span class="line">        location ~ .*\.php(/.*)*$ &#123;</span><br><span class="line">            include fastcgi.conf;</span><br><span class="line">            fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">通过nginx实现对web应用的js注入和在线人数限制</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>通过<code>docker</code>运行的<code>cogpt</code>和<code>chatgpt next web</code>不太好改源码，无法从后端或者前端限制人数。只能曲线救国，通过<code>nginx</code>进行 js 注入<code>umami</code>跟踪代码，然后加一个 php 中转界面进行鉴定是否跳转。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># nginxconf配置文件</span><br>server &#123;<br>        listen 80; <span class="hljs-comment"># 或者443如果你使用SSL</span><br>        server_name gpt.lzyyyyyy.fun;<br>        root /var/gpt-boss;<br><br>        <span class="hljs-comment"># 所有其他请求都重定向到boss.php，包括 /api 和 /guest</span><br>        location / &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-variable">$http_cookie</span> !~* <span class="hljs-string">&quot;auth=&quot;</span>) &#123;<br>                rewrite ^/(.*)$ /boss.php last;<br>            &#125;<br>            proxy_pass http://localhost:3000;<br>            proxy_set_header Host <span class="hljs-variable">$host</span>;<br>            proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>            proxy_set_header X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>            proxy_set_header X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br><br>        &#125;<br><br><br>        location /api/ &#123;<br>           proxy_pass http://localhost:3000;<br>           proxy_set_header Host <span class="hljs-variable">$host</span>;<br>           proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>           proxy_set_header X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>           proxy_set_header X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br>        &#125;<br><br><br>        location /admin &#123;<br>            <span class="hljs-comment"># 当访问 /admin 时，直接跳转到 localhost:3000</span><br>            proxy_pass http://localhost:3000/;<br>            proxy_set_header Host <span class="hljs-variable">$host</span>;<br>            proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>            proxy_set_header X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>            proxy_set_header X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br>        &#125;<br><br>        location /guest &#123;<br>            <span class="hljs-comment"># 检查是否存在通过验证的 cookie</span><br>            <span class="hljs-keyword">if</span> (<span class="hljs-variable">$http_cookie</span> !~* <span class="hljs-string">&quot;auth&quot;</span>) &#123;<br>                <span class="hljs-comment"># return 302 /boss.php;</span><br>                rewrite ^/(.*)$ /boss.php last;<br>            &#125;<br>            proxy_pass http://localhost:3000/;<br>            proxy_set_header Host <span class="hljs-variable">$host</span>;<br>            proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>            proxy_set_header X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>            proxy_set_header X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br><br>            <span class="hljs-comment"># 开启响应内容替换</span><br>            sub_filter_once on;<br>            <span class="hljs-comment"># sub_filter_types text/html;</span><br>            sub_filter <span class="hljs-string">&#x27;&lt;/head&gt;&#x27;</span> <span class="hljs-string">&#x27;&lt;script async src=&quot;http://umami.lzyyyyyy.fun/script.js&quot; data-website-id=&quot;cd2c9621-98e6-440b-9e10-fb5269721d31&quot;&gt;&lt;/script&gt;&lt;/head&gt;&#x27;</span>;<br><br>            <span class="hljs-comment"># 以下配置确保内容长度正确</span><br>            proxy_set_header Accept-Encoding <span class="hljs-string">&quot;&quot;</span>;<br>            sub_filter_last_modified on;<br>        &#125;<br><br>        location /_next/ &#123;<br>            proxy_pass http://localhost:3000;<br>            proxy_set_header Host <span class="hljs-variable">$host</span>;<br>            proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>            proxy_set_header X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>            proxy_set_header X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br>        &#125;<br><br><br>        <span class="hljs-comment"># 为 PHP 文件添加新的 location 块</span><br>        location ~ .*\.php(/.*)*$ &#123;<br>            include fastcgi.conf;<br>            fastcgi_pass   127.0.0.1:9000;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p>然后是<code>boss.php</code>。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取 config.json 文件内容</span></span><br><span class="line"><span class="variable">$jsonString</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;config.json&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 JSON 数据为 PHP 数组</span></span><br><span class="line"><span class="variable">$config</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$jsonString</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="variable">$username</span> = <span class="variable">$config</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$config</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"><span class="variable">$loginUrl</span> = <span class="variable">$config</span>[<span class="string">&#x27;loginUrl&#x27;</span>];</span><br><span class="line"><span class="variable">$activeUsersUrl</span> = <span class="variable">$config</span>[<span class="string">&#x27;activeUsersUrl&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Function to perform a cURL request</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curlRequest</span>(<span class="params"><span class="variable">$url</span>, <span class="variable">$postFields</span> = <span class="literal">null</span>, <span class="variable">$headers</span> = []</span>) </span>&#123;</span><br><span class="line">    <span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>();</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$url</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">is_null</span>(<span class="variable">$postFields</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_POST, <span class="literal">true</span>);</span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_POSTFIELDS, <span class="title function_ invoke__">json_encode</span>(<span class="variable">$postFields</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$headers</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HTTPHEADER, <span class="variable">$headers</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$response</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="comment">// echo $response;</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">curl_errno</span>(<span class="variable">$ch</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">json_decode</span>(<span class="variable">$response</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成一个随机的字符串作为 cookie 值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateRandomString</span>(<span class="params"><span class="variable">$length</span> = <span class="number">50</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$characters</span> = <span class="string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>;</span><br><span class="line">    <span class="variable">$charactersLength</span> = <span class="title function_ invoke__">strlen</span>(<span class="variable">$characters</span>);</span><br><span class="line">    <span class="variable">$randomString</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$length</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$randomString</span> .= <span class="variable">$characters</span>[<span class="title function_ invoke__">rand</span>(<span class="number">0</span>, <span class="variable">$charactersLength</span> - <span class="number">1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$randomString</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Get authentication token</span></span><br><span class="line"><span class="variable">$authResponse</span> = <span class="title function_ invoke__">curlRequest</span>(<span class="variable">$loginUrl</span>, [<span class="string">&#x27;username&#x27;</span> =&gt; <span class="variable">$username</span>, <span class="string">&#x27;password&#x27;</span> =&gt; <span class="variable">$password</span>], [<span class="string">&#x27;Content-Type: application/json&#x27;</span>]);</span><br><span class="line"><span class="variable">$token</span> = <span class="variable">$authResponse</span>[<span class="string">&#x27;token&#x27;</span>] ?? <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$token</span>) &#123;</span><br><span class="line">    <span class="comment">// Fetch active users</span></span><br><span class="line">    <span class="comment">// Fetch active users</span></span><br><span class="line">    <span class="variable">$activeUsersData</span> = <span class="title function_ invoke__">curlRequest</span>(<span class="variable">$activeUsersUrl</span>, <span class="literal">null</span>, [<span class="string">&#x27;Authorization: Bearer &#x27;</span> . <span class="variable">$token</span>]);</span><br><span class="line">    <span class="comment">// 假设我们只关心第一个元素的 &#x27;x&#x27; 值</span></span><br><span class="line">    <span class="variable">$activeUsers</span> = <span class="keyword">isset</span>(<span class="variable">$activeUsersData</span>[<span class="number">0</span>][<span class="string">&#x27;x&#x27;</span>]) ? <span class="variable">$activeUsersData</span>[<span class="number">0</span>][<span class="string">&#x27;x&#x27;</span>] : <span class="string">&#x27;Unavailable&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//支持最多&#123;&#123;people+1&#125;&#125;人同时使用</span></span><br><span class="line">    <span class="variable">$people</span>=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据在线用户数显示不同的消息</span></span><br><span class="line">    <span class="variable">$message</span> = <span class="variable">$activeUsers</span> &gt; <span class="variable">$people</span> ?  <span class="string">&quot;抱歉，当前在线用户数已达到限制。&quot;</span>: <span class="string">&quot;在线用户数少于指定人数，欢迎访问。&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">    &lt;html&gt;</span></span><br><span class="line"><span class="string">    &lt;head&gt;</span></span><br><span class="line"><span class="string">        &lt;title&gt;LZY&#x27;s GPT 在线用户检查&lt;/title&gt;</span></span><br><span class="line"><span class="string">        &lt;style&gt;</span></span><br><span class="line"><span class="string">            body &#123;</span></span><br><span class="line"><span class="string">                font-family: &#x27;Arial&#x27;, sans-serif;</span></span><br><span class="line"><span class="string">                margin: 0;</span></span><br><span class="line"><span class="string">                padding: 0;</span></span><br><span class="line"><span class="string">                background-color: #f4f4f4;</span></span><br><span class="line"><span class="string">                color: #333;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            .container &#123;</span></span><br><span class="line"><span class="string">                max-width: 600px;</span></span><br><span class="line"><span class="string">                margin: 50px auto;</span></span><br><span class="line"><span class="string">                padding: 20px;</span></span><br><span class="line"><span class="string">                background-color: #fff;</span></span><br><span class="line"><span class="string">                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            h1 &#123;</span></span><br><span class="line"><span class="string">                color: #0066cc;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            p &#123;</span></span><br><span class="line"><span class="string">                line-height: 1.6;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            .alert &#123;</span></span><br><span class="line"><span class="string">                padding: 20px;</span></span><br><span class="line"><span class="string">                background-color: #f44336; /* Red */</span></span><br><span class="line"><span class="string">                color: white;</span></span><br><span class="line"><span class="string">                margin-bottom: 15px;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            .info &#123;</span></span><br><span class="line"><span class="string">                padding: 20px;</span></span><br><span class="line"><span class="string">                background-color: #2196F3; /* Blue */</span></span><br><span class="line"><span class="string">                color: white;</span></span><br><span class="line"><span class="string">                margin-bottom: 15px;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            a &#123;</span></span><br><span class="line"><span class="string">                color: #2196F3;</span></span><br><span class="line"><span class="string">                text-decoration: none;</span></span><br><span class="line"><span class="string">                font-weight: bold;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &lt;/style&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$activeUsers</span> &lt; <span class="variable">$people</span>+<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="variable">$randomString</span> = <span class="title function_ invoke__">generateRandomString</span>(); <span class="comment">// 默认长度为 50</span></span><br><span class="line">        <span class="title function_ invoke__">setcookie</span>(<span class="string">&quot;auth&quot;</span>, <span class="variable">$randomString</span>, <span class="title function_ invoke__">time</span>() + <span class="number">1800</span>); <span class="comment">// 设置 cookie，有效期为 30 分钟</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;meta http-equiv=&#x27;refresh&#x27; content=&#x27;3; url=http://gpt.lzyyyyyy.fun/guest&#x27;&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;/head&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">        &lt;div class=&#x27;container&#x27;&gt;</span></span><br><span class="line"><span class="string">            &lt;h1&gt;欢迎使用LZY&#x27;s GPT。&lt;/h1&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$activeUsers</span> &lt; <span class="variable">$people</span>+<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;info&#x27;&gt;<span class="subst">&#123;$message&#125;</span>&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;三秒后将自动跳转...&lt;/p&gt;&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;alert&#x27;&gt;<span class="subst">&#123;$message&#125;</span>&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;这会使用人数有点多噢，不如去 &lt;a href=&#x27;https://lzyyyyyy.fun&#x27;&gt;fugu&#x27;s 博客&lt;/a&gt;逛逛叭~&lt;/p&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">    &lt;/html&gt;&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Handle error in getting auth token</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;container&#x27;&gt;</span></span><br><span class="line"><span class="string">                &lt;div class=&#x27;alert&#x27;&gt;无法认证，请检查配置。&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-comment">// 读取 config.json 文件内容</span><br><span class="hljs-variable">$jsonString</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">&#x27;config.json&#x27;</span>);<br><br><span class="hljs-comment">// 解析 JSON 数据为 PHP 数组</span><br><span class="hljs-variable">$config</span> = <span class="hljs-title function_ invoke__">json_decode</span>(<span class="hljs-variable">$jsonString</span>, <span class="hljs-literal">true</span>);<br><span class="hljs-variable">$username</span> = <span class="hljs-variable">$config</span>[<span class="hljs-string">&#x27;username&#x27;</span>];<br><span class="hljs-variable">$password</span> = <span class="hljs-variable">$config</span>[<span class="hljs-string">&#x27;password&#x27;</span>];<br><span class="hljs-variable">$loginUrl</span> = <span class="hljs-variable">$config</span>[<span class="hljs-string">&#x27;loginUrl&#x27;</span>];<br><span class="hljs-variable">$activeUsersUrl</span> = <span class="hljs-variable">$config</span>[<span class="hljs-string">&#x27;activeUsersUrl&#x27;</span>];<br><br><span class="hljs-comment">// Function to perform a cURL request</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curlRequest</span>(<span class="hljs-params"><span class="hljs-variable">$url</span>, <span class="hljs-variable">$postFields</span> = <span class="hljs-literal">null</span>, <span class="hljs-variable">$headers</span> = []</span>) </span>&#123;<br>    <span class="hljs-variable">$ch</span> = <span class="hljs-title function_ invoke__">curl_init</span>();<br>    <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_URL, <span class="hljs-variable">$url</span>);<br>    <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="hljs-literal">true</span>);<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">is_null</span>(<span class="hljs-variable">$postFields</span>)) &#123;<br>        <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_POST, <span class="hljs-literal">true</span>);<br>        <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_POSTFIELDS, <span class="hljs-title function_ invoke__">json_encode</span>(<span class="hljs-variable">$postFields</span>));<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">empty</span>(<span class="hljs-variable">$headers</span>)) &#123;<br>        <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$ch</span>, CURLOPT_HTTPHEADER, <span class="hljs-variable">$headers</span>);<br>    &#125;<br>    <span class="hljs-variable">$response</span> = <span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$ch</span>);<br>    <span class="hljs-comment">// echo $response;</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">curl_errno</span>(<span class="hljs-variable">$ch</span>)) &#123;<br>        <span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">json_decode</span>(<span class="hljs-variable">$response</span>, <span class="hljs-literal">true</span>);<br>&#125;<br><br><span class="hljs-comment">// 生成一个随机的字符串作为 cookie 值</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">generateRandomString</span>(<span class="hljs-params"><span class="hljs-variable">$length</span> = <span class="hljs-number">50</span></span>) </span>&#123;<br>    <span class="hljs-variable">$characters</span> = <span class="hljs-string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>;<br>    <span class="hljs-variable">$charactersLength</span> = <span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$characters</span>);<br>    <span class="hljs-variable">$randomString</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-variable">$length</span>; <span class="hljs-variable">$i</span>++) &#123;<br>        <span class="hljs-variable">$randomString</span> .= <span class="hljs-variable">$characters</span>[<span class="hljs-title function_ invoke__">rand</span>(<span class="hljs-number">0</span>, <span class="hljs-variable">$charactersLength</span> - <span class="hljs-number">1</span>)];<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$randomString</span>;<br>&#125;<br><br><br><span class="hljs-comment">// Get authentication token</span><br><span class="hljs-variable">$authResponse</span> = <span class="hljs-title function_ invoke__">curlRequest</span>(<span class="hljs-variable">$loginUrl</span>, [<span class="hljs-string">&#x27;username&#x27;</span> =&gt; <span class="hljs-variable">$username</span>, <span class="hljs-string">&#x27;password&#x27;</span> =&gt; <span class="hljs-variable">$password</span>], [<span class="hljs-string">&#x27;Content-Type: application/json&#x27;</span>]);<br><span class="hljs-variable">$token</span> = <span class="hljs-variable">$authResponse</span>[<span class="hljs-string">&#x27;token&#x27;</span>] ?? <span class="hljs-string">&#x27;&#x27;</span>;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$token</span>) &#123;<br>    <span class="hljs-comment">// Fetch active users</span><br>    <span class="hljs-comment">// Fetch active users</span><br>    <span class="hljs-variable">$activeUsersData</span> = <span class="hljs-title function_ invoke__">curlRequest</span>(<span class="hljs-variable">$activeUsersUrl</span>, <span class="hljs-literal">null</span>, [<span class="hljs-string">&#x27;Authorization: Bearer &#x27;</span> . <span class="hljs-variable">$token</span>]);<br>    <span class="hljs-comment">// 假设我们只关心第一个元素的 &#x27;x&#x27; 值</span><br>    <span class="hljs-variable">$activeUsers</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$activeUsersData</span>[<span class="hljs-number">0</span>][<span class="hljs-string">&#x27;x&#x27;</span>]) ? <span class="hljs-variable">$activeUsersData</span>[<span class="hljs-number">0</span>][<span class="hljs-string">&#x27;x&#x27;</span>] : <span class="hljs-string">&#x27;Unavailable&#x27;</span>;<br><br>    <span class="hljs-comment">//支持最多&#123;&#123;people+1&#125;&#125;人同时使用</span><br>    <span class="hljs-variable">$people</span>=<span class="hljs-number">2</span>;<br><br>    <span class="hljs-comment">// 根据在线用户数显示不同的消息</span><br>    <span class="hljs-variable">$message</span> = <span class="hljs-variable">$activeUsers</span> &gt; <span class="hljs-variable">$people</span> ?  <span class="hljs-string">&quot;抱歉，当前在线用户数已达到限制。&quot;</span>: <span class="hljs-string">&quot;在线用户数少于指定人数，欢迎访问。&quot;</span>;<br><br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;!DOCTYPE html&gt;</span><br><span class="hljs-string">    &lt;html&gt;</span><br><span class="hljs-string">    &lt;head&gt;</span><br><span class="hljs-string">        &lt;title&gt;LZY&#x27;s GPT 在线用户检查&lt;/title&gt;</span><br><span class="hljs-string">        &lt;style&gt;</span><br><span class="hljs-string">            body &#123;</span><br><span class="hljs-string">                font-family: &#x27;Arial&#x27;, sans-serif;</span><br><span class="hljs-string">                margin: 0;</span><br><span class="hljs-string">                padding: 0;</span><br><span class="hljs-string">                background-color: #f4f4f4;</span><br><span class="hljs-string">                color: #333;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">            .container &#123;</span><br><span class="hljs-string">                max-width: 600px;</span><br><span class="hljs-string">                margin: 50px auto;</span><br><span class="hljs-string">                padding: 20px;</span><br><span class="hljs-string">                background-color: #fff;</span><br><span class="hljs-string">                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">            h1 &#123;</span><br><span class="hljs-string">                color: #0066cc;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">            p &#123;</span><br><span class="hljs-string">                line-height: 1.6;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">            .alert &#123;</span><br><span class="hljs-string">                padding: 20px;</span><br><span class="hljs-string">                background-color: #f44336; /* Red */</span><br><span class="hljs-string">                color: white;</span><br><span class="hljs-string">                margin-bottom: 15px;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">            .info &#123;</span><br><span class="hljs-string">                padding: 20px;</span><br><span class="hljs-string">                background-color: #2196F3; /* Blue */</span><br><span class="hljs-string">                color: white;</span><br><span class="hljs-string">                margin-bottom: 15px;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">            a &#123;</span><br><span class="hljs-string">                color: #2196F3;</span><br><span class="hljs-string">                text-decoration: none;</span><br><span class="hljs-string">                font-weight: bold;</span><br><span class="hljs-string">            &#125;</span><br><span class="hljs-string">        &lt;/style&gt;&quot;</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$activeUsers</span> &lt; <span class="hljs-variable">$people</span>+<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-variable">$randomString</span> = <span class="hljs-title function_ invoke__">generateRandomString</span>(); <span class="hljs-comment">// 默认长度为 50</span><br>        <span class="hljs-title function_ invoke__">setcookie</span>(<span class="hljs-string">&quot;auth&quot;</span>, <span class="hljs-variable">$randomString</span>, <span class="hljs-title function_ invoke__">time</span>() + <span class="hljs-number">1800</span>); <span class="hljs-comment">// 设置 cookie，有效期为 30 分钟</span><br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;meta http-equiv=&#x27;refresh&#x27; content=&#x27;3; url=http://gpt.lzyyyyyy.fun/guest&#x27;&gt;&quot;</span>;<br>    &#125;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;/head&gt;</span><br><span class="hljs-string">    &lt;body&gt;</span><br><span class="hljs-string">        &lt;div class=&#x27;container&#x27;&gt;</span><br><span class="hljs-string">            &lt;h1&gt;欢迎使用LZY&#x27;s GPT。&lt;/h1&gt;&quot;</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$activeUsers</span> &lt; <span class="hljs-variable">$people</span>+<span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;div class=&#x27;info&#x27;&gt;<span class="hljs-subst">&#123;$message&#125;</span>&lt;/div&gt;</span><br><span class="hljs-string">            &lt;p&gt;三秒后将自动跳转...&lt;/p&gt;&quot;</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;div class=&#x27;alert&#x27;&gt;<span class="hljs-subst">&#123;$message&#125;</span>&lt;/div&gt;</span><br><span class="hljs-string">            &lt;p&gt;这会使用人数有点多噢，不如去 &lt;a href=&#x27;https://lzyyyyyy.fun&#x27;&gt;fugu&#x27;s 博客&lt;/a&gt;逛逛叭~&lt;/p&gt;&quot;</span>;<br>    &#125;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;    &lt;/div&gt;</span><br><span class="hljs-string">    &lt;/body&gt;</span><br><span class="hljs-string">    &lt;/html&gt;&quot;</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// Handle error in getting auth token</span><br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;div class=&#x27;container&#x27;&gt;</span><br><span class="hljs-string">                &lt;div class=&#x27;alert&#x27;&gt;无法认证，请检查配置。&lt;/div&gt;</span><br><span class="hljs-string">            &lt;/div&gt;&quot;</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <p>实现了中转鉴定。然后通过设置<code>cookie</code>避免短时间内多次鉴定。</p>
 <hr>
@@ -113,157 +291,373 @@
 <li>这种包含<code>#</code>的路径，是前端内部路由，对于服务器而言依旧是<code>/</code>路径，需要正确转发到<code>3000</code>端口，否则页面请求资源会到<code>root /var/gpt-boss</code>这个路径下请求了，而不会进入容器内部。</li>
 </ol>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://sinlatansen.github.io/2024/03/06/%E9%80%9A%E8%BF%87nginx%E5%AE%9E%E7%8E%B0%E5%AF%B9web%E5%BA%94%E7%94%A8%E7%9A%84js%E6%B3%A8%E5%85%A5%E5%92%8C%E5%9C%A8%E7%BA%BF%E4%BA%BA%E6%95%B0%E9%99%90%E5%88%B6/" data-id="cm5b4yqw1003prw72d2vy4piv" data-title="通过nginx实现对web应用的js注入和在线人数限制" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
 
-    </footer>
-  </div>
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/geek/" class="category-chain-item">geek</a>
   
-    <a href="/2024/03/07/npm%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          npm报错：OpenSSL版本错误
-        
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Nginx/" class="print-no-link">#Nginx</a>
+      
+        <a href="/tags/php/" class="print-no-link">#php</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>通过nginx实现对web应用的js注入和在线人数限制</div>
+      <div>http://sinlatansen.github.io/2024/03/06/通过nginx实现对web应用的js注入和在线人数限制/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fugu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/07/npm%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF/" title="npm报错：OpenSSL版本错误">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">npm报错：OpenSSL版本错误</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/28/%E9%80%9A%E8%BF%87Edge%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%9C%A8iPhone%E7%9C%9F%E6%9C%BASafari%E4%B8%AD%E8%B0%83%E8%AF%95%E7%BD%91%E9%A1%B5/" title="通过Edge开发工具在iPhone真机Safari中调试网页">
+                        <span class="hidden-mobile">通过Edge开发工具在iPhone真机Safari中调试网页</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2024/02/28/%E9%80%9A%E8%BF%87Edge%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%9C%A8iPhone%E7%9C%9F%E6%9C%BASafari%E4%B8%AD%E8%B0%83%E8%AF%95%E7%BD%91%E9%A1%B5/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">通过Edge开发工具在iPhone真机Safari中调试网页</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2024 fugu<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

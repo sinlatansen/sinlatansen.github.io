@@ -1,12 +1,25 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>Linux下C语言教程-李慧芹老师-第十四章 | Fugu&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="配套代码笔记仓库。 目录 目录 文件系统 目录和文件 系统数据文件和信息 进程环境 main函数 进程的终止 命令行参数的分析 环境变量 C程序的存储空间布局 库 函数之间正常的跳转 资源的获取及控制      文件系统类ls的实现，如myls -l -a -i -n cmd --长格式  -短格式  非选项的传参 目录和文件 获取文件属性  123456789101112131415161718">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fugu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="配套代码笔记仓库。 目录 目录 文件系统 目录和文件 系统数据文件和信息 进程环境 main函数 进程的终止 命令行参数的分析 环境变量 C程序的存储空间布局 库 函数之间正常的跳转 资源的获取及控制      文件系统类ls的实现，如myls -l -a -i -n cmd --长格式  -短格式  非选项的传参 目录和文件 获取文件属性  123456789101112131415161718">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下C语言教程-李慧芹老师-第十四章">
 <meta property="og:url" content="http://sinlatansen.github.io/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/index.html">
@@ -19,88 +32,253 @@
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="c">
 <meta property="article:tag" content="李慧芹">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
   
   
   
-<link rel="stylesheet" href="/css/style.css">
+  <title>Linux下C语言教程-李慧芹老师-第十四章 - Fugu&#39;s Blog</title>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sinlatansen.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Fugu&#39;s Blog</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux下C语言教程-李慧芹老师-第十四章"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-16 12:40" pubdate>
+          2024年5月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          1.9k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-Linux下C语言教程-李慧芹老师-第十四章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/" class="article-date">
-  <time class="dt-published" datetime="2024-05-16T12:40:27.000Z" itemprop="datePublished">2024-05-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/technology/">technology</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Linux下C语言教程-李慧芹老师-第十四章
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记仓库</a>。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux下C语言教程-李慧芹老师-第十四章</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记仓库</a>。</p>
 <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
 <li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
 <li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a><ul>
@@ -125,7 +303,7 @@
 <h2 id="目录和文件"><a href="#目录和文件" class="headerlink" title="目录和文件"></a>目录和文件</h2><ol>
 <li>获取文件属性</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  将文件的属性存储到buf中</span></span><br><span class="line"><span class="comment"> *  stat : 通过文件路径获取属性，面对符号链接文件时，</span></span><br><span class="line"><span class="comment"> *         获取的是指向的目标文件的属性</span></span><br><span class="line"><span class="comment"> *  fstat: 通过文件描述符获取属性</span></span><br><span class="line"><span class="comment"> *  lstat: 通过文件路径获取属性，面对符号链接文件时，</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">stat</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path, <span class="keyword">struct</span> stat *buf)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">fstat</span><span class="params">(<span class="type">int</span> fd, <span class="keyword">struct</span> stat *buf)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">lstat</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path, <span class="keyword">struct</span> stat *buf)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stat</span> &#123;</span></span><br><span class="line">    <span class="type">dev_t</span>     st_dev;         <span class="comment">/* ID of device containing file */</span></span><br><span class="line">    <span class="type">ino_t</span>     st_ino;         <span class="comment">/* inode number */</span></span><br><span class="line">    <span class="comment">// 文件唯一标识，身份证号</span></span><br><span class="line"></span><br><span class="line">    <span class="type">mode_t</span>    st_mode;        <span class="comment">/* protection */</span></span><br><span class="line">    <span class="comment">// st_mode: 文件权限+文件类型</span></span><br><span class="line">    <span class="comment">// 文件权限</span></span><br><span class="line">    <span class="comment">// 七种文件类型：dcb-lsp</span></span><br><span class="line"></span><br><span class="line">    <span class="type">nlink_t</span>   st_nlink;       <span class="comment">/* number of hard links */</span></span><br><span class="line">    <span class="type">uid_t</span>     st_uid;         <span class="comment">/* user ID of owner */</span></span><br><span class="line">    <span class="type">gid_t</span>     st_gid;         <span class="comment">/* group ID of owner */</span></span><br><span class="line">    <span class="type">dev_t</span>     st_rdev;        <span class="comment">/* device ID (if special file) */</span></span><br><span class="line">    <span class="type">off_t</span>     st_size;        <span class="comment">/* total size, in bytes */</span></span><br><span class="line">    <span class="comment">// 在linux下，与windows不同，size值仅仅是属性</span></span><br><span class="line">    <span class="comment">// 不能实际体现占用磁盘大小，详见 big.c</span></span><br><span class="line"></span><br><span class="line">    <span class="type">blksize_t</span> st_blksize;    <span class="comment">/* blocksize for file system I/O */</span></span><br><span class="line">    <span class="type">blkcnt_t</span>  st_blocks;     <span class="comment">/* number of 512B blocks allocated */</span></span><br><span class="line">    <span class="type">time_t</span>    st_atime;       <span class="comment">/* time of last access */</span></span><br><span class="line">    <span class="type">time_t</span>    st_mtime;       <span class="comment">/* time of last modification */</span></span><br><span class="line">    <span class="type">time_t</span>    st_ctime;       <span class="comment">/* time of last status change */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  将文件的属性存储到buf中</span><br><span class="hljs-comment"> *  stat : 通过文件路径获取属性，面对符号链接文件时，</span><br><span class="hljs-comment"> *         获取的是指向的目标文件的属性</span><br><span class="hljs-comment"> *  fstat: 通过文件描述符获取属性</span><br><span class="hljs-comment"> *  lstat: 通过文件路径获取属性，面对符号链接文件时，</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">stat</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-keyword">struct</span> stat *buf)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">fstat</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-keyword">struct</span> stat *buf)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">lstat</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-keyword">struct</span> stat *buf)</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stat</span> &#123;</span><br>    <span class="hljs-type">dev_t</span>     st_dev;         <span class="hljs-comment">/* ID of device containing file */</span><br>    <span class="hljs-type">ino_t</span>     st_ino;         <span class="hljs-comment">/* inode number */</span><br>    <span class="hljs-comment">// 文件唯一标识，身份证号</span><br><br>    <span class="hljs-type">mode_t</span>    st_mode;        <span class="hljs-comment">/* protection */</span><br>    <span class="hljs-comment">// st_mode: 文件权限+文件类型</span><br>    <span class="hljs-comment">// 文件权限</span><br>    <span class="hljs-comment">// 七种文件类型：dcb-lsp</span><br><br>    <span class="hljs-type">nlink_t</span>   st_nlink;       <span class="hljs-comment">/* number of hard links */</span><br>    <span class="hljs-type">uid_t</span>     st_uid;         <span class="hljs-comment">/* user ID of owner */</span><br>    <span class="hljs-type">gid_t</span>     st_gid;         <span class="hljs-comment">/* group ID of owner */</span><br>    <span class="hljs-type">dev_t</span>     st_rdev;        <span class="hljs-comment">/* device ID (if special file) */</span><br>    <span class="hljs-type">off_t</span>     st_size;        <span class="hljs-comment">/* total size, in bytes */</span><br>    <span class="hljs-comment">// 在linux下，与windows不同，size值仅仅是属性</span><br>    <span class="hljs-comment">// 不能实际体现占用磁盘大小，详见 big.c</span><br><br>    <span class="hljs-type">blksize_t</span> st_blksize;    <span class="hljs-comment">/* blocksize for file system I/O */</span><br>    <span class="hljs-type">blkcnt_t</span>  st_blocks;     <span class="hljs-comment">/* number of 512B blocks allocated */</span><br>    <span class="hljs-type">time_t</span>    st_atime;       <span class="hljs-comment">/* time of last access */</span><br>    <span class="hljs-type">time_t</span>    st_mtime;       <span class="hljs-comment">/* time of last modification */</span><br>    <span class="hljs-type">time_t</span>    st_ctime;       <span class="hljs-comment">/* time of last status change */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <ol start="2">
 <li><p>文件访问权限<br><code>st_mode</code>是一个16位的二进制数，文件类型，文件权限，特殊权限。</p>
@@ -135,7 +313,7 @@
 <li><p>文件权限的更改&#x2F;管理</p>
 </li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 更改文件权限</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">chmod</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path, <span class="type">mode_t</span> mode)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">fchmod</span><span class="params">(<span class="type">int</span> fd, <span class="type">mode_t</span> mode)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 更改文件权限</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">chmod</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">mode_t</span> mode)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">fchmod</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">mode_t</span> mode)</span>;<br></code></pre></td></tr></table></figure>
 
 <ol start="5">
 <li><p>粘住位<br>t位，例如<code>/tmp</code>目录。</p>
@@ -143,7 +321,7 @@
 <li><p>文件系统：<code>FAT</code>, <code>UFS</code><br>文件或数据的存储格式。</p>
 <ol>
 <li><p><code>FAT</code>：静态存储的单链表</p>
-  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node_st</span>&#123;</span></span><br><span class="line">  <span class="type">int</span>  next[N];</span><br><span class="line">	<span class="type">char</span> data[N][SIZE];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node_st</span>&#123;</span><br>  <span class="hljs-type">int</span>  next[N];<br>	<span class="hljs-type">char</span> data[N][SIZE];<br>&#125;;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p><code>UFS</code>：<br>缺点：不善于处理大量的小文件，因为每个文件都有一个<code>inode</code>，占用空间。</p>
 </li>
@@ -165,27 +343,27 @@
 </ul>
 </li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">link</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *oldpath, <span class="type">const</span> <span class="type">char</span> *newpath)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  只有没有引用的数据才会真正删除</span></span><br><span class="line"><span class="comment"> *  可以利用这一点创建匿名文件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">unlink</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *pathname)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">remove</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *pathname)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  改变文件的路径或者名字</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">rename</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *oldpath, <span class="type">const</span> <span class="type">char</span> *newpath)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">link</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *oldpath, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *newpath)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  只有没有引用的数据才会真正删除</span><br><span class="hljs-comment"> *  可以利用这一点创建匿名文件</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">unlink</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  改变文件的路径或者名字</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">rename</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *oldpath, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *newpath)</span>;<br></code></pre></td></tr></table></figure>
 
 <ol start="8">
 <li><code>utime</code></li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  更改文件最后读/写的时间</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">utime</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *filename, <span class="type">const</span> <span class="keyword">struct</span> utimbuf *times)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">utimbuf</span> &#123;</span></span><br><span class="line">    <span class="type">time_t</span> actime;       <span class="comment">/* access time */</span></span><br><span class="line">    <span class="type">time_t</span> modtime;      <span class="comment">/* modification time */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">time_t</span> &#123;</span></span><br><span class="line">    <span class="type">long</span> tv_sec;         <span class="comment">/* seconds */</span></span><br><span class="line">    <span class="type">long</span> tv_usec;        <span class="comment">/* microseconds */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  更改文件最后读/写的时间</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">utime</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *filename, <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> utimbuf *times)</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">utimbuf</span> &#123;</span><br>    <span class="hljs-type">time_t</span> actime;       <span class="hljs-comment">/* access time */</span><br>    <span class="hljs-type">time_t</span> modtime;      <span class="hljs-comment">/* modification time */</span><br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">time_t</span> &#123;</span><br>    <span class="hljs-type">long</span> tv_sec;         <span class="hljs-comment">/* seconds */</span><br>    <span class="hljs-type">long</span> tv_usec;        <span class="hljs-comment">/* microseconds */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <ol start="9">
 <li>目录的创建和销毁<br><code>mkdir, rmdir</code></li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">mkdir</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *pathname, <span class="type">mode_t</span> mode)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  只有目录为空才能删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">rmdir</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *pathname)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">mkdir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname, <span class="hljs-type">mode_t</span> mode)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  只有目录为空才能删除</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">rmdir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *pathname)</span>;<br></code></pre></td></tr></table></figure>
 
 <ol start="10">
 <li>更改当前工作路径<br><code>cd, pwd</code></li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  改变当前工作路径</span></span><br><span class="line"><span class="comment"> *  可以突破假根目录</span></span><br><span class="line"><span class="comment"> *  但是不能突破chroot</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">chdir</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">fchdir</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  获取当前工作路径</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">long</span> <span class="title function_">getcwd</span><span class="params">(<span class="type">char</span> *buf, <span class="type">unsigned</span> <span class="type">long</span> size)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  改变当前工作路径</span><br><span class="hljs-comment"> *  可以突破假根目录</span><br><span class="hljs-comment"> *  但是不能突破chroot</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">chdir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *path)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">fchdir</span><span class="hljs-params">(<span class="hljs-type">int</span> fd)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  获取当前工作路径</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">long</span> <span class="hljs-title function_">getcwd</span><span class="hljs-params">(<span class="hljs-type">char</span> *buf, <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> size)</span>;<br></code></pre></td></tr></table></figure>
 
 <ol start="11">
 <li>分析目录&#x2F;读取目录内容</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  法一</span></span><br><span class="line"><span class="comment"> *  解析模式/通配符</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @prarm: pattern 匹配模式</span></span><br><span class="line"><span class="comment"> * @prarm: flags   匹配标志</span></span><br><span class="line"><span class="comment"> * @prarm: errfunc 错误回调函数</span></span><br><span class="line"><span class="comment"> * @prarm: pglob   匹配结果</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @return  匹配的文件数量</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">glob</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *<span class="keyword">restrict</span> pattern, <span class="type">int</span> flags,</span></span><br><span class="line"><span class="params">                <span class="type">int</span> (*errfunc)(<span class="type">const</span> <span class="type">char</span> *epath, <span class="type">int</span> eerrno),</span></span><br><span class="line"><span class="params">                <span class="type">glob_t</span> *<span class="keyword">restrict</span> pglob)</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  释放glob_t结构体</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">globfree</span><span class="params">(<span class="type">glob_t</span> *pglob)</span>;               </span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 与argc, argv类似</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">size_t</span>   gl_pathc;    <span class="comment">/* Count of paths matched so far */</span></span><br><span class="line">    <span class="type">char</span>   **gl_pathv;    <span class="comment">/* List of matched pathnames */</span></span><br><span class="line">    <span class="type">size_t</span>   gl_offs;     <span class="comment">/* Slots to reserve in gl_pathv */</span></span><br><span class="line">&#125; <span class="type">glob_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  法二</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  打开一个目录</span></span><br><span class="line"><span class="comment"> *  返回一个指向DIR结构体的指针</span></span><br><span class="line"><span class="comment"> *  是堆区，需要 closedir 释放</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">DIR *<span class="title function_">opendir</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line">DIR *<span class="title function_">fdopendir</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  关闭一个目录</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">closedir</span><span class="params">(DIR *dirp)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  读取一个目录</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> *  返回指针指向静态区</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">struct</span> dirent *<span class="title function_">readdir</span><span class="params">(DIR *dirp)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">readdir_r</span><span class="params">(DIR *<span class="keyword">restrict</span> dirp,</span></span><br><span class="line"><span class="params">              <span class="keyword">struct</span> dirent *<span class="keyword">restrict</span> entry,</span></span><br><span class="line"><span class="params">              <span class="keyword">struct</span> dirent **<span class="keyword">restrict</span> result)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> &#123;</span></span><br><span class="line">    <span class="type">ino_t</span>          d_ino;       <span class="comment">/* inode number */</span></span><br><span class="line">    <span class="type">off_t</span>          d_off;       <span class="comment">/* offset to the next dirent */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">short</span> d_reclen;    <span class="comment">/* length of this record */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>  d_type;      <span class="comment">/* type of file; not supported</span></span><br><span class="line"><span class="comment">                                   by all file system types */</span></span><br><span class="line">    <span class="type">char</span>           d_name[<span class="number">256</span>]; <span class="comment">/* filename */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  重置一个目录</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">rewinddir</span><span class="params">(DIR *dirp)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">seekdir</span><span class="params">(DIR *dirp, <span class="type">long</span> offset)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="title function_">telldir</span><span class="params">(DIR *dirp)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  du 命令</span></span><br><span class="line"><span class="comment"> *  以字节为单位，统计目录下所有文件的大小</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  法一</span><br><span class="hljs-comment"> *  解析模式/通配符</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * @prarm: pattern 匹配模式</span><br><span class="hljs-comment"> * @prarm: flags   匹配标志</span><br><span class="hljs-comment"> * @prarm: errfunc 错误回调函数</span><br><span class="hljs-comment"> * @prarm: pglob   匹配结果</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * @return  匹配的文件数量</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">glob</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *<span class="hljs-keyword">restrict</span> pattern, <span class="hljs-type">int</span> flags,</span><br><span class="hljs-params">                <span class="hljs-type">int</span> (*errfunc)(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *epath, <span class="hljs-type">int</span> eerrno),</span><br><span class="hljs-params">                <span class="hljs-type">glob_t</span> *<span class="hljs-keyword">restrict</span> pglob)</span>;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  释放glob_t结构体</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">globfree</span><span class="hljs-params">(<span class="hljs-type">glob_t</span> *pglob)</span>;               <br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 与argc, argv类似</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">size_t</span>   gl_pathc;    <span class="hljs-comment">/* Count of paths matched so far */</span><br>    <span class="hljs-type">char</span>   **gl_pathv;    <span class="hljs-comment">/* List of matched pathnames */</span><br>    <span class="hljs-type">size_t</span>   gl_offs;     <span class="hljs-comment">/* Slots to reserve in gl_pathv */</span><br>&#125; <span class="hljs-type">glob_t</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  法二</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  打开一个目录</span><br><span class="hljs-comment"> *  返回一个指向DIR结构体的指针</span><br><span class="hljs-comment"> *  是堆区，需要 closedir 释放</span><br><span class="hljs-comment">*/</span><br>DIR *<span class="hljs-title function_">opendir</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span>;<br>DIR *<span class="hljs-title function_">fdopendir</span><span class="hljs-params">(<span class="hljs-type">int</span> fd)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  关闭一个目录</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">closedir</span><span class="hljs-params">(DIR *dirp)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  读取一个目录</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> *  返回指针指向静态区</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">struct</span> dirent *<span class="hljs-title function_">readdir</span><span class="hljs-params">(DIR *dirp)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">readdir_r</span><span class="hljs-params">(DIR *<span class="hljs-keyword">restrict</span> dirp,</span><br><span class="hljs-params">              <span class="hljs-keyword">struct</span> dirent *<span class="hljs-keyword">restrict</span> entry,</span><br><span class="hljs-params">              <span class="hljs-keyword">struct</span> dirent **<span class="hljs-keyword">restrict</span> result)</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dirent</span> &#123;</span><br>    <span class="hljs-type">ino_t</span>          d_ino;       <span class="hljs-comment">/* inode number */</span><br>    <span class="hljs-type">off_t</span>          d_off;       <span class="hljs-comment">/* offset to the next dirent */</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> d_reclen;    <span class="hljs-comment">/* length of this record */</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>  d_type;      <span class="hljs-comment">/* type of file; not supported</span><br><span class="hljs-comment">                                   by all file system types */</span><br>    <span class="hljs-type">char</span>           d_name[<span class="hljs-number">256</span>]; <span class="hljs-comment">/* filename */</span><br>&#125;;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  重置一个目录</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">rewinddir</span><span class="hljs-params">(DIR *dirp)</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">seekdir</span><span class="hljs-params">(DIR *dirp, <span class="hljs-type">long</span> offset)</span>;<br><br><span class="hljs-type">long</span> <span class="hljs-title function_">telldir</span><span class="hljs-params">(DIR *dirp)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  du 命令</span><br><span class="hljs-comment"> *  以字节为单位，统计目录下所有文件的大小</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment">*/</span><br><br><br></code></pre></td></tr></table></figure>
 
 <p>作业：用另一套函数实现<code>mydu</code></p>
 <h2 id="系统数据文件和信息"><a href="#系统数据文件和信息" class="headerlink" title="系统数据文件和信息"></a>系统数据文件和信息</h2><blockquote>
@@ -194,12 +372,12 @@
 <ol>
 <li><code>/etc/passwd</code></li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  通过用户名获取用户信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">struct</span> passwd *<span class="title function_">getpwuid</span><span class="params">(<span class="type">uid_t</span> uid)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  通过用户ID获取用户信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">struct</span> passwd *<span class="title function_">getpwnam</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">passwd</span> &#123;</span></span><br><span class="line">    <span class="type">char</span>   *pw_name;       <span class="comment">/* username */</span></span><br><span class="line">    <span class="type">char</span>   *pw_passwd;     <span class="comment">/* user password */</span></span><br><span class="line">    <span class="type">uid_t</span>   pw_uid;        <span class="comment">/* user ID */</span></span><br><span class="line">    <span class="type">gid_t</span>   pw_gid;        <span class="comment">/* group ID */</span></span><br><span class="line">    <span class="type">char</span>   *pw_gecos;      <span class="comment">/* user information */</span></span><br><span class="line">    <span class="type">char</span>   *pw_dir;        <span class="comment">/* home directory */</span></span><br><span class="line">    <span class="type">char</span>   *pw_shell;      <span class="comment">/* shell program */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  通过用户名获取用户信息</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">struct</span> passwd *<span class="hljs-title function_">getpwuid</span><span class="hljs-params">(<span class="hljs-type">uid_t</span> uid)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  通过用户ID获取用户信息</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">struct</span> passwd *<span class="hljs-title function_">getpwnam</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">passwd</span> &#123;</span><br>    <span class="hljs-type">char</span>   *pw_name;       <span class="hljs-comment">/* username */</span><br>    <span class="hljs-type">char</span>   *pw_passwd;     <span class="hljs-comment">/* user password */</span><br>    <span class="hljs-type">uid_t</span>   pw_uid;        <span class="hljs-comment">/* user ID */</span><br>    <span class="hljs-type">gid_t</span>   pw_gid;        <span class="hljs-comment">/* group ID */</span><br>    <span class="hljs-type">char</span>   *pw_gecos;      <span class="hljs-comment">/* user information */</span><br>    <span class="hljs-type">char</span>   *pw_dir;        <span class="hljs-comment">/* home directory */</span><br>    <span class="hljs-type">char</span>   *pw_shell;      <span class="hljs-comment">/* shell program */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <ol start="2">
 <li><code>/etc/group</code></li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  通过组ID获取组信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">struct</span> group *<span class="title function_">getgrgid</span><span class="params">(<span class="type">gid_t</span> gid)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  通过组名获取组信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">struct</span> group *<span class="title function_">getgrnam</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">group</span> &#123;</span></span><br><span class="line">    <span class="type">char</span>   *gr_name;       <span class="comment">/* group name */</span></span><br><span class="line">    <span class="type">char</span>   *gr_passwd;     <span class="comment">/* group password */</span></span><br><span class="line">    <span class="type">gid_t</span>   gr_gid;        <span class="comment">/* group ID */</span></span><br><span class="line">    <span class="type">char</span>  **gr_mem;        <span class="comment">/* group members */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  通过组ID获取组信息</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">struct</span> group *<span class="hljs-title function_">getgrgid</span><span class="hljs-params">(<span class="hljs-type">gid_t</span> gid)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  通过组名获取组信息</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">struct</span> group *<span class="hljs-title function_">getgrnam</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">group</span> &#123;</span><br>    <span class="hljs-type">char</span>   *gr_name;       <span class="hljs-comment">/* group name */</span><br>    <span class="hljs-type">char</span>   *gr_passwd;     <span class="hljs-comment">/* group password */</span><br>    <span class="hljs-type">gid_t</span>   gr_gid;        <span class="hljs-comment">/* group ID */</span><br>    <span class="hljs-type">char</span>  **gr_mem;        <span class="hljs-comment">/* group members */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <ol start="3">
 <li><code>/etc/shadow</code><br><code>ll</code>显示<strong>root</strong>用户也不可读写，但是只有<strong>root</strong>用户才可读写<br>这样是提醒你，即便是<strong>root</strong>用户，也不要随便读写这个文件</li>
@@ -214,16 +392,16 @@
 <p>安全？穷举：口令随机校验（第一遍明明对了给你报错，让你连续两遍成功输入正确）</p>
 <p>推荐书籍：《应用密码学》</p>
 </blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 获得用户的密码信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">struct</span> *spwd <span class="title function_">getspnam</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加密密码</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @prarm: key  密码</span></span><br><span class="line"><span class="comment"> * @prarm: salt 盐 杂字串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 默认 md5 加密方式</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">crypt</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *key, <span class="type">const</span> <span class="type">char</span> *salt)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">spwd</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> *sp_namp;      <span class="comment">/* login name */</span></span><br><span class="line">    <span class="type">char</span> *sp_pwdp;      <span class="comment">/* encrypted password */</span></span><br><span class="line">    <span class="type">long</span>  sp_lstchg;    <span class="comment">/* last change */</span></span><br><span class="line">    <span class="type">long</span>  sp_min;       <span class="comment">/* min days between changes */</span></span><br><span class="line">    <span class="type">long</span>  sp_max;       <span class="comment">/* max days between changes */</span></span><br><span class="line">    <span class="type">long</span>  sp_warn;      <span class="comment">/* warning days before password</span></span><br><span class="line"><span class="comment">                           expires */</span></span><br><span class="line">    <span class="type">long</span>  sp_inact;     <span class="comment">/* days before account inactive */</span></span><br><span class="line">    <span class="type">long</span>  sp_expire;    <span class="comment">/* days since 1970-01-01 until account</span></span><br><span class="line"><span class="comment">                           expires */</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> sp_flag; <span class="comment">/* reserved */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 输入提示符</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">getpass</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *prompt)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * 获得用户的密码信息</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">struct</span> *spwd <span class="hljs-title function_">getspnam</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 加密密码</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @prarm: key  密码</span><br><span class="hljs-comment"> * @prarm: salt 盐 杂字串</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 默认 md5 加密方式</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">char</span> *<span class="hljs-title function_">crypt</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *key, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *salt)</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">spwd</span> &#123;</span><br>    <span class="hljs-type">char</span> *sp_namp;      <span class="hljs-comment">/* login name */</span><br>    <span class="hljs-type">char</span> *sp_pwdp;      <span class="hljs-comment">/* encrypted password */</span><br>    <span class="hljs-type">long</span>  sp_lstchg;    <span class="hljs-comment">/* last change */</span><br>    <span class="hljs-type">long</span>  sp_min;       <span class="hljs-comment">/* min days between changes */</span><br>    <span class="hljs-type">long</span>  sp_max;       <span class="hljs-comment">/* max days between changes */</span><br>    <span class="hljs-type">long</span>  sp_warn;      <span class="hljs-comment">/* warning days before password</span><br><span class="hljs-comment">                           expires */</span><br>    <span class="hljs-type">long</span>  sp_inact;     <span class="hljs-comment">/* days before account inactive */</span><br>    <span class="hljs-type">long</span>  sp_expire;    <span class="hljs-comment">/* days since 1970-01-01 until account</span><br><span class="hljs-comment">                           expires */</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> sp_flag; <span class="hljs-comment">/* reserved */</span><br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 输入提示符</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">char</span> *<span class="hljs-title function_">getpass</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *prompt)</span>;<br></code></pre></td></tr></table></figure>
 
 <ol start="4">
 <li>时间戳<br>机器喜欢大整数 <code>time_t</code><br>人类喜欢字符串 <code>char *</code><br>程序员喜欢结构体 <code>struct tm</code></li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  从内核获取以秒为单位的一个时戳</span></span><br><span class="line"><span class="comment"> *  从 UTC 1970年1月1日0时0分0秒 到现在的秒数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">time</span><span class="params">(<span class="type">time_t</span> *t)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// eg: 两种用法</span></span><br><span class="line"><span class="type">time_t</span> stamp;</span><br><span class="line">time(&amp;stamp);</span><br><span class="line">stamp=time(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  将时间戳转换为结构体</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">gmtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timep)</span>;</span><br><span class="line"><span class="keyword">struct</span> tm *<span class="title function_">localtime</span><span class="params">(<span class="type">const</span> <span class="type">time_t</span> *timep)</span>;</span><br><span class="line"></span><br><span class="line">sturct tm &#123;</span><br><span class="line">    <span class="type">int</span> tm_sec;    <span class="comment">/* seconds */</span></span><br><span class="line">    <span class="type">int</span> tm_min;    <span class="comment">/* minutes */</span></span><br><span class="line">    <span class="type">int</span> tm_hour;   <span class="comment">/* hours */</span></span><br><span class="line">    <span class="type">int</span> tm_mday;   <span class="comment">/* day of the month */</span></span><br><span class="line">    <span class="type">int</span> tm_mon;    <span class="comment">/* month */</span></span><br><span class="line">    <span class="type">int</span> tm_year;   <span class="comment">/* year */</span></span><br><span class="line">    <span class="type">int</span> tm_wday;   <span class="comment">/* day of the week */</span></span><br><span class="line">    <span class="type">int</span> tm_yday;   <span class="comment">/* day in the year */</span></span><br><span class="line">    <span class="type">int</span> tm_isdst;  <span class="comment">/* daylight saving time */</span></span><br><span class="line">                   <span class="comment">/* daylight 夏令时调整 */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  将结构体转换为时间戳</span></span><br><span class="line"><span class="comment"> *  ! 没有 const，可能更改 tm</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">time_t</span> <span class="title function_">mktime</span><span class="params">(<span class="keyword">struct</span> tm *tm)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 格式化输出时间</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">strftime</span><span class="params">(<span class="type">char</span> *s, <span class="type">size_t</span> max, <span class="type">const</span> <span class="type">char</span> *format,</span></span><br><span class="line"><span class="params">                <span class="type">const</span> <span class="keyword">struct</span> tm *tm)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// eg</span></span><br><span class="line">strftime(buf, <span class="keyword">sizeof</span>(buf), <span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>, tm);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  从内核获取以秒为单位的一个时戳</span><br><span class="hljs-comment"> *  从 UTC 1970年1月1日0时0分0秒 到现在的秒数</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">time_t</span> <span class="hljs-title function_">time</span><span class="hljs-params">(<span class="hljs-type">time_t</span> *t)</span>;<br><br><span class="hljs-comment">// eg: 两种用法</span><br><span class="hljs-type">time_t</span> stamp;<br>time(&amp;stamp);<br>stamp=time(<span class="hljs-literal">NULL</span>);<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  将时间戳转换为结构体</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">struct</span> tm *<span class="hljs-title function_">gmtime</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">time_t</span> *timep)</span>;<br><span class="hljs-keyword">struct</span> tm *<span class="hljs-title function_">localtime</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">time_t</span> *timep)</span>;<br><br>sturct tm &#123;<br>    <span class="hljs-type">int</span> tm_sec;    <span class="hljs-comment">/* seconds */</span><br>    <span class="hljs-type">int</span> tm_min;    <span class="hljs-comment">/* minutes */</span><br>    <span class="hljs-type">int</span> tm_hour;   <span class="hljs-comment">/* hours */</span><br>    <span class="hljs-type">int</span> tm_mday;   <span class="hljs-comment">/* day of the month */</span><br>    <span class="hljs-type">int</span> tm_mon;    <span class="hljs-comment">/* month */</span><br>    <span class="hljs-type">int</span> tm_year;   <span class="hljs-comment">/* year */</span><br>    <span class="hljs-type">int</span> tm_wday;   <span class="hljs-comment">/* day of the week */</span><br>    <span class="hljs-type">int</span> tm_yday;   <span class="hljs-comment">/* day in the year */</span><br>    <span class="hljs-type">int</span> tm_isdst;  <span class="hljs-comment">/* daylight saving time */</span><br>                   <span class="hljs-comment">/* daylight 夏令时调整 */</span><br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  将结构体转换为时间戳</span><br><span class="hljs-comment"> *  ! 没有 const，可能更改 tm</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">time_t</span> <span class="hljs-title function_">mktime</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> tm *tm)</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 格式化输出时间</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">size_t</span> <span class="hljs-title function_">strftime</span><span class="hljs-params">(<span class="hljs-type">char</span> *s, <span class="hljs-type">size_t</span> max, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *format,</span><br><span class="hljs-params">                <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> tm *tm)</span>;<br><br><span class="hljs-comment">// eg</span><br>strftime(buf, <span class="hljs-keyword">sizeof</span>(buf), <span class="hljs-string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>, tm);<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="进程环境"><a href="#进程环境" class="headerlink" title="进程环境"></a>进程环境</h2><h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a><code>main</code>函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="进程环境"><a href="#进程环境" class="headerlink" title="进程环境"></a>进程环境</h2><h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a><code>main</code>函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span>;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -253,16 +431,16 @@
 </ul>
 </li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  注册一个函数，当进程终止时调用</span></span><br><span class="line"><span class="comment"> *  </span></span><br><span class="line"><span class="comment"> *  钩子函数：逆序执行</span></span><br><span class="line"><span class="comment"> *  可以进行资源释放</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">atexit</span><span class="params">(<span class="type">void</span> (*function)(<span class="type">void</span>))</span>;<span class="comment">// 钩子函数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *  注册一个函数，当进程终止时调用</span><br><span class="hljs-comment"> *  </span><br><span class="hljs-comment"> *  钩子函数：逆序执行</span><br><span class="hljs-comment"> *  可以进行资源释放</span><br><span class="hljs-comment">*/</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">atexit</span><span class="hljs-params">(<span class="hljs-type">void</span> (*function)(<span class="hljs-type">void</span>))</span>;<span class="hljs-comment">// 钩子函数</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="命令行参数的分析"><a href="#命令行参数的分析" class="headerlink" title="命令行参数的分析"></a>命令行参数的分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span> *optarg; <span class="comment">// 选项参数</span></span><br><span class="line"><span class="comment">// optind: 下一个要处理的参数的索引</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> optind, opterr, optopt;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">getopt</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *<span class="type">const</span> argv[], <span class="type">const</span> <span class="type">char</span> *optstring)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">getopt_long</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *<span class="type">const</span> argv[], <span class="type">const</span> <span class="type">char</span> *optstring,</span></span><br><span class="line"><span class="params">                <span class="type">const</span> <span class="keyword">struct</span> option *longopts, <span class="type">int</span> *longindex)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="命令行参数的分析"><a href="#命令行参数的分析" class="headerlink" title="命令行参数的分析"></a>命令行参数的分析</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-type">char</span> *optarg; <span class="hljs-comment">// 选项参数</span><br><span class="hljs-comment">// optind: 下一个要处理的参数的索引</span><br><span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> optind, opterr, optopt;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">getopt</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *<span class="hljs-type">const</span> argv[], <span class="hljs-type">const</span> <span class="hljs-type">char</span> *optstring)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">getopt_long</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *<span class="hljs-type">const</span> argv[], <span class="hljs-type">const</span> <span class="hljs-type">char</span> *optstring,</span><br><span class="hljs-params">                <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> option *longopts, <span class="hljs-type">int</span> *longindex)</span>;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p><strong>KEY &#x3D; VALVE</strong><br>可以通过<code>export</code>命令查看</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">getenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * change or add</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @prarm: overwrite  是否覆盖</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 覆盖时是释放原来的空间，重新分配</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, <span class="type">const</span> <span class="type">char</span> *value, <span class="type">int</span> overwrite)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">unsetenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 和getenv一样的作用，change or add</span></span><br><span class="line"><span class="comment"> * 用法不一样，且没有const修饰</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">putenv</span><span class="params">(<span class="type">char</span> *<span class="built_in">string</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> *<span class="hljs-title function_">getenv</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span>;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * change or add</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * @prarm: overwrite  是否覆盖</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 覆盖时是释放原来的空间，重新分配</span><br><span class="hljs-comment"> */</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">setenv</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *value, <span class="hljs-type">int</span> overwrite)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">unsetenv</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *name)</span>;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 和getenv一样的作用，change or add</span><br><span class="hljs-comment"> * 用法不一样，且没有const修饰</span><br><span class="hljs-comment"> */</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">putenv</span><span class="hljs-params">(<span class="hljs-type">char</span> *<span class="hljs-built_in">string</span>)</span>;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -273,171 +451,389 @@
 <li><p>静态库</p>
 </li>
 <li><p>手工装载库</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *<span class="title function_">dlopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *filename, <span class="type">int</span> flag)</span>;</span><br><span class="line"><span class="type">char</span> *<span class="title function_">dlerror</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">dlclose</span><span class="params">(<span class="type">void</span> *handle)</span>;</span><br><span class="line"><span class="type">void</span> *<span class="title function_">dlsym</span><span class="params">(<span class="type">void</span> *handle, <span class="type">const</span> <span class="type">char</span> *symbol)</span>;</span><br><span class="line"><span class="comment">// Link with -ldl</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> *<span class="hljs-title function_">dlopen</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *filename, <span class="hljs-type">int</span> flag)</span>;<br><span class="hljs-type">char</span> *<span class="hljs-title function_">dlerror</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">dlclose</span><span class="hljs-params">(<span class="hljs-type">void</span> *handle)</span>;<br><span class="hljs-type">void</span> *<span class="hljs-title function_">dlsym</span><span class="hljs-params">(<span class="hljs-type">void</span> *handle, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *symbol)</span>;<br><span class="hljs-comment">// Link with -ldl</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="函数之间正常的跳转"><a href="#函数之间正常的跳转" class="headerlink" title="函数之间正常的跳转"></a>函数之间正常的跳转</h3><p><code>goto</code>无法跨函数跳转。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  设置跳转点</span></span><br><span class="line"><span class="comment"> *  </span></span><br><span class="line"><span class="comment"> * @return  0  说明是在设置跳转点</span></span><br><span class="line"><span class="comment"> * @return 非0 说明是通过 longjmp 返回</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setjmp</span><span class="params">(jmp_buf env)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 跳转到跳转点</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @prarm: env  跳转点 </span></span><br><span class="line"><span class="comment"> * @prarm: val  传递给 setjmp 的值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">longjmp</span><span class="params">(jmp_buf env, <span class="type">int</span> val)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> *  设置跳转点</span><br><span class="hljs-comment"> *  </span><br><span class="hljs-comment"> * @return  0  说明是在设置跳转点</span><br><span class="hljs-comment"> * @return 非0 说明是通过 longjmp 返回</span><br><span class="hljs-comment"> */</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">setjmp</span><span class="hljs-params">(jmp_buf env)</span>;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 跳转到跳转点</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @prarm: env  跳转点 </span><br><span class="hljs-comment"> * @prarm: val  传递给 setjmp 的值</span><br><span class="hljs-comment"> */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">longjmp</span><span class="hljs-params">(jmp_buf env, <span class="hljs-type">int</span> val)</span>;<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="资源的获取及控制"><a href="#资源的获取及控制" class="headerlink" title="资源的获取及控制"></a>资源的获取及控制</h3><p><code>ulimit -a</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// get/set resource limits</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getrlimit</span><span class="params">(<span class="type">int</span> resource, <span class="keyword">struct</span> rlimit *rlim)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">setrlimit</span><span class="params">(<span class="type">int</span> resource, <span class="type">const</span> <span class="keyword">struct</span> rlimit *rlim)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 普通用户不能设置超过硬限制</span></span><br><span class="line"><span class="comment">// root 用户可以 升高/降低 硬限制</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rlimit</span> &#123;</span></span><br><span class="line">    <span class="type">rlim_t</span> rlim_cur;  <span class="comment">/* soft limit */</span></span><br><span class="line">    <span class="type">rlim_t</span> rlim_max;  <span class="comment">/* hard limit */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// get/set resource limits</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">getrlimit</span><span class="hljs-params">(<span class="hljs-type">int</span> resource, <span class="hljs-keyword">struct</span> rlimit *rlim)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">setrlimit</span><span class="hljs-params">(<span class="hljs-type">int</span> resource, <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> rlimit *rlim)</span>;<br><br><span class="hljs-comment">// 普通用户不能设置超过硬限制</span><br><span class="hljs-comment">// root 用户可以 升高/降低 硬限制</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">rlimit</span> &#123;</span><br>    <span class="hljs-type">rlim_t</span> rlim_cur;  <span class="hljs-comment">/* soft limit */</span><br>    <span class="hljs-type">rlim_t</span> rlim_max;  <span class="hljs-comment">/* hard limit */</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
 
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://sinlatansen.github.io/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/" data-id="cm5b4yquy001drw72g7ik3mhn" data-title="Linux下C语言教程-李慧芹老师-第十四章" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li></ul>
 
-    </footer>
-  </div>
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/technology/" class="category-chain-item">technology</a>
   
-    <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Linux下C语言教程-李慧芹老师-第十五章
-        
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+        <a href="/tags/c/" class="print-no-link">#c</a>
+      
+        <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" class="print-no-link">#李慧芹</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux下C语言教程-李慧芹老师-第十四章</div>
+      <div>http://sinlatansen.github.io/2024/05/16/Linux下C语言教程-李慧芹老师-第十四章/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fugu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/" title="Linux下C语言教程-李慧芹老师-第十五章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux下C语言教程-李慧芹老师-第十五章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" title="Linux下C语言教程-李慧芹老师-第十二章">
+                        <span class="hidden-mobile">Linux下C语言教程-李慧芹老师-第十二章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">Linux下C语言教程-李慧芹老师-第十二章</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2024 fugu<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

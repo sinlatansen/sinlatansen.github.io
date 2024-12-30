@@ -1,12 +1,25 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>Linux下C语言教程-李慧芹老师-第二章 | Fugu&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="配套代码笔记Github地址。 目录 目录 第二章 数据类型，运算符和表达式 数据类型（基本数据类型） 常量与变量 常量 定义 分类   变量 定义 变量的生命周期与作用范围   运算符和表达式 表达式和语句的区别 运算符相关代码        第二章 数据类型，运算符和表达式数据类型（基本数据类型） 数据类型所占字节数随机器硬件不同而不同，以int为基准，char比它小，float和double">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fugu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="配套代码笔记Github地址。 目录 目录 第二章 数据类型，运算符和表达式 数据类型（基本数据类型） 常量与变量 常量 定义 分类   变量 定义 变量的生命周期与作用范围   运算符和表达式 表达式和语句的区别 运算符相关代码        第二章 数据类型，运算符和表达式数据类型（基本数据类型） 数据类型所占字节数随机器硬件不同而不同，以int为基准，char比它小，float和double">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下C语言教程-李慧芹老师-第二章">
 <meta property="og:url" content="http://sinlatansen.github.io/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/index.html">
@@ -21,89 +34,254 @@
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="c">
 <meta property="article:tag" content="李慧芹">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2024/03/12/y8pMEXS3LBIDAuc.png">
   
-    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <title>Linux下C语言教程-李慧芹老师-第二章 - Fugu&#39;s Blog</title>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sinlatansen.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Fugu&#39;s Blog</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux下C语言教程-李慧芹老师-第二章"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-12 14:06" pubdate>
+          2024年3月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          2.4k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-Linux下C语言教程-李慧芹老师-第二章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="article-date">
-  <time class="dt-published" datetime="2024-03-12T14:06:00.000Z" itemprop="datePublished">2024-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/technology/">technology</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Linux下C语言教程-李慧芹老师-第二章
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记Github地址</a>。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux下C语言教程-李慧芹老师-第二章</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记Github地址</a>。</p>
 <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
 <li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
 <li><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F">第二章 数据类型，运算符和表达式</a><ul>
@@ -145,7 +323,7 @@
 <p><code>false</code>：<code>0</code>，<code>true</code>：非零值。</p>
 </li>
 <li><p><code>float</code>类型，不够精确，其实是一个小范围。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">func</span><span class="params">(<span class="type">float</span> f)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (f &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="comment">// else if (f == 0)</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">fabs</span>(f - <span class="number">0</span>) &lt;= <span class="number">1e-6</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">float</span> f)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (f &lt; <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <span class="hljs-comment">// else if (f == 0)</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(f - <span class="hljs-number">0</span>) &lt;= <span class="hljs-number">1e-6</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p><code>char</code>型是否有符号，未定义</p>
 </li>
@@ -177,14 +355,14 @@
 <ul>
 <li><p>标识常量：<code>#define</code></p>
 <p>特点：完整的用宏体替换宏名，<strong>不做任何检查</strong>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADD 2 + 3</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADD1 (2 + 3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX(a, b) (a &gt; b ? a : b)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX1(a, b) ((a) &gt; (b) ? (a) : (b))</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, ADD * ADD);</span></span><br><span class="line">    <span class="comment">// 相当于 2+3*2+3</span></span><br><span class="line">    <span class="comment">// 故输出11而不是25</span></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, ADD1 * ADD1);</span></span><br><span class="line">    <span class="comment">// 相当于(2+3)*(2+3)</span></span><br><span class="line">    <span class="comment">// 正常输出25</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = <span class="number">5</span>, j = <span class="number">3</span>;</span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, MAX(i, j));</span></span><br><span class="line">    <span class="comment">// 输出5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, MAX(i, j * 2));</span></span><br><span class="line">    <span class="comment">// 输出6</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i=%d\tj=%d\n&quot;</span>, i, j);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, MAX1(i++, j++));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i=%d\tj=%d\n&quot;</span>, i, j);</span><br><span class="line">    <span class="comment">// 输出：</span></span><br><span class="line">    <span class="comment">// i = 5 j = 3</span></span><br><span class="line">    <span class="comment">// 6</span></span><br><span class="line">    <span class="comment">// i = 7 j = 4</span></span><br><span class="line">    <span class="comment">// 为什么i自增了两次？</span></span><br><span class="line">    <span class="comment">// 预处理结果</span></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, ((i++) + (j++) ? (i++) : (j++)));</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> PI 3.14</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ADD 2 + 3</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ADD1 (2 + 3)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX(a, b) (a &gt; b ? a : b)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX1(a, b) ((a) &gt; (b) ? (a) : (b))</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, ADD * ADD);</span><br>    <span class="hljs-comment">// 相当于 2+3*2+3</span><br>    <span class="hljs-comment">// 故输出11而不是25</span><br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, ADD1 * ADD1);</span><br>    <span class="hljs-comment">// 相当于(2+3)*(2+3)</span><br>    <span class="hljs-comment">// 正常输出25</span><br><br>    <span class="hljs-type">int</span> i = <span class="hljs-number">5</span>, j = <span class="hljs-number">3</span>;<br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, MAX(i, j));</span><br>    <span class="hljs-comment">// 输出5</span><br><br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, MAX(i, j * 2));</span><br>    <span class="hljs-comment">// 输出6</span><br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i=%d\tj=%d\n&quot;</span>, i, j);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, MAX1(i++, j++));<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i=%d\tj=%d\n&quot;</span>, i, j);<br>    <span class="hljs-comment">// 输出：</span><br>    <span class="hljs-comment">// i = 5 j = 3</span><br>    <span class="hljs-comment">// 6</span><br>    <span class="hljs-comment">// i = 7 j = 4</span><br>    <span class="hljs-comment">// 为什么i自增了两次？</span><br>    <span class="hljs-comment">// 预处理结果</span><br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, ((i++) + (j++) ? (i++) : (j++)));</span><br><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>解决办法：</p>
 <ol>
 <li>使用函数：函数与宏的区别在于，一个占用编译时间，一个占用运行时间。在<code>linux</code>内核中多用宏。</li>
 <li>在宏中进行变量保存，这种写法超出标准C，属于<code>GNU C</code>的扩展部分，只能在支持的编译器（如<code>gcc</code>）中使用，在<code>linux</code>内核中非常常用。</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX2(a, b)               \</span></span><br><span class="line"><span class="meta">    (&#123;                           \</span></span><br><span class="line"><span class="meta">        int A = a, B = b;        \</span></span><br><span class="line"><span class="meta">        ((A) &gt; (B) ? (A) : (B)); \</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX3(a, b)               \</span></span><br><span class="line"><span class="meta">    (&#123;                           \</span></span><br><span class="line"><span class="meta">        typeof(a) A = a, B = b;  \</span></span><br><span class="line"><span class="meta">        ((A) &gt; (B) ? (A) : (B)); \</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX2(a, b)               \</span><br><span class="hljs-meta">    (&#123;                           \</span><br><span class="hljs-meta">        int A = a, B = b;        \</span><br><span class="hljs-meta">        ((A) &gt; (B) ? (A) : (B)); \</span><br><span class="hljs-meta">    &#125;)</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX3(a, b)               \</span><br><span class="hljs-meta">    (&#123;                           \</span><br><span class="hljs-meta">        typeof(a) A = a, B = b;  \</span><br><span class="hljs-meta">        ((A) &gt; (B) ? (A) : (B)); \</span><br><span class="hljs-meta">    &#125;)</span><br><br></code></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>用来保存一些特定内容，并且在程序执行过程中值<strong>随时会发生变化</strong>的量。</p>
 <h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><table>
@@ -217,23 +395,23 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">0</span>;</span><br><span class="line">    x = x + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p-&gt;%d\n&quot;</span>, &amp;x, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func1</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> x = <span class="number">0</span>;</span><br><span class="line">    x = x + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p-&gt;%d\n&quot;</span>, &amp;x, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// auto int i;</span></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// out:i=21915，每次都不一样</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// static int i;</span></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// out:i=1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// func();</span></span><br><span class="line">    <span class="comment">// func();</span></span><br><span class="line">    <span class="comment">// func();</span></span><br><span class="line">    <span class="comment">// out:：</span></span><br><span class="line">    <span class="comment">// 0x7ffc3c4ca4f4-&gt;1</span></span><br><span class="line">    <span class="comment">// 0x7ffc3c4ca4f4-&gt;1</span></span><br><span class="line">    <span class="comment">// 0x7ffc3c4ca4f4-&gt;1</span></span><br><span class="line">    <span class="comment">// 三次地址看着一样</span></span><br><span class="line">    <span class="comment">// 但是是每次函数开始取用，结束销毁的</span></span><br><span class="line">    <span class="comment">// 只是gcc刚好都取的栈上同一块地址</span></span><br><span class="line"></span><br><span class="line">    func1();</span><br><span class="line">    func1();</span><br><span class="line">    func1();</span><br><span class="line">    <span class="comment">// out:：</span></span><br><span class="line">    <span class="comment">// 0x55fd83c96014-&gt;1</span></span><br><span class="line">    <span class="comment">// 0x55fd83c96014-&gt;2</span></span><br><span class="line">    <span class="comment">// 0x55fd83c96014-&gt;3</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">int</span> i = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> i)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i=%d\n&quot;</span>, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i=3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i=3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     i = 5;</span></span><br><span class="line">    <span class="comment">//     printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i=5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// func(i);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_star</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[%s]i=%d\n&quot;</span>, __FUNCTION__, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">        print_star();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// *****</span></span><br><span class="line">    <span class="comment">// [print_star] i = 5</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> 0</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> x = <span class="hljs-number">0</span>;<br>    x = x + <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p-&gt;%d\n&quot;</span>, &amp;x, x);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">func1</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">static</span> <span class="hljs-type">int</span> x = <span class="hljs-number">0</span>;<br>    x = x + <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p-&gt;%d\n&quot;</span>, &amp;x, x);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br><br>    <span class="hljs-comment">// auto int i;</span><br>    <span class="hljs-comment">// printf(&quot;i=%d\n&quot;, i);</span><br>    <span class="hljs-comment">// out:i=21915，每次都不一样</span><br><br>    <span class="hljs-comment">// static int i;</span><br>    <span class="hljs-comment">// printf(&quot;i=%d\n&quot;, i);</span><br>    <span class="hljs-comment">// out:i=1</span><br><br>    <span class="hljs-comment">// func();</span><br>    <span class="hljs-comment">// func();</span><br>    <span class="hljs-comment">// func();</span><br>    <span class="hljs-comment">// out:：</span><br>    <span class="hljs-comment">// 0x7ffc3c4ca4f4-&gt;1</span><br>    <span class="hljs-comment">// 0x7ffc3c4ca4f4-&gt;1</span><br>    <span class="hljs-comment">// 0x7ffc3c4ca4f4-&gt;1</span><br>    <span class="hljs-comment">// 三次地址看着一样</span><br>    <span class="hljs-comment">// 但是是每次函数开始取用，结束销毁的</span><br>    <span class="hljs-comment">// 只是gcc刚好都取的栈上同一块地址</span><br><br>    func1();<br>    func1();<br>    func1();<br>    <span class="hljs-comment">// out:：</span><br>    <span class="hljs-comment">// 0x55fd83c96014-&gt;1</span><br>    <span class="hljs-comment">// 0x55fd83c96014-&gt;2</span><br>    <span class="hljs-comment">// 0x55fd83c96014-&gt;3</span><br><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> 0</span><br><span class="hljs-type">int</span> i = <span class="hljs-number">100</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i=%d\n&quot;</span>, i);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br><br>    <span class="hljs-type">int</span> i = <span class="hljs-number">3</span>;<br><br>    <span class="hljs-comment">// printf(&quot;i=%d\n&quot;, i);</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// i=3</span><br><br>    <span class="hljs-comment">// &#123;</span><br>    <span class="hljs-comment">//     printf(&quot;i=%d\n&quot;, i);</span><br>    <span class="hljs-comment">// &#125;</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// i=3</span><br><br>    <span class="hljs-comment">// &#123;</span><br>    <span class="hljs-comment">//     i = 5;</span><br>    <span class="hljs-comment">//     printf(&quot;i=%d\n&quot;, i);</span><br>    <span class="hljs-comment">// &#125;</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// i=5</span><br><br>    <span class="hljs-comment">// func(i);</span><br><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">print_star</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[%s]i=%d\n&quot;</span>, __FUNCTION__, i);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++)<br>        print_star();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// *****</span><br>    <span class="hljs-comment">// [print_star] i = 5</span><br><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="变量的生命周期与作用范围"><a href="#变量的生命周期与作用范围" class="headerlink" title="变量的生命周期与作用范围"></a>变量的生命周期与作用范围</h4><ol>
 <li>全局变量和局部变量</li>
 <li>局部变量和局部变量</li>
 <li>参考图片存储类型比较</li>
 </ol>
-<p><img src="https://s2.loli.net/2024/03/12/y8pMEXS3LBIDAuc.png" alt="存储类型比较"></p>
+<p><img src="https://s2.loli.net/2024/03/12/y8pMEXS3LBIDAuc.png" srcset="/img/loading.gif" lazyload alt="存储类型比较"></p>
 <blockquote>
 <p>这一块具体讲解见代码仓库<code>/Chapter2/变量/</code>。</p>
 </blockquote>
 <p>在<code>minproj</code>例子中，如果在<code>proj.c</code>和<code>proj.h</code>中<code>static</code>定义<code>func</code>函数，而在<code>main.c</code>中调用<code>func</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[main][~/LinuxC/Chapter2/Section5/minproj]$ gcc *.c</span><br><span class="line">In file included from main.c:4:</span><br><span class="line">proj.h:4:13: warning: ‘func’ used but never defined</span><br><span class="line">    4 | static void func(void);</span><br><span class="line">      |             ^~~~</span><br><span class="line">/usr/bin/ld: /tmp/ccQ2317U.o: <span class="keyword">in</span> <span class="keyword">function</span> `main<span class="string">&#x27;:</span></span><br><span class="line"><span class="string">main.c:(.text+0x2f): undefined reference to `func&#x27;</span></span><br><span class="line">collect2: error: ld returned 1 <span class="built_in">exit</span> status</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">[main][~/LinuxC/Chapter2/Section5/minproj]$ gcc *.c<br>In file included from main.c:4:<br>proj.h:4:13: warning: ‘func’ used but never defined<br>    4 | static void func(void);<br>      |             ^~~~<br>/usr/bin/ld: /tmp/ccQ2317U.o: <span class="hljs-keyword">in</span> <span class="hljs-keyword">function</span> `main<span class="hljs-string">&#x27;:</span><br><span class="hljs-string">main.c:(.text+0x2f): undefined reference to `func&#x27;</span><br>collect2: error: ld returned 1 <span class="hljs-built_in">exit</span> status<br></code></pre></td></tr></table></figure>
 
 <h3 id="运算符和表达式"><a href="#运算符和表达式" class="headerlink" title="运算符和表达式"></a>运算符和表达式</h3><h4 id="表达式和语句的区别"><a href="#表达式和语句的区别" class="headerlink" title="表达式和语句的区别"></a>表达式和语句的区别</h4><ul>
 <li><p>运算符部分</p>
-<p><img src="https://s2.loli.net/2024/03/12/3MkPpF5anv7eEGu.png" alt="运算符"></p>
+<p><img src="https://s2.loli.net/2024/03/12/3MkPpF5anv7eEGu.png" srcset="/img/loading.gif" lazyload alt="运算符"></p>
 <ul>
 <li><p>每个运算符所需要的参与运算的操作数个数</p>
 </li>
@@ -254,167 +432,385 @@
 <li><p>测试第n位：<code>if(num &amp; 1 &lt;&lt; n)</code></p>
 </li>
 <li><p>从一个指定宽度的数中取出某几位：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设取一个32位整数的第10位到第15位</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> number;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> mask = ((<span class="number">1</span> &lt;&lt; <span class="number">6</span>) - <span class="number">1</span>) &lt;&lt; <span class="number">9</span>; <span class="comment">// 6 是位数（15-10+1），9 是起始位置（10-1）</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> result = number &amp; mask;</span><br><span class="line">    result = result &gt;&gt; <span class="number">9</span>;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 假设取一个32位整数的第10位到第15位</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> number;<br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> mask = ((<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">6</span>) - <span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-number">9</span>; <span class="hljs-comment">// 6 是位数（15-10+1），9 是起始位置（10-1）</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> result = number &amp; mask;<br>    result = result &gt;&gt; <span class="hljs-number">9</span>;<br></code></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ul>
 </li>
 </ul>
-<h4 id="运算符相关代码"><a href="#运算符相关代码" class="headerlink" title="运算符相关代码"></a>运算符相关代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">i++相当于i=i+<span class="number">1</span></span><br><span class="line">i--相当于i=i<span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> i=<span class="number">1</span>;</span><br><span class="line">i++;表达式值为<span class="number">1</span>，i值为<span class="number">2</span></span><br><span class="line">++i;表达式值为<span class="number">2</span>，i值为<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">10</span>, value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value = i++ + ++j;</span></span><br><span class="line">    <span class="comment">// 相当于</span></span><br><span class="line">    <span class="comment">// j = j + 1;</span></span><br><span class="line">    <span class="comment">// value = i + j;</span></span><br><span class="line">    <span class="comment">// i = i + 1;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i = 0 j = 11 value = 10</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// value = --i + j++;</span></span><br><span class="line">    <span class="comment">// i = i - 1;</span></span><br><span class="line">    <span class="comment">// value = i + j;</span></span><br><span class="line">    <span class="comment">// j = j + 1;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i = 1 j = 12 value = 12</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// value = i++ + ++i - i-- + --i;</span></span><br><span class="line">    <span class="comment">// 避免单个变量多次自增或者自减</span></span><br><span class="line">    <span class="comment">// 不同编译器可能结果不同，也难为自己和他人</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// printf(&quot;j=%d\n&quot;, j);</span></span><br><span class="line">    <span class="comment">// printf(&quot;value=%d\n&quot;, value);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, i &gt; j);</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>, d = <span class="number">4</span>;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">1</span>, n = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// (m = a &gt; b) &amp;&amp; (n = c &gt; d);</span></span><br><span class="line">    <span class="comment">// printf(&quot;m = %d\nn = %d\n&quot;, m, n);</span></span><br><span class="line">    <span class="comment">// a&gt;b为假，所以左边为0，右边直接不判断了，n依旧为1而不是0！</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// m = 0</span></span><br><span class="line">    <span class="comment">// n = 1</span></span><br><span class="line"></span><br><span class="line">    (m = a &gt; b) || (n = c &gt; d);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;m = %d\nn = %d\n&quot;</span>, m, n);</span><br><span class="line">    <span class="comment">// a&gt;b为假，所以左边为0，右边继续判断</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// m = 0</span></span><br><span class="line">    <span class="comment">// n = 0</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">10</span>, value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int a = 6;</span></span><br><span class="line">    <span class="comment">// a -= a *= a += 3;</span></span><br><span class="line">    <span class="comment">// a -=..   81-81=0</span></span><br><span class="line">    <span class="comment">//  a *=.. 9*9=81给上面</span></span><br><span class="line">    <span class="comment">//    a += 3; 6+3=9给上面</span></span><br><span class="line">    <span class="comment">// 故a=0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, sizeof(int));</span></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, sizeof(double));</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// 4</span></span><br><span class="line">    <span class="comment">// 8</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// int a = 3;</span></span><br><span class="line">    <span class="comment">// float f = 3.9;</span></span><br><span class="line">    <span class="comment">// a = f;</span></span><br><span class="line">    <span class="comment">// printf(&quot;a=%d\n&quot;, a);</span></span><br><span class="line">    <span class="comment">// printf(&quot;f=%f\n&quot;, f);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// a=3</span></span><br><span class="line">    <span class="comment">// f=3.900000</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// int a = 3;</span></span><br><span class="line">    <span class="comment">// float f = 3.9;</span></span><br><span class="line">    <span class="comment">// a = (int)f; // 这个过程不改变f本身的地址和值</span></span><br><span class="line">    <span class="comment">// printf(&quot;a=%d\n&quot;, a);</span></span><br><span class="line">    <span class="comment">// printf(&quot;f=%f\n&quot;, f);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// a=3</span></span><br><span class="line">    <span class="comment">// f=3.900000</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="运算符相关代码"><a href="#运算符相关代码" class="headerlink" title="运算符相关代码"></a>运算符相关代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">if</span> 0</span><br>i++相当于i=i+<span class="hljs-number">1</span><br>i--相当于i=i<span class="hljs-number">-1</span><br><br><span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;<br>i++;表达式值为<span class="hljs-number">1</span>，i值为<span class="hljs-number">2</span><br>++i;表达式值为<span class="hljs-number">2</span>，i值为<span class="hljs-number">2</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> 0</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, j = <span class="hljs-number">10</span>, value;<br><br>    <span class="hljs-comment">// value = i++ + ++j;</span><br>    <span class="hljs-comment">// 相当于</span><br>    <span class="hljs-comment">// j = j + 1;</span><br>    <span class="hljs-comment">// value = i + j;</span><br>    <span class="hljs-comment">// i = i + 1;</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// i = 0 j = 11 value = 10</span><br><br>    <span class="hljs-comment">// value = --i + j++;</span><br>    <span class="hljs-comment">// i = i - 1;</span><br>    <span class="hljs-comment">// value = i + j;</span><br>    <span class="hljs-comment">// j = j + 1;</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// i = 1 j = 12 value = 12</span><br><br>    <span class="hljs-comment">// value = i++ + ++i - i-- + --i;</span><br>    <span class="hljs-comment">// 避免单个变量多次自增或者自减</span><br>    <span class="hljs-comment">// 不同编译器可能结果不同，也难为自己和他人</span><br><br>    <span class="hljs-comment">// printf(&quot;i=%d\n&quot;, i);</span><br>    <span class="hljs-comment">// printf(&quot;j=%d\n&quot;, j);</span><br>    <span class="hljs-comment">// printf(&quot;value=%d\n&quot;, value);</span><br><br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, i &gt; j);</span><br><br>    <span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>, c = <span class="hljs-number">3</span>, d = <span class="hljs-number">4</span>;<br>    <span class="hljs-type">int</span> m = <span class="hljs-number">1</span>, n = <span class="hljs-number">1</span>;<br><br>    <span class="hljs-comment">// (m = a &gt; b) &amp;&amp; (n = c &gt; d);</span><br>    <span class="hljs-comment">// printf(&quot;m = %d\nn = %d\n&quot;, m, n);</span><br>    <span class="hljs-comment">// a&gt;b为假，所以左边为0，右边直接不判断了，n依旧为1而不是0！</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// m = 0</span><br>    <span class="hljs-comment">// n = 1</span><br><br>    (m = a &gt; b) || (n = c &gt; d);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;m = %d\nn = %d\n&quot;</span>, m, n);<br>    <span class="hljs-comment">// a&gt;b为假，所以左边为0，右边继续判断</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// m = 0</span><br>    <span class="hljs-comment">// n = 0</span><br><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> 0</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">10</span>, value;<br><br>    <span class="hljs-comment">// int a = 6;</span><br>    <span class="hljs-comment">// a -= a *= a += 3;</span><br>    <span class="hljs-comment">// a -=..   81-81=0</span><br>    <span class="hljs-comment">//  a *=.. 9*9=81给上面</span><br>    <span class="hljs-comment">//    a += 3; 6+3=9给上面</span><br>    <span class="hljs-comment">// 故a=0</span><br><br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, sizeof(int));</span><br>    <span class="hljs-comment">// printf(&quot;%d\n&quot;, sizeof(double));</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// 4</span><br>    <span class="hljs-comment">// 8</span><br><br>    <span class="hljs-comment">// int a = 3;</span><br>    <span class="hljs-comment">// float f = 3.9;</span><br>    <span class="hljs-comment">// a = f;</span><br>    <span class="hljs-comment">// printf(&quot;a=%d\n&quot;, a);</span><br>    <span class="hljs-comment">// printf(&quot;f=%f\n&quot;, f);</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// a=3</span><br>    <span class="hljs-comment">// f=3.900000</span><br><br>    <span class="hljs-comment">// int a = 3;</span><br>    <span class="hljs-comment">// float f = 3.9;</span><br>    <span class="hljs-comment">// a = (int)f; // 这个过程不改变f本身的地址和值</span><br>    <span class="hljs-comment">// printf(&quot;a=%d\n&quot;, a);</span><br>    <span class="hljs-comment">// printf(&quot;f=%f\n&quot;, f);</span><br>    <span class="hljs-comment">// out:</span><br>    <span class="hljs-comment">// a=3</span><br>    <span class="hljs-comment">// f=3.900000</span><br><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br></code></pre></td></tr></table></figure>
 
 
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://sinlatansen.github.io/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="cm5b4yqug000lrw72037ugy5s" data-title="Linux下C语言教程-李慧芹老师-第二章" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li></ul>
 
-    </footer>
-  </div>
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/technology/" class="category-chain-item">technology</a>
   
-    <a href="/2024/03/15/%E9%80%9A%E8%BF%87stow%E9%9B%86%E4%B8%AD%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84dotfiles/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          通过stow集中管理你的dotfiles
-        
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+        <a href="/tags/c/" class="print-no-link">#c</a>
+      
+        <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" class="print-no-link">#李慧芹</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux下C语言教程-李慧芹老师-第二章</div>
+      <div>http://sinlatansen.github.io/2024/03/12/Linux下C语言教程-李慧芹老师-第二章/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fugu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/15/%E9%80%9A%E8%BF%87stow%E9%9B%86%E4%B8%AD%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84dotfiles/" title="通过stow集中管理你的dotfiles">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">通过stow集中管理你的dotfiles</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/" title="Linux下C语言教程-李慧芹老师-第一章">
+                        <span class="hidden-mobile">Linux下C语言教程-李慧芹老师-第一章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">Linux下C语言教程-李慧芹老师-第一章</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2024 fugu<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

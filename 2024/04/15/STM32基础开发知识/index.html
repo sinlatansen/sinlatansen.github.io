@@ -1,12 +1,25 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>STM32基础开发知识 | Fugu&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="环境搭建 编译器：Keil5，AC5 编辑器：VS Code，Embedded IDE，Cortex-Debug 调试器：Openocd，Arm GNU Toolchain 烧录器：ST-link V2  必要的配置： 12345678910111213141516171819202122232425262728293031323334&#x2F;&#x2F; settings.json&#123;  &quot;c">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fugu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="环境搭建 编译器：Keil5，AC5 编辑器：VS Code，Embedded IDE，Cortex-Debug 调试器：Openocd，Arm GNU Toolchain 烧录器：ST-link V2  必要的配置： 12345678910111213141516171819202122232425262728293031323334&#x2F;&#x2F; settings.json&#123;  &quot;c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32基础开发知识">
 <meta property="og:url" content="http://sinlatansen.github.io/2024/04/15/STM32%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/index.html">
@@ -28,120 +41,285 @@
 <meta property="article:tag" content="c">
 <meta property="article:tag" content="vscode">
 <meta property="article:tag" content="stm32">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://s2.loli.net/2024/04/15/nx5lcMBZJ98XWzT.png">
   
-    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <title>STM32基础开发知识 - Fugu&#39;s Blog</title>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sinlatansen.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Fugu&#39;s Blog</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="STM32基础开发知识"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-15 09:23" pubdate>
+          2024年4月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          1.3k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-STM32基础开发知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/15/STM32%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/" class="article-date">
-  <time class="dt-published" datetime="2024-04-15T09:23:55.000Z" itemprop="datePublished">2024-04-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/technology/">technology</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      STM32基础开发知识
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">STM32基础开发知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
 <li>编译器：Keil5，AC5</li>
 <li>编辑器：VS Code，Embedded IDE，Cortex-Debug</li>
 <li>调试器：Openocd，Arm GNU Toolchain</li>
 <li>烧录器：ST-link V2</li>
 </ul>
 <p>必要的配置：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// settings.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;cortex-debug.armToolchainPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 Rel1\\bin&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cortex-debug.openocdPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;E:\\OpenOCD-20211118-0.11.0\\bin\\openocd.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cortex-debug.gdbPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 Rel1\\bin\\arm-none-eabi-gdb&quot;</span> <span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;showDevDebugOutput&quot;</span><span class="punctuation">:</span> <span class="string">&quot;raw&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cortex-debug.gdbPath.windows&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 rel1\\bin\\arm-none-eabi-gdb.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;cortex-debug.stlinkPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.0.100.202109301221\\tools\\bin\\ST-LINK_gdbserver.exe&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// launch.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。</span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Cortex Debug(STLink)&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cortex-debug&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;servertype&quot;</span><span class="punctuation">:</span> <span class="string">&quot;openocd&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;executable&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/build/$&#123;workspaceFolderBasename&#125;/$&#123;workspaceFolderBasename&#125;.elf&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;runToEntryPoint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;main&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;configFiles&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;E:\\OpenOCD-20211118-0.11.0\\share\\openocd\\scripts\\interface\\stlink-v2.cfg&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;E:\\OpenOCD-20211118-0.11.0\\share\\openocd\\scripts\\target\\stm32f4x.cfg&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="comment">// &quot;gdbPath&quot;:&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 Rel1\\bin\\arm-none-eabi-gdb.exe&quot;,</span></span><br><span class="line">            <span class="attr">&quot;objdumpPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 rel1\\bin\\arm-none-eabi-objdump.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// settings.json</span><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;cortex-debug.armToolchainPath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 Rel1\\bin&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;cortex-debug.openocdPath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;E:\\OpenOCD-20211118-0.11.0\\bin\\openocd.exe&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;cortex-debug.gdbPath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 Rel1\\bin\\arm-none-eabi-gdb&quot;</span> <span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;showDevDebugOutput&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;raw&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;cortex-debug.gdbPath.windows&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 rel1\\bin\\arm-none-eabi-gdb.exe&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;cortex-debug.stlinkPath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\ST\\STM32CubeIDE_1.8.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.win32_2.0.100.202109301221\\tools\\bin\\ST-LINK_gdbserver.exe&quot;</span><br><span class="hljs-punctuation">&#125;</span><br><br><span class="hljs-comment">// launch.json</span><br><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// 使用 IntelliSense 了解相关属性。</span><br>    <span class="hljs-comment">// 悬停以查看现有属性的描述。</span><br>    <span class="hljs-comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span><br>    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.2.0&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Cortex Debug(STLink)&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cortex-debug&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;servertype&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;openocd&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;cwd&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;executable&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/build/$&#123;workspaceFolderBasename&#125;/$&#123;workspaceFolderBasename&#125;.elf&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;runToEntryPoint&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;main&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;configFiles&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>                <span class="hljs-string">&quot;E:\\OpenOCD-20211118-0.11.0\\share\\openocd\\scripts\\interface\\stlink-v2.cfg&quot;</span><span class="hljs-punctuation">,</span><br>                <span class="hljs-string">&quot;E:\\OpenOCD-20211118-0.11.0\\share\\openocd\\scripts\\target\\stm32f4x.cfg&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-comment">// &quot;gdbPath&quot;:&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 Rel1\\bin\\arm-none-eabi-gdb.exe&quot;,</span><br>            <span class="hljs-attr">&quot;objdumpPath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\12.3 rel1\\bin\\arm-none-eabi-objdump.exe&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>使用<strong>STM32CUBEMX</strong>生成代码框架，在 VS Code 中进行编辑，编译，烧录，调试。</p>
-<h2 id="ST-Link-烧录器管脚定义"><a href="#ST-Link-烧录器管脚定义" class="headerlink" title="ST-Link 烧录器管脚定义"></a>ST-Link 烧录器管脚定义</h2><img src="https://s2.loli.net/2024/04/15/nx5lcMBZJ98XWzT.png"/>
+<h2 id="ST-Link-烧录器管脚定义"><a href="#ST-Link-烧录器管脚定义" class="headerlink" title="ST-Link 烧录器管脚定义"></a>ST-Link 烧录器管脚定义</h2><img src="https://s2.loli.net/2024/04/15/nx5lcMBZJ98XWzT.png" srcset="/img/loading.gif" lazyload/>
 
 <h2 id="使用-printf-进行串口打印"><a href="#使用-printf-进行串口打印" class="headerlink" title="使用 printf 进行串口打印"></a>使用 printf 进行串口打印</h2><ol>
 <li><p>在要使用<code>printf</code>的文件包含头文件<code>stdio.h</code>。</p>
 </li>
 <li><p>在<code>usart.c</code>文件中加入重定向，这里以串口 1 为例。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************************************************</span></span><br><span class="line"><span class="comment"> * 【功  能】 printf函数重定向支持代码</span></span><br><span class="line"><span class="comment"> *           加入以下代码, 使用printf函数时, 不再需要选择use MicroLIB</span></span><br><span class="line"><span class="comment"> * 参  数：</span></span><br><span class="line"><span class="comment"> * 返回值：</span></span><br><span class="line"><span class="comment"> *****************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> import(__use_no_semihosting)</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">FILE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="type">int</span> handle;</span><br><span class="line">&#125;;                               <span class="comment">// 标准库需要的支持函数</span></span><br><span class="line">FILE __stdout;                   <span class="comment">// FILE 在stdio.h文件</span></span><br><span class="line"><span class="type">void</span> _sys_exit(<span class="type">int</span> x) &#123; x = x; &#125; <span class="comment">// 定义_sys_exit()以避免使用半主机模式</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">fputc</span><span class="params">(<span class="type">int</span> ch, FILE *f)</span> <span class="comment">// 重定向fputc函数，使printf的输出，由fputc输出到UART,  这里使用串口1(USART1)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// if(xFlag.PrintfOK == 0) return 0;  // 判断USART是否已配置，防止在配置前调用printf被卡死</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> ((USART1-&gt;SR &amp; <span class="number">0X40</span>) == <span class="number">0</span>)</span><br><span class="line">    ;                  <span class="comment">// 等待上一次串口数据发送完成</span></span><br><span class="line">  USART1-&gt;DR = (<span class="type">uint8_t</span>)ch; <span class="comment">// 写DR,串口1将发送数据</span></span><br><span class="line">  <span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*****************************************************************************</span><br><span class="hljs-comment"> * 【功  能】 printf函数重定向支持代码</span><br><span class="hljs-comment"> *           加入以下代码, 使用printf函数时, 不再需要选择use MicroLIB</span><br><span class="hljs-comment"> * 参  数：</span><br><span class="hljs-comment"> * 返回值：</span><br><span class="hljs-comment"> *****************************************************************************/</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> import(__use_no_semihosting)</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> __<span class="hljs-title">FILE</span></span><br><span class="hljs-class">&#123;</span><br>  <span class="hljs-type">int</span> handle;<br>&#125;;                               <span class="hljs-comment">// 标准库需要的支持函数</span><br>FILE __stdout;                   <span class="hljs-comment">// FILE 在stdio.h文件</span><br><span class="hljs-type">void</span> _sys_exit(<span class="hljs-type">int</span> x) &#123; x = x; &#125; <span class="hljs-comment">// 定义_sys_exit()以避免使用半主机模式</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">fputc</span><span class="hljs-params">(<span class="hljs-type">int</span> ch, FILE *f)</span> <span class="hljs-comment">// 重定向fputc函数，使printf的输出，由fputc输出到UART,  这里使用串口1(USART1)</span><br>&#123;<br>  <span class="hljs-comment">// if(xFlag.PrintfOK == 0) return 0;  // 判断USART是否已配置，防止在配置前调用printf被卡死</span><br><br>  <span class="hljs-keyword">while</span> ((USART1-&gt;SR &amp; <span class="hljs-number">0X40</span>) == <span class="hljs-number">0</span>)<br>    ;                  <span class="hljs-comment">// 等待上一次串口数据发送完成</span><br>  USART1-&gt;DR = (<span class="hljs-type">uint8_t</span>)ch; <span class="hljs-comment">// 写DR,串口1将发送数据</span><br>  <span class="hljs-keyword">return</span> ch;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>进一步封装一个日志库，增加时间戳，文件名，行数，打印等级等功能。如果是在<code>FreeRTOS</code>下，还要考虑多个任务同时对串口 1 的使用互斥问题，这里有一个我封装好的日志库，<a target="_blank" rel="noopener" href="https://github.com/sinlatansen/DBG">sinlatansen&#x2F;DBG: 一款线程安全的 FreeRTOS（cmsis_os2）的日志调试库，基于 STM32F4_HAL</a> 。</p>
 </li>
 </ol>
 <h2 id="避开-HAL-Delay"><a href="#避开-HAL-Delay" class="headerlink" title="避开 HAL_Delay"></a>避开 HAL_Delay</h2><p>HAL 库这个延时函数，有 bug，建议自己实现延时函数，改用软件定时器实现。</p>
 <p>这里我使用的 STM32F407VET6 主频 168MHz，其中我使用的 TIM6 所挂载的 AHB1 频率为 84MHz ，因此设置 PSC 为 83。</p>
-<img src="https://s2.loli.net/2024/04/15/ea5SjYiOFBXnGwk.png"/>
+<img src="https://s2.loli.net/2024/04/15/ea5SjYiOFBXnGwk.png" srcset="/img/loading.gif" lazyload/>
 
 <p>代码实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* delay.c */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;delay.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Delay_ns</span><span class="params">(<span class="type">uint32_t</span> ns)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> ticks =</span><br><span class="line">        (ns / <span class="number">11.9</span>) + <span class="number">1</span>;   <span class="comment">// 计算需要的时钟周期数，+1确保延时不会少于请求的ns</span></span><br><span class="line"></span><br><span class="line">    TIM6-&gt;CNT = <span class="number">0</span>;                <span class="comment">// 重置计数器</span></span><br><span class="line">    HAL_TIM_Base_Start(&amp;htim6);   <span class="comment">// 启动定时器</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (TIM6-&gt;CNT &lt; ticks)</span><br><span class="line">        ;                        <span class="comment">// 等待计数器达到目标值</span></span><br><span class="line"></span><br><span class="line">    HAL_TIM_Base_Stop(&amp;htim6);   <span class="comment">// 停止定时器</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Delay_us</span><span class="params">(<span class="type">uint32_t</span> us)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> ticks =</span><br><span class="line">        (<span class="number">84</span> * us) - <span class="number">1</span>;   <span class="comment">// 84时钟周期代表1微秒，-1确保延时不会少于请求的us</span></span><br><span class="line"></span><br><span class="line">    TIM6-&gt;CNT = <span class="number">0</span>;                <span class="comment">// 重置计数器</span></span><br><span class="line">    HAL_TIM_Base_Start(&amp;htim6);   <span class="comment">// 启动定时器</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (TIM6-&gt;CNT &lt; ticks)</span><br><span class="line">        ;                        <span class="comment">// 等待计数器达到目标值</span></span><br><span class="line"></span><br><span class="line">    HAL_TIM_Base_Stop(&amp;htim6);   <span class="comment">// 停止定时器</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ms延时使用osDelay函数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/****************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* delay.h */</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> DELAY_H_INCLUDED</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DELAY_H_INCLUDED</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f4xx_hal.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;tim.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Delay_ns</span><span class="params">(<span class="type">uint32_t</span> ns)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Delay_us</span><span class="params">(<span class="type">uint32_t</span> us)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">/* DELAY_H_INCLUDED */</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* delay.c */</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;delay.h&quot;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Delay_ns</span><span class="hljs-params">(<span class="hljs-type">uint32_t</span> ns)</span><br>&#123;<br>    <span class="hljs-type">uint32_t</span> ticks =<br>        (ns / <span class="hljs-number">11.9</span>) + <span class="hljs-number">1</span>;   <span class="hljs-comment">// 计算需要的时钟周期数，+1确保延时不会少于请求的ns</span><br><br>    TIM6-&gt;CNT = <span class="hljs-number">0</span>;                <span class="hljs-comment">// 重置计数器</span><br>    HAL_TIM_Base_Start(&amp;htim6);   <span class="hljs-comment">// 启动定时器</span><br><br>    <span class="hljs-keyword">while</span> (TIM6-&gt;CNT &lt; ticks)<br>        ;                        <span class="hljs-comment">// 等待计数器达到目标值</span><br><br>    HAL_TIM_Base_Stop(&amp;htim6);   <span class="hljs-comment">// 停止定时器</span><br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Delay_us</span><span class="hljs-params">(<span class="hljs-type">uint32_t</span> us)</span><br>&#123;<br>    <span class="hljs-type">uint32_t</span> ticks =<br>        (<span class="hljs-number">84</span> * us) - <span class="hljs-number">1</span>;   <span class="hljs-comment">// 84时钟周期代表1微秒，-1确保延时不会少于请求的us</span><br><br>    TIM6-&gt;CNT = <span class="hljs-number">0</span>;                <span class="hljs-comment">// 重置计数器</span><br>    HAL_TIM_Base_Start(&amp;htim6);   <span class="hljs-comment">// 启动定时器</span><br><br>    <span class="hljs-keyword">while</span> (TIM6-&gt;CNT &lt; ticks)<br>        ;                        <span class="hljs-comment">// 等待计数器达到目标值</span><br><br>    HAL_TIM_Base_Stop(&amp;htim6);   <span class="hljs-comment">// 停止定时器</span><br>&#125;<br><br><span class="hljs-comment">// ms延时使用osDelay函数</span><br><br><br><br><span class="hljs-comment">/****************************************************************/</span><br><br><span class="hljs-comment">/* delay.h */</span><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> DELAY_H_INCLUDED</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> DELAY_H_INCLUDED</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stm32f4xx_hal.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;tim.h&quot;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">Delay_ns</span><span class="hljs-params">(<span class="hljs-type">uint32_t</span> ns)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">Delay_us</span><span class="hljs-params">(<span class="hljs-type">uint32_t</span> us)</span>;<br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span> <span class="hljs-comment">/* DELAY_H_INCLUDED */</span></span><br><br></code></pre></td></tr></table></figure>
 
 <h2 id="STM32CUBEMX-沙箱定义"><a href="#STM32CUBEMX-沙箱定义" class="headerlink" title="STM32CUBEMX 沙箱定义"></a>STM32CUBEMX 沙箱定义</h2><p>对于 CUBEMX 生成的代码，会有一套规范，通过注释提示了用户代码写在哪里，否则可能在下一次生成代码误删用户代码。</p>
 <p>一般我倾向于把用户代码写在自己添加的 .c 文件，在<code>main.c</code>中进行调用，毕竟那些注释看着还是比较乱。</p>
 <p>但是避免不了要在生成的代码中写内容时，还是遵循官方的风格与规范比较好。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">* USER CODE END Header */</span><br><span class="line"><span class="comment">/* Includes ------------------------------------------------------------------*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;gpio.h&quot;</span></span></span><br><span class="line"><span class="comment">/* Private includes 私有文件包含沙箱----------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN Includes */</span></span><br><span class="line">    这里存放定义的类型</span><br><span class="line"><span class="comment">/* USER CODE END Includes */</span></span><br><span class="line"><span class="comment">/* Private typedef 私有类型定义沙箱-----------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PTD */</span></span><br><span class="line">    这里存放你的定义的结构体，枚举体，共用体等</span><br><span class="line"><span class="comment">/* USER CODE END PTD */</span></span><br><span class="line"><span class="comment">/* Private define 私有宏沙箱------------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PD */</span></span><br><span class="line">    这里存放你定义的宏</span><br><span class="line"><span class="comment">/* USER CODE END PD */</span></span><br><span class="line"><span class="comment">/* Private macro 私有宏沙箱-------------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PM */</span></span><br><span class="line">     这里存放你定义的宏</span><br><span class="line"><span class="comment">/* USER CODE END PM */</span></span><br><span class="line"><span class="comment">/* Private variables 私有变量沙箱---------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN PV */</span></span><br><span class="line">     这里存放你定义的变量</span><br><span class="line"><span class="comment">/* USER CODE END PV */</span></span><br><span class="line"><span class="comment">/* Private function prototypes 私有函数原型沙箱-----------------------------------------------*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">SystemClock_Config</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="comment">/* USER CODE BEGIN PFP */</span></span><br><span class="line">    这里存放你的函数原型</span><br><span class="line"><span class="comment">/* USER CODE END PFP */</span></span><br><span class="line"><span class="comment">/* Private user code私有程序沙箱 ---------------------------------------------------------*/</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN 0 */</span></span><br><span class="line"><span class="comment">/* USER CODE END 0 */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * @brief  The application entry point.</span></span><br><span class="line"><span class="comment">  * @retval int</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* USER CODE BEGIN 1 */</span></span><br><span class="line">  <span class="comment">/* USER CODE END 1 */</span></span><br><span class="line">  <span class="comment">/* MCU Configuration--------------------------------------------------------*/</span></span><br><span class="line">  <span class="comment">/* Reset of all peripherals, Initializes the Flash interface and the Systick. */</span></span><br><span class="line">  HAL_Init();<span class="comment">//整个HAL库初始化</span></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN Init */</span></span><br><span class="line">  <span class="comment">/* USER CODE END Init */</span></span><br><span class="line">  <span class="comment">/* Configure the system clock */</span></span><br><span class="line">  SystemClock_Config();<span class="comment">//系统时钟初始化</span></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN SysInit */</span></span><br><span class="line">  <span class="comment">/* USER CODE END SysInit */</span></span><br><span class="line">  <span class="comment">/* Initialize all configured peripherals */</span></span><br><span class="line">  MX_GPIO_Init();<span class="comment">//GPIO初始化</span></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN 2 */</span></span><br><span class="line">  <span class="comment">/* USER CODE END 2 */</span></span><br><span class="line">  <span class="comment">/* Infinite loop */</span></span><br><span class="line">  <span class="comment">/* USER CODE BEGIN WHILE */</span></span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">/* USER CODE END WHILE */</span></span><br><span class="line">    <span class="comment">/* USER CODE BEGIN 3 */</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* USER CODE END 3 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs c">* USER CODE END Header */<br><span class="hljs-comment">/* Includes ------------------------------------------------------------------*/</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;main.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;gpio.h&quot;</span></span><br><span class="hljs-comment">/* Private includes 私有文件包含沙箱----------------------------------------------------------*/</span><br><span class="hljs-comment">/* USER CODE BEGIN Includes */</span><br>    这里存放定义的类型<br><span class="hljs-comment">/* USER CODE END Includes */</span><br><span class="hljs-comment">/* Private typedef 私有类型定义沙箱-----------------------------------------------------------*/</span><br><span class="hljs-comment">/* USER CODE BEGIN PTD */</span><br>    这里存放你的定义的结构体，枚举体，共用体等<br><span class="hljs-comment">/* USER CODE END PTD */</span><br><span class="hljs-comment">/* Private define 私有宏沙箱------------------------------------------------------------*/</span><br><span class="hljs-comment">/* USER CODE BEGIN PD */</span><br>    这里存放你定义的宏<br><span class="hljs-comment">/* USER CODE END PD */</span><br><span class="hljs-comment">/* Private macro 私有宏沙箱-------------------------------------------------------------*/</span><br><span class="hljs-comment">/* USER CODE BEGIN PM */</span><br>     这里存放你定义的宏<br><span class="hljs-comment">/* USER CODE END PM */</span><br><span class="hljs-comment">/* Private variables 私有变量沙箱---------------------------------------------------------*/</span><br><span class="hljs-comment">/* USER CODE BEGIN PV */</span><br>     这里存放你定义的变量<br><span class="hljs-comment">/* USER CODE END PV */</span><br><span class="hljs-comment">/* Private function prototypes 私有函数原型沙箱-----------------------------------------------*/</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">SystemClock_Config</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br><span class="hljs-comment">/* USER CODE BEGIN PFP */</span><br>    这里存放你的函数原型<br><span class="hljs-comment">/* USER CODE END PFP */</span><br><span class="hljs-comment">/* Private user code私有程序沙箱 ---------------------------------------------------------*/</span><br><span class="hljs-comment">/* USER CODE BEGIN 0 */</span><br><span class="hljs-comment">/* USER CODE END 0 */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * @brief  The application entry point.</span><br><span class="hljs-comment">  * @retval int</span><br><span class="hljs-comment">  */</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>  <span class="hljs-comment">/* USER CODE BEGIN 1 */</span><br>  <span class="hljs-comment">/* USER CODE END 1 */</span><br>  <span class="hljs-comment">/* MCU Configuration--------------------------------------------------------*/</span><br>  <span class="hljs-comment">/* Reset of all peripherals, Initializes the Flash interface and the Systick. */</span><br>  HAL_Init();<span class="hljs-comment">//整个HAL库初始化</span><br>  <span class="hljs-comment">/* USER CODE BEGIN Init */</span><br>  <span class="hljs-comment">/* USER CODE END Init */</span><br>  <span class="hljs-comment">/* Configure the system clock */</span><br>  SystemClock_Config();<span class="hljs-comment">//系统时钟初始化</span><br>  <span class="hljs-comment">/* USER CODE BEGIN SysInit */</span><br>  <span class="hljs-comment">/* USER CODE END SysInit */</span><br>  <span class="hljs-comment">/* Initialize all configured peripherals */</span><br>  MX_GPIO_Init();<span class="hljs-comment">//GPIO初始化</span><br>  <span class="hljs-comment">/* USER CODE BEGIN 2 */</span><br>  <span class="hljs-comment">/* USER CODE END 2 */</span><br>  <span class="hljs-comment">/* Infinite loop */</span><br>  <span class="hljs-comment">/* USER CODE BEGIN WHILE */</span><br>  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)<br>  &#123;<br>    <span class="hljs-comment">/* USER CODE END WHILE */</span><br>    <span class="hljs-comment">/* USER CODE BEGIN 3 */</span><br>  &#125;<br>  <span class="hljs-comment">/* USER CODE END 3 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="CUBEMX-生成的工程在-keil5-中编译报错"><a href="#CUBEMX-生成的工程在-keil5-中编译报错" class="headerlink" title="CUBEMX 生成的工程在 keil5 中编译报错"></a>CUBEMX 生成的工程在 keil5 中编译报错</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/skullboyer/p/8677669.html">【转】Keil ARM 开发 error L6236E 错误解决 - 壹点灵异 - 博客园 (cnblogs.com)</a></p>
 <h2 id="让-CUBEMX-生成-UTF-8-文件，避免中文乱码"><a href="#让-CUBEMX-生成-UTF-8-文件，避免中文乱码" class="headerlink" title="让 CUBEMX 生成 UTF-8 文件，避免中文乱码"></a>让 CUBEMX 生成 UTF-8 文件，避免中文乱码</h2><p>添加系统环境变量：</p>
@@ -150,171 +328,389 @@
 <li>值 ：<code>-Dfile.encoding=UTF-8</code></li>
 </ul>
 <h2 id="ASCIi-艺术字体生成"><a href="#ASCIi-艺术字体生成" class="headerlink" title="ASCIi 艺术字体生成"></a>ASCIi 艺术字体生成</h2><p>[Text to ASCII Art Generator (TAAG) — 文本到 ASCII 艺术生成器 (TAAG) (patorjk.com)](<a target="_blank" rel="noopener" href="http://patorjk.com/software/taag/#p=display&f=ANSI">http://patorjk.com/software/taag/#p=display&amp;f=ANSI</a> Shadow&amp;t&#x3D;Hello BUAA!)</p>
-<img src="https://s2.loli.net/2024/04/15/U9JPuB1aLsN4xlM.png"/>
+<img src="https://s2.loli.net/2024/04/15/U9JPuB1aLsN4xlM.png" srcset="/img/loading.gif" lazyload/>
 
-<img src="https://s2.loli.net/2024/04/15/ZPW4zdthVYUcOKw.png"/>
+<img src="https://s2.loli.net/2024/04/15/ZPW4zdthVYUcOKw.png" srcset="/img/loading.gif" lazyload/>
 
-<img src="https://s2.loli.net/2024/04/15/3oTZ7FOsGNEvBkY.png"/>
+<img src="https://s2.loli.net/2024/04/15/3oTZ7FOsGNEvBkY.png" srcset="/img/loading.gif" lazyload/>
 
-<img src="https://s2.loli.net/2024/04/15/qUpZFhS5D2esOtI.png"/>
+<img src="https://s2.loli.net/2024/04/15/qUpZFhS5D2esOtI.png" srcset="/img/loading.gif" lazyload/>
 
-<img src="https://s2.loli.net/2024/04/15/akTeCogitbZXq4s.png"/>
+<img src="https://s2.loli.net/2024/04/15/akTeCogitbZXq4s.png" srcset="/img/loading.gif" lazyload/>
 
-<img src="https://s2.loli.net/2024/04/15/bhdHsMQWEAo9qZt.png"/>
+<img src="https://s2.loli.net/2024/04/15/bhdHsMQWEAo9qZt.png" srcset="/img/loading.gif" lazyload/>
 
-<img src="https://s2.loli.net/2024/04/15/GQn8iJb3ZfeYD41.png"/>
+<img src="https://s2.loli.net/2024/04/15/GQn8iJb3ZfeYD41.png" srcset="/img/loading.gif" lazyload/>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://sinlatansen.github.io/2024/04/15/STM32%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%9F%A5%E8%AF%86/" data-id="cm5b4yqv6001srw72bceve2aj" data-title="STM32基础开发知识" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
 
-    </footer>
-  </div>
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/technology/" class="category-chain-item">technology</a>
   
-    <a href="/2024/04/29/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B9%9D%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Linux下C语言教程-李慧芹老师-第九章
-        
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/c/" class="print-no-link">#c</a>
+      
+        <a href="/tags/vscode/" class="print-no-link">#vscode</a>
+      
+        <a href="/tags/stm32/" class="print-no-link">#stm32</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>STM32基础开发知识</div>
+      <div>http://sinlatansen.github.io/2024/04/15/STM32基础开发知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fugu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/29/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B9%9D%E7%AB%A0/" title="Linux下C语言教程-李慧芹老师-第九章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux下C语言教程-李慧芹老师-第九章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%85%AB%E7%AB%A0/" title="Linux下C语言教程-李慧芹老师-第八章">
+                        <span class="hidden-mobile">Linux下C语言教程-李慧芹老师-第八章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2024/04/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%85%AB%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">Linux下C语言教程-李慧芹老师-第八章</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2024 fugu<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

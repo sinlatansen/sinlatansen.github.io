@@ -1,12 +1,25 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <title>Linux下C语言教程-李慧芹老师-第一章 | Fugu&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="配套代码笔记Github地址。 目录 目录 第一章 绪论 第一节 C语言发展史 C语言特点 C语言学习建议 课程思路 课程平台   第二节 神一般的Hello world! 源文件到可执行文件 gcc make   vim   第三节 基本概念 以Hello world为例对写程序的思路提出如下要求 1. 头文件正确包含的重要性 2. 以函数为单位来进行程序编写 3. 声明部分+实现部分 4. r">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fugu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="配套代码笔记Github地址。 目录 目录 第一章 绪论 第一节 C语言发展史 C语言特点 C语言学习建议 课程思路 课程平台   第二节 神一般的Hello world! 源文件到可执行文件 gcc make   vim   第三节 基本概念 以Hello world为例对写程序的思路提出如下要求 1. 头文件正确包含的重要性 2. 以函数为单位来进行程序编写 3. 声明部分+实现部分 4. r">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下C语言教程-李慧芹老师-第一章">
 <meta property="og:url" content="http://sinlatansen.github.io/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/index.html">
@@ -19,88 +32,253 @@
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="c">
 <meta property="article:tag" content="李慧芹">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
   
   
   
-<link rel="stylesheet" href="/css/style.css">
+  <title>Linux下C语言教程-李慧芹老师-第一章 - Fugu&#39;s Blog</title>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sinlatansen.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
   
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Fugu&#39;s Blog</a>
-      </h1>
-      
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux下C语言教程-李慧芹老师-第一章"></span>
+          
+        </div>
+
         
-          <a class="main-nav-link" href="/">Home</a>
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-10 09:05" pubdate>
+          2024年3月10日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          1.5k 字
         
-      </nav>
-      <nav id="sub-nav">
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
         
         
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
   </div>
-</header>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-Linux下C语言教程-李慧芹老师-第一章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="article-date">
-  <time class="dt-published" datetime="2024-03-10T09:05:00.000Z" itemprop="datePublished">2024-03-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/technology/">technology</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Linux下C语言教程-李慧芹老师-第一章
-    </h1>
-  
+  </header>
 
-      </header>
+  <main>
     
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记Github地址</a>。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux下C语言教程-李慧芹老师-第一章</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记Github地址</a>。</p>
 <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
 <li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
 <li><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA">第一章 绪论</a><ul>
@@ -205,42 +383,42 @@
 <li>本人：<code>WSL-debian</code>，<code>vscode(remote ssh)</code>，<code>gcc12.2.0(make)</code>，<code>ohmyzsh(theme:eastwood)</code></li>
 </ul>
 <p>我的<code>gcc</code>版本比较新，所以很多提示比较完善，老师这个课程是很早的课，那个时候的gcc提示没有现在厉害，所以还是要结合老师的视频的思路，在当时提示不完善的时候是如何手撕代码分析出来的。</p>
-<h2 id="第二节"><a href="#第二节" class="headerlink" title="第二节"></a>第二节</h2><h3 id="神一般的Hello-world"><a href="#神一般的Hello-world" class="headerlink" title="神一般的Hello world!"></a>神一般的<code>Hello world!</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hello.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>;<span class="comment">// char *argv[]</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第二节"><a href="#第二节" class="headerlink" title="第二节"></a>第二节</h2><h3 id="神一般的Hello-world"><a href="#神一般的Hello-world" class="headerlink" title="神一般的Hello world!"></a>神一般的<code>Hello world!</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//hello.c</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> 0</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> **argv)</span>;<span class="hljs-comment">// char *argv[]</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> **argv)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello world!\n&quot;</span>);<br><br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>用那种<code>main</code>得看编译器环境，目前在<code>linux</code>的<code>gcc</code>下，<code>int main(void);</code>常用，需要传参用<code>int main(int argc, char **argv);</code>。</p>
 <h3 id="源文件到可执行文件"><a href="#源文件到可执行文件" class="headerlink" title="源文件到可执行文件"></a>源文件到可执行文件</h3><h4 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h4><p>C源文件&#x3D;&gt;预处理&#x3D;&gt;编译&#x3D;&gt;汇编&#x3D;&gt;链接&#x3D;&gt;可执行文件</p>
 <blockquote>
 <p>所有<code>#</code>后面的代码都在预处理解决</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单步执行</span></span><br><span class="line">gcc -E hello.c &gt; hello.i <span class="comment"># 预处理生成hello.i</span></span><br><span class="line">gcc -S hello.i <span class="comment"># 编译生成hello.s</span></span><br><span class="line">gcc -c hello.s <span class="comment"># 汇编生成hello.o</span></span><br><span class="line">gcc hello.o -o hello <span class="comment"># 链接生成hello</span></span><br><span class="line">./hello <span class="comment"># 运行</span></span><br><span class="line">Hello world!</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一次到位</span></span><br><span class="line">gcc hello.c <span class="comment"># 得到a.out可执行文件</span></span><br><span class="line"><span class="comment"># 指定名字</span></span><br><span class="line">gcc hello.c -o myhello <span class="comment"># 得到myhello可执行文件</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 单步执行</span><br>gcc -E hello.c &gt; hello.i <span class="hljs-comment"># 预处理生成hello.i</span><br>gcc -S hello.i <span class="hljs-comment"># 编译生成hello.s</span><br>gcc -c hello.s <span class="hljs-comment"># 汇编生成hello.o</span><br>gcc hello.o -o hello <span class="hljs-comment"># 链接生成hello</span><br>./hello <span class="hljs-comment"># 运行</span><br>Hello world!<br><br><span class="hljs-comment"># 一次到位</span><br>gcc hello.c <span class="hljs-comment"># 得到a.out可执行文件</span><br><span class="hljs-comment"># 指定名字</span><br>gcc hello.c -o myhello <span class="hljs-comment"># 得到myhello可执行文件</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h4 id="make"><a href="#make" class="headerlink" title="make"></a>make</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ make hello</span><br><span class="line">cc  hello.c  -o hello</span><br><span class="line"><span class="comment"># cc就是make选择的编译器，这里是gcc</span></span><br><span class="line">$ <span class="built_in">ls</span></span><br><span class="line">hello hello.c</span><br></pre></td></tr></table></figure>
+<h4 id="make"><a href="#make" class="headerlink" title="make"></a>make</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ make hello<br>cc  hello.c  -o hello<br><span class="hljs-comment"># cc就是make选择的编译器，这里是gcc</span><br>$ <span class="hljs-built_in">ls</span><br>hello hello.c<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>老师对于常用的<code>.vimrc</code>做了一些介绍，笔者建议<code>vscode</code>的<code>remote-ssh</code>插件，可以在win的vscode编辑器享受linux的环境。</p>
-<h2 id="第三节"><a href="#第三节" class="headerlink" title="第三节"></a>第三节</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="以Hello-world为例对写程序的思路提出如下要求"><a href="#以Hello-world为例对写程序的思路提出如下要求" class="headerlink" title="以Hello world为例对写程序的思路提出如下要求"></a>以<code>Hello world</code>为例对写程序的思路提出如下要求</h4><h5 id="1-头文件正确包含的重要性"><a href="#1-头文件正确包含的重要性" class="headerlink" title="1. 头文件正确包含的重要性"></a>1. 头文件正确包含的重要性</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    p = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第三节"><a href="#第三节" class="headerlink" title="第三节"></a>第三节</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="以Hello-world为例对写程序的思路提出如下要求"><a href="#以Hello-world为例对写程序的思路提出如下要求" class="headerlink" title="以Hello world为例对写程序的思路提出如下要求"></a>以<code>Hello world</code>为例对写程序的思路提出如下要求</h4><h5 id="1-头文件正确包含的重要性"><a href="#1-头文件正确包含的重要性" class="headerlink" title="1. 头文件正确包含的重要性"></a>1. 头文件正确包含的重要性</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> *p = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-type">int</span> i;<br>    p = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>    <span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello world!\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这里我的gcc版本比较新，所以和老师的不一致，总之老师的意思就是</p>
 <blockquote>
 <p> 不要忽略gcc的警告！！！</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 -Wall 参数让gcc显示全部警告</span></span><br><span class="line"><span class="comment"># 注意&#x27;W&#x27;要大写</span></span><br><span class="line">$ gcc hello.c -Wall</span><br><span class="line">hello.c: In <span class="keyword">function</span> ‘main’:</span><br><span class="line">hello.c:7:9: warning: implicit declaration of <span class="keyword">function</span> ‘malloc’ [-Wimplicit-function-declaration]</span><br><span class="line">    7 |     p = malloc(sizeof(int));</span><br><span class="line">      |         ^~~~~~</span><br><span class="line">hello.c:2:1: note: include ‘&lt;stdlib.h&gt;’ or provide a declaration of ‘malloc’</span><br><span class="line">    1 | <span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">  +++ |+#include &lt;stdlib.h&gt;</span><br><span class="line">    2 | </span><br><span class="line">hello.c:7:9: warning: incompatible implicit declaration of built-in <span class="keyword">function</span> ‘malloc’ [-Wbuiltin-declaration-mismatch]</span><br><span class="line">    7 |     p = malloc(sizeof(int));</span><br><span class="line">      |         ^~~~~~</span><br><span class="line">hello.c:7:9: note: include ‘&lt;stdlib.h&gt;’ or provide a declaration of ‘malloc’</span><br><span class="line">hello.c:6:9: warning: unused variable ‘i’ [-Wunused-variable]</span><br><span class="line">    6 |     int i;</span><br><span class="line">      |         ^</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 通过 -Wall 参数让gcc显示全部警告</span><br><span class="hljs-comment"># 注意&#x27;W&#x27;要大写</span><br>$ gcc hello.c -Wall<br>hello.c: In <span class="hljs-keyword">function</span> ‘main’:<br>hello.c:7:9: warning: implicit declaration of <span class="hljs-keyword">function</span> ‘malloc’ [-Wimplicit-function-declaration]<br>    7 |     p = malloc(sizeof(int));<br>      |         ^~~~~~<br>hello.c:2:1: note: include ‘&lt;stdlib.h&gt;’ or provide a declaration of ‘malloc’<br>    1 | <span class="hljs-comment">#include &lt;stdio.h&gt;</span><br>  +++ |+#include &lt;stdlib.h&gt;<br>    2 | <br>hello.c:7:9: warning: incompatible implicit declaration of built-in <span class="hljs-keyword">function</span> ‘malloc’ [-Wbuiltin-declaration-mismatch]<br>    7 |     p = malloc(sizeof(int));<br>      |         ^~~~~~<br>hello.c:7:9: note: include ‘&lt;stdlib.h&gt;’ or provide a declaration of ‘malloc’<br>hello.c:6:9: warning: unused variable ‘i’ [-Wunused-variable]<br>    6 |     int i;<br>      |         ^<br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>例如说这个变量<code>i</code>定义了但是没用上，就是你清楚来龙去脉可以忽略的警告。</li>
 <li>而<code>malloc</code>那个警告就是在告诉你<code>malloc</code>所属的<code>stdlib.h</code>库未引入。</li>
 <li>C语言程序往往如果能把警告都消除，错误也能解决。例如：</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line"></span><br><span class="line">    fp = fopen(<span class="string">&quot;tmp&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;fopen():%s\n&quot;</span>, strerror(errno));</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;ok!&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;errno.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    FILE *fp;<br><br>    fp = fopen(<span class="hljs-string">&quot;tmp&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);<br>    <span class="hljs-keyword">if</span> (fp == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">&quot;fopen():%s\n&quot;</span>, strerror(errno));<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;ok!&quot;</span>);<br>    <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这个程序运行报段错误，这个时候，查看一下警告就是问题所在。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ ./a</span><br><span class="line">[1]    1960 segmentation fault  ./a</span><br><span class="line"></span><br><span class="line">$ gcc a.c -Wall    </span><br><span class="line">a.c: In <span class="keyword">function</span> ‘main’:</span><br><span class="line">a.c:12:41: warning: implicit declaration of <span class="keyword">function</span> ‘strerror’; did you mean ‘perror’? [-Wimplicit-function-declaration]</span><br><span class="line">   12 |         fprintf(stderr, <span class="string">&quot;fopen():%s\n&quot;</span>, strerror(errno));</span><br><span class="line">      |                                         ^~~~~~~~</span><br><span class="line">      |                                         perror</span><br><span class="line">a.c:12:35: warning: format ‘%s’ expects argument of <span class="built_in">type</span> ‘char *’, but argument 3 has <span class="built_in">type</span> ‘int’ [-Wformat=]</span><br><span class="line">   12 |         fprintf(stderr, <span class="string">&quot;fopen():%s\n&quot;</span>, strerror(errno));</span><br><span class="line">      |                                  ~^     ~~~~~~~~~~~~~~~</span><br><span class="line">      |                                   |     |</span><br><span class="line">      |                                   |     int</span><br><span class="line">      |                                   char *</span><br><span class="line">      |                                  %d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ ./a<br>[1]    1960 segmentation fault  ./a<br><br>$ gcc a.c -Wall    <br>a.c: In <span class="hljs-keyword">function</span> ‘main’:<br>a.c:12:41: warning: implicit declaration of <span class="hljs-keyword">function</span> ‘strerror’; did you mean ‘perror’? [-Wimplicit-function-declaration]<br>   12 |         fprintf(stderr, <span class="hljs-string">&quot;fopen():%s\n&quot;</span>, strerror(errno));<br>      |                                         ^~~~~~~~<br>      |                                         perror<br>a.c:12:35: warning: format ‘%s’ expects argument of <span class="hljs-built_in">type</span> ‘char *’, but argument 3 has <span class="hljs-built_in">type</span> ‘int’ [-Wformat=]<br>   12 |         fprintf(stderr, <span class="hljs-string">&quot;fopen():%s\n&quot;</span>, strerror(errno));<br>      |                                  ~^     ~~~~~~~~~~~~~~~<br>      |                                   |     |<br>      |                                   |     int<br>      |                                   char *<br>      |                                  %d<br></code></pre></td></tr></table></figure>
 
 <p>用<code>%s</code>需要的类型是<code>char *</code>，但是<code>strerror(errno)</code>的类型是<code>int</code>，它是所以是<code>int</code>，是因为C语言对没有找到原型的函数返回值都是<code>int</code>，所以根源在于<code>strerror</code>函数没有原型，没有引入需要的<code>string.h</code>库。加入这个库重新运行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[main][~/LinuxC/Chapter1/Section3]$ make a</span><br><span class="line">cc     a.c   -o a</span><br><span class="line">[main][~/LinuxC/Chapter1/Section3]$ ./a     </span><br><span class="line">fopen():No such file or directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">[main][~/LinuxC/Chapter1/Section3]$ make a<br>cc     a.c   -o a<br>[main][~/LinuxC/Chapter1/Section3]$ ./a     <br>fopen():No such file or directory<br></code></pre></td></tr></table></figure>
 
 
 
@@ -248,167 +426,385 @@
 <h5 id="3-声明部分-实现部分"><a href="#3-声明部分-实现部分" class="headerlink" title="3. 声明部分+实现部分"></a>3. 声明部分+实现部分</h5><p>早期的编译器要求变量先定义后使用。</p>
 <h5 id="4-return-0-exit-0"><a href="#4-return-0-exit-0" class="headerlink" title="4. return 0/exit(0)"></a>4. <code>return 0/exit(0)</code></h5><p>结束当前进程，是给父进程看的。</p>
 <p>对于带有<code>return 0</code>的程序：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[main][~/LinuxC/Chapter1/Section3]$ ./hello</span><br><span class="line">Hello world!</span><br><span class="line">[main][~/LinuxC/Chapter1/Section3]$ <span class="built_in">echo</span> $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">[main][~/LinuxC/Chapter1/Section3]$ ./hello<br>Hello world!<br>[main][~/LinuxC/Chapter1/Section3]$ <span class="hljs-built_in">echo</span> $?<br>0<br></code></pre></td></tr></table></figure>
 
 <p>如果不带<code>return 0</code>：</p>
 <p>老师演示的返回值是13，是<code>printf</code>的返回的<code>Hello world!\n</code>的长度。</p>
 <p>在我本地无法复现，新版本可能改了。</p>
-<h5 id="5-多用空格空行"><a href="#5-多用空格空行" class="headerlink" title="5. 多用空格空行"></a>5. 多用空格空行</h5><h5 id="6-添加注释"><a href="#6-添加注释" class="headerlink" title="6. 添加注释"></a>6. 添加注释</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 多行注释</span></span><br><span class="line"><span class="comment"> * 多行注释</span></span><br><span class="line"><span class="comment"> * 多行注释</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//大段的注释</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">func()&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="5-多用空格空行"><a href="#5-多用空格空行" class="headerlink" title="5. 多用空格空行"></a>5. 多用空格空行</h5><h5 id="6-添加注释"><a href="#6-添加注释" class="headerlink" title="6. 添加注释"></a>6. 添加注释</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//单行注释</span><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 多行注释</span><br><span class="hljs-comment"> * 多行注释</span><br><span class="hljs-comment"> * 多行注释</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">//大段的注释</span><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> 0</span><br>func()&#123;<br>  <br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>解决问题的方法。（流程图，NS图，FSM有限状态机）</p>
 <h4 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h4><p>用某种语言实现算法</p>
 <h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><h4 id="防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放"><a href="#防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放" class="headerlink" title="防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放"></a>防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放</h4>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://sinlatansen.github.io/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-id="cm5b4yqu90009rw728fpt94tx" data-title="Linux下C语言教程-李慧芹老师-第一章" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li></ul>
 
-    </footer>
-  </div>
+<span class="category-chains">
+  
   
     
-<nav id="article-nav">
+      <span class="category-chain">
+        
+  <a href="/categories/technology/" class="category-chain-item">technology</a>
   
-    <a href="/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Linux下C语言教程-李慧芹老师-第二章
-        
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+        <a href="/tags/c/" class="print-no-link">#c</a>
+      
+        <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" class="print-no-link">#李慧芹</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux下C语言教程-李慧芹老师-第一章</div>
+      <div>http://sinlatansen.github.io/2024/03/10/Linux下C语言教程-李慧芹老师-第一章/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fugu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="Linux下C语言教程-李慧芹老师-第二章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux下C语言教程-李慧芹老师-第二章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/07/npm%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF/" title="npm报错：OpenSSL版本错误">
+                        <span class="hidden-mobile">npm报错：OpenSSL版本错误</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2024/03/07/npm%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">npm报错：OpenSSL版本错误</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
     </div>
-  </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-      &copy; 2024 fugu<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
 
     </div>
-    <nav id="mobile-nav">
+  </div>
+</div>
+
+
+
+
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
 
-<script src="/js/script.js"></script>
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-  </div>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
