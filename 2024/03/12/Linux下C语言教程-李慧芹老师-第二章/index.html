@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux下C语言教程-李慧芹老师-第二章 | Fugu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="配套代码笔记Github地址。 目录 目录 第二章 数据类型，运算符和表达式 数据类型（基本数据类型） 常量与变量 常量 定义 分类   变量 定义 变量的生命周期与作用范围   运算符和表达式 表达式和语句的区别 运算符相关代码        第二章 数据类型，运算符和表达式数据类型（基本数据类型） 数据类型所占字节数随机器硬件不同而不同，以int为基准，char比它小，float和double">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下C语言教程-李慧芹老师-第二章">
+<meta property="og:url" content="http://sinlatansen.github.io/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Fugu&#39;s Blog">
+<meta property="og:description" content="配套代码笔记Github地址。 目录 目录 第二章 数据类型，运算符和表达式 数据类型（基本数据类型） 常量与变量 常量 定义 分类   变量 定义 变量的生命周期与作用范围   运算符和表达式 表达式和语句的区别 运算符相关代码        第二章 数据类型，运算符和表达式数据类型（基本数据类型） 数据类型所占字节数随机器硬件不同而不同，以int为基准，char比它小，float和double">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/03/12/y8pMEXS3LBIDAuc.png">
+<meta property="og:image" content="https://s2.loli.net/2024/03/12/3MkPpF5anv7eEGu.png">
+<meta property="article:published_time" content="2024-03-12T14:06:00.000Z">
+<meta property="article:modified_time" content="2024-12-30T14:21:26.487Z">
+<meta property="article:author" content="fugu">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="c">
+<meta property="article:tag" content="李慧芹">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/03/12/y8pMEXS3LBIDAuc.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fugu&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux下C语言教程-李慧芹老师-第二章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-12T14:06:00.000Z" itemprop="datePublished">2024-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux下C语言教程-李慧芹老师-第二章
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记Github地址</a>。</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F">第二章 数据类型，运算符和表达式</a><ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型（基本数据类型）</a></li>
+<li><a href="#%E5%B8%B8%E9%87%8F%E4%B8%8E%E5%8F%98%E9%87%8F">常量与变量</a><ul>
+<li><a href="#%E5%B8%B8%E9%87%8F">常量</a><ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a></li>
+<li><a href="#%E5%88%86%E7%B1%BB">分类</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%98%E9%87%8F">变量</a><ul>
+<li><a href="#%E5%AE%9A%E4%B9%89-1">定义</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4">变量的生命周期与作用范围</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F">运算符和表达式</a><ul>
+<li><a href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%8C%BA%E5%88%AB">表达式和语句的区别</a></li>
+<li><a href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81">运算符相关代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="第二章-数据类型，运算符和表达式"><a href="#第二章-数据类型，运算符和表达式" class="headerlink" title="第二章 数据类型，运算符和表达式"></a>第二章 数据类型，运算符和表达式</h1><h2 id="数据类型（基本数据类型）"><a href="#数据类型（基本数据类型）" class="headerlink" title="数据类型（基本数据类型）"></a>数据类型（基本数据类型）</h2><blockquote>
+<p>数据类型所占字节数随机器硬件不同而不同，以<code>int</code>为基准，<code>char</code>比它小，<code>float</code>和<code>double</code>比它大。</p>
+</blockquote>
+<ol>
+<li><p>所占字节数</p>
+</li>
+<li><p>存储区别</p>
+</li>
+<li><p>不同类型的数据间转换（隐式和<strong>显式</strong>&#x3D;&gt;强制类型转换）</p>
+</li>
+<li><p>特殊性</p>
+<ol>
+<li><p>布尔型（<code>bool</code>）：</p>
+<p><code>false</code>：<code>0</code>，<code>true</code>：非零值。</p>
+</li>
+<li><p><code>float</code>类型，不够精确，其实是一个小范围。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">func</span><span class="params">(<span class="type">float</span> f)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (f &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="comment">// else if (f == 0)</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">fabs</span>(f - <span class="number">0</span>) &lt;= <span class="number">1e-6</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>char</code>型是否有符号，未定义</p>
+</li>
+<li><p>不同形式的零值</p>
+<p><code>0</code>，<code>&#39;0&#39;</code>，<code>&quot;0&quot;</code>，<code>&#39;\0&#39;</code>，<code>NULL</code></p>
+</li>
+<li><p>数据类型得与后续代码的输入输入相匹配（自相矛盾）</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="常量与变量"><a href="#常量与变量" class="headerlink" title="常量与变量"></a>常量与变量</h2><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>在程序执行过程中值不会发生变化的量。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li><p>整型常量：1，790，76</p>
+</li>
+<li><p>实型常量：3.14，5.26</p>
+</li>
+<li><p>字符常量：由单引号引起来的单个字符或转义字符，如<code>&#39;a&#39;</code>，<code>&#39;X&#39;</code>，<code>&#39;\n&#39;</code>，<code>&#39;\ddd&#39;</code>（d可以是<code>0-7</code>，三位八进制，例如<code>&#39;\015&#39;</code>），<code>&#39;\xhh&#39;</code>（h可以是<code>0-F</code>，二位十六进制，<code>&#39;\x7f&#39;</code>）</p>
+</li>
+<li><p>字符串常量：由双引号引起来的一个或多个字符组成的序列（特殊情况，空串），如：<code>&quot;&quot;</code>，<code>&quot;a&quot;</code>，<code>&quot;abXYZ&quot;</code>，<code>&quot;abc\n\021\018&quot;</code>（注意这个字符串，<code>\n</code>，<code>\021</code>都是算单个字符，<code>\018</code>又不算）</p>
+</li>
+</ul>
+<blockquote>
+<p>我问gpt，”\018”在C语言几个字符。<br>在C语言中，字符串是以字符数组的形式表示，而每个字符串的末尾都有一个特殊的字符<code>&#39;\0&#39;</code>（空字符），用于标识字符串的结束。当你提到的<code>&quot;\018&quot;</code>在C语言中出现时，它表示一个包含特殊字符的字符串字面量。</p>
+<p>具体来说，<code>\0</code>在C语言中是一个转义字符，用于表示字符串的结束符（null terminator）。该符号用于标记字符串的结束，确保字符串处理函数如<code>printf</code>、<code>strcpy</code>等知道在哪里停止处理。</p>
+<p>在<code>&quot;\018&quot;</code>中，<code>\0</code>表示字符串的结束，后面跟的<code>18</code>并不会作为字符串的一部分来处理。因此，如果你在C语言中使用<code>&quot;\018&quot;</code>，它实际上会被视为只包含一个空字符（<code>\0</code>）的字符串。这意味着，尽管看起来字符串中有更多的字符，但由于<code>\0</code>的存在，它实际上在C语言处理中表示一个空字符串。</p>
+<p>总结来说，在C语言中<code>&quot;\018&quot;</code>实际上会被看作一个包含单一结束字符（null terminator）的字符串，而不是包含多个字符。这种处理方式是因为C语言使用空字符来标记字符串的结束。</p>
+</blockquote>
+<ul>
+<li><p>标识常量：<code>#define</code></p>
+<p>特点：完整的用宏体替换宏名，<strong>不做任何检查</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADD 2 + 3</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ADD1 (2 + 3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX(a, b) (a &gt; b ? a : b)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX1(a, b) ((a) &gt; (b) ? (a) : (b))</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, ADD * ADD);</span></span><br><span class="line">    <span class="comment">// 相当于 2+3*2+3</span></span><br><span class="line">    <span class="comment">// 故输出11而不是25</span></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, ADD1 * ADD1);</span></span><br><span class="line">    <span class="comment">// 相当于(2+3)*(2+3)</span></span><br><span class="line">    <span class="comment">// 正常输出25</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = <span class="number">5</span>, j = <span class="number">3</span>;</span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, MAX(i, j));</span></span><br><span class="line">    <span class="comment">// 输出5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, MAX(i, j * 2));</span></span><br><span class="line">    <span class="comment">// 输出6</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i=%d\tj=%d\n&quot;</span>, i, j);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, MAX1(i++, j++));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i=%d\tj=%d\n&quot;</span>, i, j);</span><br><span class="line">    <span class="comment">// 输出：</span></span><br><span class="line">    <span class="comment">// i = 5 j = 3</span></span><br><span class="line">    <span class="comment">// 6</span></span><br><span class="line">    <span class="comment">// i = 7 j = 4</span></span><br><span class="line">    <span class="comment">// 为什么i自增了两次？</span></span><br><span class="line">    <span class="comment">// 预处理结果</span></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, ((i++) + (j++) ? (i++) : (j++)));</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<ol>
+<li>使用函数：函数与宏的区别在于，一个占用编译时间，一个占用运行时间。在<code>linux</code>内核中多用宏。</li>
+<li>在宏中进行变量保存，这种写法超出标准C，属于<code>GNU C</code>的扩展部分，只能在支持的编译器（如<code>gcc</code>）中使用，在<code>linux</code>内核中非常常用。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX2(a, b)               \</span></span><br><span class="line"><span class="meta">    (&#123;                           \</span></span><br><span class="line"><span class="meta">        int A = a, B = b;        \</span></span><br><span class="line"><span class="meta">        ((A) &gt; (B) ? (A) : (B)); \</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX3(a, b)               \</span></span><br><span class="line"><span class="meta">    (&#123;                           \</span></span><br><span class="line"><span class="meta">        typeof(a) A = a, B = b;  \</span></span><br><span class="line"><span class="meta">        ((A) &gt; (B) ? (A) : (B)); \</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>用来保存一些特定内容，并且在程序执行过程中值<strong>随时会发生变化</strong>的量。</p>
+<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><table>
+<thead>
+<tr>
+<th align="center">[存储类型]</th>
+<th align="center">数据类型</th>
+<th align="center">标识符</th>
+<th align="center">&#x3D;</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">TYPE</td>
+<td align="center">NAME</td>
+<td align="center">&#x3D;</td>
+<td align="center">VALUE</td>
+</tr>
+</tbody></table>
+<ul>
+<li>标识符：由字母，数字，下划线组成且不能以数字开头的一个标识序列。拟定时尽量做到见名知义。</li>
+<li>数据类型：基本数据类型、构造类型</li>
+<li>值：注意匹配</li>
+<li>存储类型：<code>auto</code>，<code>static</code>，<code>register</code>，<code>extern</code>（说明型）<ul>
+<li><code>auto</code>：默认，自动分配空间，自动回收空间。</li>
+<li><code>register</code>：（建议型，编译器不一定采用）寄存器类型，只能定义局部变量，不能定义全局变量；大小有定义，只能定义32位大小的数据类型，如<code>double</code>就不可以；集尘器没有地址，所以一个寄存器类型的变量无法打印出地址查看或使用。</li>
+<li><code>static</code>：静态型，自动初始化为0值或空值，并且变量的值有继承性。另外，常用来修饰一个变量和函数，防止其对外扩散。</li>
+<li><code>extern</code>：说明型，意味着不能改变被说明的变量的值或类型。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">0</span>;</span><br><span class="line">    x = x + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p-&gt;%d\n&quot;</span>, &amp;x, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func1</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> x = <span class="number">0</span>;</span><br><span class="line">    x = x + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p-&gt;%d\n&quot;</span>, &amp;x, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// auto int i;</span></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// out:i=21915，每次都不一样</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// static int i;</span></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// out:i=1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// func();</span></span><br><span class="line">    <span class="comment">// func();</span></span><br><span class="line">    <span class="comment">// func();</span></span><br><span class="line">    <span class="comment">// out:：</span></span><br><span class="line">    <span class="comment">// 0x7ffc3c4ca4f4-&gt;1</span></span><br><span class="line">    <span class="comment">// 0x7ffc3c4ca4f4-&gt;1</span></span><br><span class="line">    <span class="comment">// 0x7ffc3c4ca4f4-&gt;1</span></span><br><span class="line">    <span class="comment">// 三次地址看着一样</span></span><br><span class="line">    <span class="comment">// 但是是每次函数开始取用，结束销毁的</span></span><br><span class="line">    <span class="comment">// 只是gcc刚好都取的栈上同一块地址</span></span><br><span class="line"></span><br><span class="line">    func1();</span><br><span class="line">    func1();</span><br><span class="line">    func1();</span><br><span class="line">    <span class="comment">// out:：</span></span><br><span class="line">    <span class="comment">// 0x55fd83c96014-&gt;1</span></span><br><span class="line">    <span class="comment">// 0x55fd83c96014-&gt;2</span></span><br><span class="line">    <span class="comment">// 0x55fd83c96014-&gt;3</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">int</span> i = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> i)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i=%d\n&quot;</span>, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i=3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i=3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="comment">//     i = 5;</span></span><br><span class="line">    <span class="comment">//     printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i=5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// func(i);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_star</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[%s]i=%d\n&quot;</span>, __FUNCTION__, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">        print_star();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// *****</span></span><br><span class="line">    <span class="comment">// [print_star] i = 5</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="变量的生命周期与作用范围"><a href="#变量的生命周期与作用范围" class="headerlink" title="变量的生命周期与作用范围"></a>变量的生命周期与作用范围</h4><ol>
+<li>全局变量和局部变量</li>
+<li>局部变量和局部变量</li>
+<li>参考图片存储类型比较</li>
+</ol>
+<p><img src="https://s2.loli.net/2024/03/12/y8pMEXS3LBIDAuc.png" alt="存储类型比较"></p>
+<blockquote>
+<p>这一块具体讲解见代码仓库<code>/Chapter2/变量/</code>。</p>
+</blockquote>
+<p>在<code>minproj</code>例子中，如果在<code>proj.c</code>和<code>proj.h</code>中<code>static</code>定义<code>func</code>函数，而在<code>main.c</code>中调用<code>func</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[main][~/LinuxC/Chapter2/Section5/minproj]$ gcc *.c</span><br><span class="line">In file included from main.c:4:</span><br><span class="line">proj.h:4:13: warning: ‘func’ used but never defined</span><br><span class="line">    4 | static void func(void);</span><br><span class="line">      |             ^~~~</span><br><span class="line">/usr/bin/ld: /tmp/ccQ2317U.o: <span class="keyword">in</span> <span class="keyword">function</span> `main<span class="string">&#x27;:</span></span><br><span class="line"><span class="string">main.c:(.text+0x2f): undefined reference to `func&#x27;</span></span><br><span class="line">collect2: error: ld returned 1 <span class="built_in">exit</span> status</span><br></pre></td></tr></table></figure>
+
+<h3 id="运算符和表达式"><a href="#运算符和表达式" class="headerlink" title="运算符和表达式"></a>运算符和表达式</h3><h4 id="表达式和语句的区别"><a href="#表达式和语句的区别" class="headerlink" title="表达式和语句的区别"></a>表达式和语句的区别</h4><ul>
+<li><p>运算符部分</p>
+<p><img src="https://s2.loli.net/2024/03/12/3MkPpF5anv7eEGu.png" alt="运算符"></p>
+<ul>
+<li><p>每个运算符所需要的参与运算的操作数个数</p>
+</li>
+<li><p>结合性</p>
+</li>
+<li><p>优先级</p>
+</li>
+<li><p>运算符的特殊用法</p>
+<p>如：<code>%</code>（要求左右两边都是整形），<code>=</code>与<code>==</code>，逻辑运算(<code>&amp;&amp;</code>和<code>||</code>)的短路特性</p>
+</li>
+<li><p>位运算的重要性</p>
+<p><code>&lt;&lt;  &gt;&gt;  ~  |  ^  &amp;</code></p>
+<ol>
+<li><p>将操作数中第n位置1，其他位不变：<code>num = num | 1 &lt;&lt; n;</code></p>
+</li>
+<li><p>将操作数中第n位清0，其他位不变：<code>num = num &amp; ~(1 &lt;&lt; n);</code></p>
+</li>
+<li><p>测试第n位：<code>if(num &amp; 1 &lt;&lt; n)</code></p>
+</li>
+<li><p>从一个指定宽度的数中取出某几位：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设取一个32位整数的第10位到第15位</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> number;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> mask = ((<span class="number">1</span> &lt;&lt; <span class="number">6</span>) - <span class="number">1</span>) &lt;&lt; <span class="number">9</span>; <span class="comment">// 6 是位数（15-10+1），9 是起始位置（10-1）</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> result = number &amp; mask;</span><br><span class="line">    result = result &gt;&gt; <span class="number">9</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="运算符相关代码"><a href="#运算符相关代码" class="headerlink" title="运算符相关代码"></a>运算符相关代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">i++相当于i=i+<span class="number">1</span></span><br><span class="line">i--相当于i=i<span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> i=<span class="number">1</span>;</span><br><span class="line">i++;表达式值为<span class="number">1</span>，i值为<span class="number">2</span></span><br><span class="line">++i;表达式值为<span class="number">2</span>，i值为<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">10</span>, value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// value = i++ + ++j;</span></span><br><span class="line">    <span class="comment">// 相当于</span></span><br><span class="line">    <span class="comment">// j = j + 1;</span></span><br><span class="line">    <span class="comment">// value = i + j;</span></span><br><span class="line">    <span class="comment">// i = i + 1;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i = 0 j = 11 value = 10</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// value = --i + j++;</span></span><br><span class="line">    <span class="comment">// i = i - 1;</span></span><br><span class="line">    <span class="comment">// value = i + j;</span></span><br><span class="line">    <span class="comment">// j = j + 1;</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i = 1 j = 12 value = 12</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// value = i++ + ++i - i-- + --i;</span></span><br><span class="line">    <span class="comment">// 避免单个变量多次自增或者自减</span></span><br><span class="line">    <span class="comment">// 不同编译器可能结果不同，也难为自己和他人</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;i=%d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// printf(&quot;j=%d\n&quot;, j);</span></span><br><span class="line">    <span class="comment">// printf(&quot;value=%d\n&quot;, value);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, i &gt; j);</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>, d = <span class="number">4</span>;</span><br><span class="line">    <span class="type">int</span> m = <span class="number">1</span>, n = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// (m = a &gt; b) &amp;&amp; (n = c &gt; d);</span></span><br><span class="line">    <span class="comment">// printf(&quot;m = %d\nn = %d\n&quot;, m, n);</span></span><br><span class="line">    <span class="comment">// a&gt;b为假，所以左边为0，右边直接不判断了，n依旧为1而不是0！</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// m = 0</span></span><br><span class="line">    <span class="comment">// n = 1</span></span><br><span class="line"></span><br><span class="line">    (m = a &gt; b) || (n = c &gt; d);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;m = %d\nn = %d\n&quot;</span>, m, n);</span><br><span class="line">    <span class="comment">// a&gt;b为假，所以左边为0，右边继续判断</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// m = 0</span></span><br><span class="line">    <span class="comment">// n = 0</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">10</span>, value;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// int a = 6;</span></span><br><span class="line">    <span class="comment">// a -= a *= a += 3;</span></span><br><span class="line">    <span class="comment">// a -=..   81-81=0</span></span><br><span class="line">    <span class="comment">//  a *=.. 9*9=81给上面</span></span><br><span class="line">    <span class="comment">//    a += 3; 6+3=9给上面</span></span><br><span class="line">    <span class="comment">// 故a=0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, sizeof(int));</span></span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, sizeof(double));</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// 4</span></span><br><span class="line">    <span class="comment">// 8</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// int a = 3;</span></span><br><span class="line">    <span class="comment">// float f = 3.9;</span></span><br><span class="line">    <span class="comment">// a = f;</span></span><br><span class="line">    <span class="comment">// printf(&quot;a=%d\n&quot;, a);</span></span><br><span class="line">    <span class="comment">// printf(&quot;f=%f\n&quot;, f);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// a=3</span></span><br><span class="line">    <span class="comment">// f=3.900000</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// int a = 3;</span></span><br><span class="line">    <span class="comment">// float f = 3.9;</span></span><br><span class="line">    <span class="comment">// a = (int)f; // 这个过程不改变f本身的地址和值</span></span><br><span class="line">    <span class="comment">// printf(&quot;a=%d\n&quot;, a);</span></span><br><span class="line">    <span class="comment">// printf(&quot;f=%f\n&quot;, f);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// a=3</span></span><br><span class="line">    <span class="comment">// f=3.900000</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/03/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="cm5b4yqug000lrw72037ugy5s" data-title="Linux下C语言教程-李慧芹老师-第二章" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/15/%E9%80%9A%E8%BF%87stow%E9%9B%86%E4%B8%AD%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84dotfiles/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          通过stow集中管理你的dotfiles
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Linux下C语言教程-李慧芹老师-第一章</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fugu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

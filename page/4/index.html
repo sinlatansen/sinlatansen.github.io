@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Fugu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Fugu&#39;s Blog">
+<meta property="og:url" content="http://sinlatansen.github.io/page/4/index.html">
+<meta property="og:site_name" content="Fugu&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="fugu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fugu&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-基于wsl2的python-opencv的docker开发环境配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/10/%E5%9F%BA%E4%BA%8Ewsl2%E7%9A%84python-opencv%E7%9A%84docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-02-10T10:28:00.000Z" itemprop="datePublished">2024-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/10/%E5%9F%BA%E4%BA%8Ewsl2%E7%9A%84python-opencv%E7%9A%84docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">基于wsl2的python-opencv的docker开发环境配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>下学期项目需要学习<code>opencv</code>，打算 python 原型设计，有精力再 CPP 优化。<br>　　 CPP 的环境配置起来麻烦，我选择<code>VS2022</code>作为 IDE。<br>　　 PY 环境不想弄在宿主机，放到 wsl2 的 docker 里面。我的 win10 安装了<code>Ubuntu22.04</code>版本的 wsl2，对于一些 linux 环境下更好做的事就用它。这台云服务器虽说也是 linux 环境，但是性能不如自己电脑。</p>
+<h1 id="第一步，win10-准备工作"><a href="#第一步，win10-准备工作" class="headerlink" title="第一步，win10 准备工作"></a>第一步，win10 准备工作</h1><ul>
+<li>安装<code>Xlaunch</code>，<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/vcxsrv/">下载地址</a>。</li>
+<li>运行<code>Xlaunch</code><ol>
+<li>选择<code>Multiple windows</code>，<code>Display number: -1</code>。</li>
+<li><code>Start no client</code>。</li>
+<li>勾选<code>Native opengl</code>，硬件加速。勾选<code>Disable access control</code>，放开安全策略，简单。如果有更高的保密要求，这条不勾选，需要进一步配置。</li>
+</ol>
+</li>
+<li>更改 win10 系统防火墙策略设置，图源知乎。<img src="https://s2.loli.net/2024/02/10/1fP6Mel8md742xs.png"/></li>
+</ul>
+<h1 id="第二步，WSL2-配置"><a href="#第二步，WSL2-配置" class="headerlink" title="第二步，WSL2 配置"></a>第二步，WSL2 配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LIBGL_ALWAYS_INDIRECT=1</span><br><span class="line"><span class="built_in">export</span> DISPLAY=$(ip route | grep default | awk <span class="string">&#x27;&#123;print $3&#125;&#x27;</span>):0.0</span><br><span class="line"><span class="comment"># export DISPLAY=你的win10的IPV4:0.0</span></span><br></pre></td></tr></table></figure>
+
+<p>将这两条命令加入到你的 WSL 的 shell 环境<code>/.bashrc</code>或者<code>/.zshrc</code>最末尾。第二条命令是自动获取主机 IP，如果失效，则用第三条命令，自己在 win 端<code>ipconfig</code>来获取 IPV4，手动填入。<br>　　这时 WSL2 的 GUI 应该可以发送给 win10 了，可以通过<code>xclock</code>小程序来检验。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install x11-apps</span><br><span class="line">xclock</span><br></pre></td></tr></table></figure>
+
+<p>win 系统出现可爱小闹钟即成功，如果卡在 wsl 没有反应，说明 wsl 已经运行<code>xclock</code>但是 x11 转发失败。</p>
+<h1 id="第三步，启动docker"><a href="#第三步，启动docker" class="headerlink" title="第三步，启动docker"></a>第三步，启动<code>docker</code></h1><ol>
+<li>这个版本的 ubuntu 没安装<code>systemd</code>和<code>systemctl</code>，而且安装有一些坑。只能通过<code>sudo service docker install</code>启动 docker。</li>
+<li>构建一个 docker 镜像，配置了 python 和 opencv 环境，以及常用的 zsh，vim 等小工具（这些非必须）。<code>dockerfile</code>如下：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用Ubuntu作为基础镜像</span></span><br><span class="line">FROM ubuntu:20.04</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置非交互式安装以避免安装过程中的交互式询问</span></span><br><span class="line">ENV DEBIAN_FRONTEND=noninteractive</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置为中国国内源</span></span><br><span class="line">RUN sed -i <span class="string">&#x27;s/archive.ubuntu.com/mirrors.aliyun.com/g&#x27;</span> /etc/apt/sources.list</span><br><span class="line">RUN sed -i <span class="string">&#x27;s/security.ubuntu.com/mirrors.aliyun.com/g&#x27;</span> /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装必要的软件包</span></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y \</span><br><span class="line">    python3 \</span><br><span class="line">    python3-pip \</span><br><span class="line">    x11-apps \</span><br><span class="line">    vim \</span><br><span class="line">    zsh \</span><br><span class="line">    wget \</span><br><span class="line">    git \</span><br><span class="line">    curl \</span><br><span class="line">    neofetch \</span><br><span class="line">    figlet \</span><br><span class="line">    libgtk2.0-dev \</span><br><span class="line">    pkg-config \</span><br><span class="line">    libgl1-mesa-glx &amp;&amp; \</span><br><span class="line">    <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置时区，例如设置为&quot;Asia/Shanghai&quot;</span></span><br><span class="line">RUN <span class="built_in">ln</span> -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; dpkg-reconfigure --frontend noninteractive tzdata</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Python的OpenCV库（带GUI支持）</span></span><br><span class="line">RUN pip3 install opencv-python</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装和配置oh-my-zsh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># RUN sh -c &quot;$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)&quot; || true \</span></span><br><span class="line"><span class="comment">#     &amp;&amp; git clone https://gitee.com/zjy_1671/zsh-syntax-highlighting.git $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-syntax-highlighting \</span></span><br><span class="line"><span class="comment">#     &amp;&amp; git clone https://gitee.com/chenweizhen/zsh-autosuggestions.git $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-autosuggestions</span></span><br><span class="line"></span><br><span class="line">RUN sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)</span>&quot;</span> || <span class="literal">true</span> \</span><br><span class="line">    &amp;&amp; git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions \</span><br><span class="line">    &amp;&amp; git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制.zshrc文件到容器</span></span><br><span class="line">COPY .zshrc /root/.zshrc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置默认shell为zsh</span></span><br><span class="line">ENV SHELL /bin/zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line">WORKDIR /workspace</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认命令启动zsh</span></span><br><span class="line">CMD [<span class="string">&quot;zsh&quot;</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>构建镜像，快慢取决于网速。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t pycv2 .</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>根据镜像启动容器，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39998006/article/details/99680522">docker run 命令参数</a>。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name pycv2 \</span><br><span class="line">    -e DISPLAY=<span class="variable">$DISPLAY</span> \</span><br><span class="line">    -v /tmp/.X11-unix:/tmp/.X11-unix \</span><br><span class="line">    pycv2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>-itd</code>：这个组合参数使容器以交互模式运行，并分配一个伪终端（-it），同时-d 参数使容器在后台运行。</p>
+</li>
+<li><p><code>--name pycv2</code>：为容器指定一个名称。</p>
+</li>
+<li><p><code>-e DISPLAY=$DISPLAY</code>：设置环境变量 DISPLAY，以便容器内的应用程序知道如何连接到 X 服务器。</p>
+</li>
+<li><p><code>-v /tmp/.X11-unix:/tmp/.X11-unix</code>：将宿主机上的 X11 套接字目录挂载到容器内，以实现 X11 转发。</p>
+</li>
+<li><p><code>pycv2</code>：指定要运行的 Docker 镜像及其标签。</p>
+</li>
+</ul>
+<ol start="4">
+<li>在 docker 内重复前面的步骤，安装 X11-apps，运行 xclock，如果 win10 出现熟悉的小闹钟，则说明成功。</li>
+</ol>
+<h1 id="第四步，vscode-进行-docker-开发。"><a href="#第四步，vscode-进行-docker-开发。" class="headerlink" title="第四步，vscode 进行 docker 开发。"></a>第四步，vscode 进行 docker 开发。</h1><p>vscode 安装 docker 插件，可以直接识别 WSL 中的正在运行的 docker，将文件挂载到工作区，也可以进入 shell。<br>　　创建一个目录，传一个图片进去，再创建一个 py 文件，做一个简单的测试。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载图片</span></span><br><span class="line">image = cv2.imread(<span class="string">&#x27;fulilian.png&#x27;</span>) <span class="comment"># 绝对路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取图片的原始高度和宽度</span></span><br><span class="line">original_height, original_width = image.shape[:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置最大高度为600像素</span></span><br><span class="line">max_height = <span class="number">300</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果原始高度大于最大高度，则计算缩放比例</span></span><br><span class="line"><span class="keyword">if</span> original_height &gt; max_height:</span><br><span class="line">    <span class="comment"># 计算缩放比例</span></span><br><span class="line">    scaling_factor = max_height / original_height</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算新的宽度，保持宽高比不变</span></span><br><span class="line">    new_width = <span class="built_in">int</span>(original_width * scaling_factor)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调整图片大小</span></span><br><span class="line">    resized_image = cv2.resize(image, (new_width, max_height))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 如果原始高度小于或等于最大高度，则不需要缩放</span></span><br><span class="line">    resized_image = image</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示调整大小后的图片</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;Resized Image&#x27;</span>, resized_image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>成功运行！<br><img src="https://s2.loli.net/2024/02/10/iThVjY953ZfPbwO.png"/></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/10/%E5%9F%BA%E4%BA%8Ewsl2%E7%9A%84python-opencv%E7%9A%84docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="cm5b4yqvt0038rw72clpbfmu2" data-title="基于wsl2的python-opencv的docker开发环境配置" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vscode——Ctrl - Shift - P失效记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/09/vscode%E2%80%94%E2%80%94Ctrl%20-%20Shift%20-%20P%E5%A4%B1%E6%95%88%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2024-02-09T03:37:28.000Z" itemprop="datePublished">2024-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/09/vscode%E2%80%94%E2%80%94Ctrl%20-%20Shift%20-%20P%E5%A4%B1%E6%95%88%E8%AE%B0%E5%BD%95/">vscode——Ctrl - Shift - P失效记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>罪魁祸首居然是图床客户端<code>PicGo</code>！<br>　　这个软件默认开启了快捷键<code>Ctrl - Shift - P</code>，到设置里禁用或者更改一下即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/09/vscode%E2%80%94%E2%80%94Ctrl%20-%20Shift%20-%20P%E5%A4%B1%E6%95%88%E8%AE%B0%E5%BD%95/" data-id="cm5b4yqvk002krw72ep6f208m" data-title="vscode——Ctrl - Shift - P失效记录" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-安装docker图形化管理面板portainer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/09/%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFportainer/" class="article-date">
+  <time class="dt-published" datetime="2024-02-09T03:06:26.000Z" itemprop="datePublished">2024-02-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/09/%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFportainer/">安装docker图形化管理面板portainer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>有一个 web 形式的管理面板会更加直观好看，选择<code>portainer</code>，<code>docker hub</code>上有一个汉化好的版本，<a target="_blank" rel="noopener" href="https://hub.docker.com/r/6053537/portainer-ce">镜像地址</a>。<br>　　安装很简单，一句命令就完事。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --restart=always --name=&quot;portainer&quot; -p 8000:9000 -v /var/run/docker.sock:/var/run/docker.sock 6053537/portainer-ce</span><br></pre></td></tr></table></figure>
+
+<p>这里我的宿主机<code>9000</code>端口已经被占用，改为<code>8000</code>。<br>　　然后通过<code>IP地址:8000</code>即可进入管理面板。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/09/%E5%AE%89%E8%A3%85docker%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFportainer/" data-id="cm5b4yqvq0031rw721jpbe2us" data-title="安装docker图形化管理面板portainer" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CentOS7基于docker搭建MySQL数据库的nextcloud个人网盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/08/CentOS7%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BAMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84nextcloud%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%9B%98/" class="article-date">
+  <time class="dt-published" datetime="2024-02-08T14:30:00.000Z" itemprop="datePublished">2024-02-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/08/CentOS7%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BAMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84nextcloud%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%9B%98/">CentOS7基于docker搭建MySQL数据库的nextcloud个人网盘</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>服务器闲着也是闲着，利用一下带宽和内存，跑一些自托管项目还是不错的。个人网盘就是一个很常见的项目。虽然<code>OneDrive</code>家庭版已经很香，但是它的 ios 端居然全局魔法也不好用，实在是无法理解。最后选择<code>nextcloud</code>搭建个人网盘，而没有选择<code>oneindex</code>在服务器挂在<code>OneDrive</code>，希望可以兼顾手机端。</p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1701451">centos7 安装 Docker 详细步骤（无坑版教程）</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2192236">使用 docker 安装部署 NextCloud 私人网盘</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108301496">Docker 方式部署 Nextcloud</a></li>
+</ol>
+<h1 id="第一步，安装docker"><a href="#第一步，安装docker" class="headerlink" title="第一步，安装docker"></a>第一步，安装<code>docker</code></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1</span></span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2</span></span><br><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">yum list docker-ce --showduplicates | sort -r</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3</span></span><br><span class="line">yum -y install docker-ce-18.06.3.ce</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4</span></span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>安装需要的软件包，<code>yum-util</code>提供<code>yum-config-manager</code>功能，另两个是<code>devicemapper</code>驱动依赖。</li>
+<li>设置<code>yum</code>源。</li>
+<li>下载安装<code>docker</code>。</li>
+<li>启动<code>docker</code>并且设置为开机自启。</li>
+</ol>
+<h1 id="第二步，运行MySQL容器"><a href="#第二步，运行MySQL容器" class="headerlink" title="第二步，运行MySQL容器"></a>第二步，运行<code>MySQL</code>容器</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql-nextcloud -e MYSQL_ROOT_PASSWORD=自己设 -e MYSQL_DATABASE=自己设 -e MYSQL_USER=自己设 -e MYSQL_PASSWORD=自己设 -p 3306:3306 -d mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<p>参数：</p>
+<ul>
+<li><code>name</code>：容器名称<code>mysql-nextcloud</code></li>
+<li><code>MYSQL_ROOT_PASSWORD</code>：数据库 root 账户密码</li>
+<li><code>MYSQL_DATABASE</code>：数据库名称</li>
+<li><code>MYSQL_USER</code>：普通账户名</li>
+<li><code>MYSQL_PASSWORD</code>：普通账户密码</li>
+<li>端口映射：主机<code>3306</code>和容器<code>3306</code>。</li>
+<li>镜像：<code>mysql</code>选择<code>5.7</code>版本。</li>
+</ul>
+<h1 id="第三步，创建一个网络，将MySQL加入其中"><a href="#第三步，创建一个网络，将MySQL加入其中" class="headerlink" title="第三步，创建一个网络，将MySQL加入其中"></a>第三步，创建一个网络，将<code>MySQL</code>加入其中</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker network create nextcloud-network</span><br><span class="line">docker network connect nextcloud-network mysql-nextcloud</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建了一个名为<code>nextcloud-network</code>的网络。</li>
+<li>将容器<code>mysql-nextcloud</code>加入其中</li>
+</ul>
+<h1 id="第四步，运行nextcloud容器，加入刚刚的网络"><a href="#第四步，运行nextcloud容器，加入刚刚的网络" class="headerlink" title="第四步，运行nextcloud容器，加入刚刚的网络"></a>第四步，运行<code>nextcloud</code>容器，加入刚刚的网络</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name nextcloud --network nextcloud-network -p 8080:80 nextcloud</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>运行一个<code>nextcloud</code>容器，参数中设置加入网络。这里我的主机<code>80</code>端口已经被博客网站服务占用，所以主机使用<code>8080</code>端口。</li>
+<li>设置防火墙策略，开放这 nextcloud 使用的端口。</li>
+</ol>
+<h1 id="第五步，进入-web-管理界面，进行配置"><a href="#第五步，进入-web-管理界面，进行配置" class="headerlink" title="第五步，进入 web 管理界面，进行配置"></a>第五步，进入 web 管理界面，进行配置</h1><ol>
+<li>进入<code>http://你的服务器IP:8080</code>。端口是你上一步设定的。</li>
+<li>进行初始化。</li>
+</ol>
+<ul>
+<li>管理员账户：创建一个管理员账户，填写用户名和密码。</li>
+<li>数据存储：默认情况下，数据目录应该已经设置好了，通常不需要更改。</li>
+<li>数据库配置：<ol>
+<li>选择<code>MySQL</code>作为数据库。</li>
+<li>数据库用户名：之前设置的<code>MYSQL_USER</code>。</li>
+<li>数据库密码：之前设置的<code>MYSQL_PASSWORD</code>。</li>
+<li>数据库名称：之前设置的<code>MYSQL_DATABASE</code>。</li>
+<li>数据库主机：这里应该填写<code>MySQL</code>容器的名称加上 Docker 网络名，如<code>mysql-nextcloud:3306</code>。</li>
+</ol>
+</li>
+</ul>
+<h1 id="一些经验"><a href="#一些经验" class="headerlink" title="一些经验"></a>一些经验</h1><p>docker 容器启动时候报错，容器依旧会启动，需要停止然后删除该容器，解决报错，然后重新启动。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop mysql-nextcloud</span><br><span class="line">docker rm mysql-nextcloud</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/08/CentOS7%E5%9F%BA%E4%BA%8Edocker%E6%90%AD%E5%BB%BAMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84nextcloud%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%9B%98/" data-id="cm5b4yqu10003rw7243lb6nte" data-title="CentOS7基于docker搭建MySQL数据库的nextcloud个人网盘" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-oh-my-zsh 配置记录：插件，主题，字体" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/08/oh-my-zsh%20%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95%EF%BC%9A%E6%8F%92%E4%BB%B6%EF%BC%8C%E4%B8%BB%E9%A2%98%EF%BC%8C%E5%AD%97%E4%BD%93/" class="article-date">
+  <time class="dt-published" datetime="2024-02-08T06:47:00.000Z" itemprop="datePublished">2024-02-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/08/oh-my-zsh%20%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95%EF%BC%9A%E6%8F%92%E4%BB%B6%EF%BC%8C%E4%B8%BB%E9%A2%98%EF%BC%8C%E5%AD%97%E4%BD%93/">oh-my-zsh 配置记录：插件，主题，字体</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>目前只用过 zsh，搭配 oh-my-zsh，体验很好。我的 wsl，macos 和服务器都安装了 oh-my-zsh，记录一下配置。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Set name of the theme to load --- <span class="keyword">if</span> <span class="built_in">set</span> to <span class="string">&quot;random&quot;</span>, it will</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">load a random theme each <span class="keyword">time</span> oh-my-zsh is loaded, <span class="keyword">in</span> <span class="built_in">which</span> <span class="keyword">case</span>,</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">to know <span class="built_in">which</span> specific one was loaded, run: <span class="built_in">echo</span> <span class="variable">$RANDOM_THEME</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes</span></span><br><span class="line">ZSH_THEME=&quot;主题名称&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="eastwood"><a href="#eastwood" class="headerlink" title="eastwood"></a>eastwood</h3><img src="https://s2.loli.net/2024/03/25/RpMY8LHi1U79NXI.png"/>
+
+<h3 id="jnora"><a href="#jnora" class="headerlink" title="jnora"></a>jnora</h3><img src="https://s2.loli.net/2024/03/25/M27Nbnr6HQi5EKV.png"/>
+
+<h3 id="re5et"><a href="#re5et" class="headerlink" title="re5et"></a>re5et</h3><img src="https://s2.loli.net/2024/03/25/OHBnvSelmAQRptP.png"/>
+
+<h3 id="tjkirch"><a href="#tjkirch" class="headerlink" title="tjkirch"></a>tjkirch</h3><img src="https://s2.loli.net/2024/03/25/R5u4SE79KLOPJ2q.png"/>
+
+<h3 id="ys"><a href="#ys" class="headerlink" title="ys"></a>ys</h3><img src="https://s2.loli.net/2024/03/25/NvQHREUAsjnMSG2.png"/>
+
+<h3 id="cloud"><a href="#cloud" class="headerlink" title="cloud"></a>cloud</h3><img src="https://s2.loli.net/2024/03/25/P56XjGWOFgK3MmQ.png"/>
+
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>中文一律用的<strong>霞鹜文楷等宽</strong>。英文字体需要<code>Nerd</code>字体才能正常显示图标，<a target="_blank" rel="noopener" href="https://www.nerdfonts.com/font-downloads">Nerd Fonts - 标志性字体聚合器、字形&#x2F;图标集合和字体修补程序 — Nerd Fonts - Iconic font aggregator, glyphs&#x2F;icons collection, &amp; fonts patcher</a>。</p>
+<ol>
+<li><p><code>0xproto Nerd Font</code></p>
+<p>这个有些花枝招展，但是爱看。</p>
+<img src="https://s2.loli.net/2024/03/25/FuUXAkfjYa7dBW4.png"/>
+</li>
+<li><p><code>FiraCode Nerd Font</code></p>
+<p>挺耐看的，而且有非常好看的连字符。</p>
+<img src="https://s2.loli.net/2024/03/25/5prdWFl9HBcaC6t.png"/>
+</li>
+<li><p><code>Hack Nerd Font</code></p>
+<p>黑客，名字很霸气，也好看，感觉很舒展。</p>
+<img src="https://s2.loli.net/2024/03/25/KeqSTy58IjYQdJE.png"/>
+</li>
+<li><p><code>Iosevka Nerd Font</code></p>
+<p>比较窄的类型的，我个人用的比较少。</p>
+<img src="https://s2.loli.net/2024/03/25/rK5PxfCtBnD71GS.png"/>
+</li>
+<li><p><code>Ubuntu Nerd Font</code></p>
+<p>Ubuntu 的系统字体，很经典。</p>
+<img src="https://s2.loli.net/2024/03/25/JR6uP8XbxMT3LH1.png"/></li>
+</ol>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins=(git zsh-autosuggestions zsh-syntax-highlighting copyfile copypath sudo)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><code>zsh-autosuggestions</code><br>用于补全，还算智能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>zsh-syntax-highlighting</code><br>用于终端高亮。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>copyfile &amp;&amp; copypath</code></p>
+<p><code>Ohmyzsh</code>自带插件，在配置中起用即可。一个复制文件内容，一个复制当前路径。</p>
+</li>
+<li><p><code>sudo</code><br>也是一个自带插件，在忘记输入<code>sudo</code>时，按一下<code>ESC</code>即可快速补上。</p>
+</li>
+</ol>
+<h2 id="别名（alias）"><a href="#别名（alias）" class="headerlink" title="别名（alias）"></a>别名（alias）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">alias c=&quot;code .&quot;</span><br><span class="line">alias ..=&quot;cd ../&quot;</span><br><span class="line">alias ..l=&quot;cd ../ &amp;&amp; ls -a&quot;</span><br><span class="line">alias ..ll=&quot;cd ../ &amp;&amp; ls -al&quot;</span><br><span class="line"></span><br><span class="line">alias ...=&#x27;cd ../../..&#x27;</span><br><span class="line">alias ....=&#x27;cd ../../../..&#x27;</span><br><span class="line">alias .....=&#x27;cd ../../../..&#x27;</span><br><span class="line">alias .2=&#x27;cd ../..&#x27;</span><br><span class="line">alias .3=&#x27;cd ../../..&#x27;</span><br><span class="line">alias .4=&#x27;cd ../../../..&#x27;</span><br><span class="line">alias .5=&#x27;cd ../../../../..&#x27;</span><br><span class="line"></span><br><span class="line">alias zshrc=&#x27;nvim ~/.zshrc&#x27;</span><br><span class="line">alias update=&quot;source ~/.zshrc&quot;</span><br><span class="line">alias cls=&quot;clear&quot;</span><br><span class="line">alias vim=&quot;nvim&quot;</span><br><span class="line">alias n=&quot;nvim&quot;</span><br><span class="line">alias n.=&quot;nvim .&quot;</span><br><span class="line">alias nc=&quot;n ~/.config/nvim/&quot;</span><br><span class="line">alias h=&#x27;history&#x27;</span><br><span class="line"></span><br><span class="line">alias df=&quot;duf&quot;</span><br><span class="line">alias md=&quot;mkdir&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">连接上次会话</span></span><br><span class="line">alias ta=&quot;tmux a&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新会话</span></span><br><span class="line">alias tn=&quot;tmux&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">列出所有会话</span></span><br><span class="line">alias tls=&quot;tmux ls&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除tmux会话</span></span><br><span class="line">alias td0=&quot;tmux kill-session -t 0&quot;</span><br><span class="line">alias td1=&quot;tmux kill-session -t 1&quot;</span><br><span class="line">alias td2=&quot;tmux kill-session -t 2&quot;</span><br><span class="line">alias td3=&quot;tmux kill-session -t 3&quot;</span><br><span class="line">alias td4=&quot;tmux kill-session -t 4&quot;</span><br><span class="line">alias td5=&quot;tmux kill-session -t 5&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">临时开关代理</span></span><br><span class="line">alias offclash=&#x27;unset http_proxy &amp;&amp; unset https_proxy all_proxy&#x27;</span><br><span class="line">alias onclash=&#x27;export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lsd</span></span><br><span class="line">alias bls=&quot;/bin/ls&quot;</span><br><span class="line">alias ls=&quot;lsd&quot;</span><br><span class="line">alias lsa=&quot;lsd -a&quot;</span><br><span class="line">alias lt=&quot;lsd --tree&quot;</span><br><span class="line">alias lta=&quot;lsd -a --tree&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lazygit</span></span><br><span class="line">alias lg=&quot;lazygit&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">dotfiles</span></span><br><span class="line">alias dt=&quot;cd ~/dotfiles &amp;&amp; lsa&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lsd</span></span><br><span class="line">alias bll=&quot;/bin/ls -al&quot;</span><br><span class="line">alias ll=&#x27;lsd -l&#x27;</span><br><span class="line">alias lla=&#x27;lsd -al&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="欢迎语"><a href="#欢迎语" class="headerlink" title="欢迎语"></a>欢迎语</h2><p>加在<code>.zshrc</code>的末尾。</p>
+<ol>
+<li>可以打印一个 3d 艺术字。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">figlet -c Hello Ubuntu!</span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2024/03/25/Ypm2VwAPu3MT5HZ.png"/>
+
+<ol start="2">
+<li><p>可以调用<code>neofetch</code>。</p>
+</li>
+<li><p>可以使用 pokemansay 和 fortune。</p>
+<img src="https://s2.loli.net/2024/03/25/R6JQcMCa9Dz48Wn.png"/></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/08/oh-my-zsh%20%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95%EF%BC%9A%E6%8F%92%E4%BB%B6%EF%BC%8C%E4%B8%BB%E9%A2%98%EF%BC%8C%E5%AD%97%E4%BD%93/" data-id="cm5b4yqvf0029rw727p080bsf" data-title="oh-my-zsh 配置记录：插件，主题，字体" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Typecho——博客段首缩进2字符解决方案" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/08/Typecho%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2%E6%AE%B5%E9%A6%96%E7%BC%A9%E8%BF%9B2%E5%AD%97%E7%AC%A6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time class="dt-published" datetime="2024-02-08T06:09:27.000Z" itemprop="datePublished">2024-02-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/08/Typecho%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2%E6%AE%B5%E9%A6%96%E7%BC%A9%E8%BF%9B2%E5%AD%97%E7%AC%A6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">Typecho——博客段首缩进2字符解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Typepcho 的编辑器默认不缩进。</p>
+<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.post-content</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">text-indent</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过 css 对段落样式进行控制。但是从后台 markdown 编辑器生成的文本并不是每一段都会有 p 标签，导致实际使用时只有第一段会生效。</p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>由 LCQ 博客文章提供的插件实现，<a target="_blank" rel="noopener" href="https://on1979.com/archives/281/">原文地址</a>。<br>　　插件可以增强网站后台的编辑器，热键<code>Alt + Q</code>为 2 个全角空格，可以在编辑的时候手动加入。</p>
+<p>[note type&#x3D;”warning flat”]但是手机端这两个全角空格不显示，只能保证电脑端的效果。[&#x2F;note]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/08/Typecho%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2%E6%AE%B5%E9%A6%96%E7%BC%A9%E8%BF%9B2%E5%AD%97%E7%AC%A6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cm5b4yqv8001xrw728cpn639z" data-title="Typecho——博客段首缩进2字符解决方案" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vscode1.86无法ssh连接centos7解决办法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/07/vscode1.86%E6%97%A0%E6%B3%95ssh%E8%BF%9E%E6%8E%A5centos7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2024-02-07T05:38:00.000Z" itemprop="datePublished">2024-02-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/07/vscode1.86%E6%97%A0%E6%B3%95ssh%E8%BF%9E%E6%8E%A5centos7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">vscode1.86无法ssh连接centos7解决办法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近，vscode1.86 版本的 ssh 要求服务器<code>glibc</code>最低 2.28 版本，centos7 不满足要求。在服务器端编译安装新版 centos7 也比较麻烦，最后选择安装便携版 vscode1.85，不影响原来的使用。<br>　　参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/681066025">知乎萌萌哒赫萝 ​ 的帖子</a>，感谢大佬：</p>
+<ol>
+<li>在某链接安装便携版 1.85.2 版本安装包，解压到本地。</li>
+<li>在解压后的目录新建<code>data</code>文件夹。</li>
+<li>拷贝<code>%APPDATA%\Code</code>目录到<code>data</code>文件夹下，将其重命名为<code>user-data</code>。</li>
+<li>拷贝<code>%USERPROFILE%\.vscode\extensions</code>目录到<code>data</code>文件夹下。</li>
+<li>在<code>data</code>文件夹下新建目录<code>tmp</code>。</li>
+<li>将 vscode 的<code>remote-ssh</code>插件的版本降级到 0.107.1。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/07/vscode1.86%E6%97%A0%E6%B3%95ssh%E8%BF%9E%E6%8E%A5centos7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" data-id="cm5b4yqvi002grw720gsedexe" data-title="vscode1.86无法ssh连接centos7解决办法" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Typecho数据库自动备份至邮箱" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/06/Typecho%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E8%87%B3%E9%82%AE%E7%AE%B1/" class="article-date">
+  <time class="dt-published" datetime="2024-02-06T13:20:00.000Z" itemprop="datePublished">2024-02-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/06/Typecho%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E8%87%B3%E9%82%AE%E7%AE%B1/">Typecho数据库自动备份至邮箱</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>不考虑备份网站样式，只备份数据库信息的办法，定期发送至 QQ 邮箱，可永久保存。</p>
+<h1 id="正常步骤"><a href="#正常步骤" class="headerlink" title="正常步骤"></a>正常步骤</h1><h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>下载 Jrotty 维护的 AutoBackup 插件，<a target="_blank" rel="noopener" href="https://github.com/jrotty/AutoBackup">仓库地址</a>。</p>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>将插件改名为<code>AutoBackup</code>，放到<code>usr/plugins/</code>目录下，到 Typecho 后台开启插件并进行配置。</p>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>到 QQ 邮箱网站申请一个 SMTP 服务的授权码。</p>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>需要配置的信息如下：</p>
+<ol>
+<li>SMTP 地址：smtp.qq.com</li>
+<li>SMTP 端口：465</li>
+<li>SMTP 用户：你的 QQ 邮箱</li>
+</ol>
+<p>[note type&#x3D;”info flat”]变量名是 JavaScript 写法，大家记得去掉括号。[&#x2F;note]</p>
+<ol start="4">
+<li>SMTP 密码：第三步获得的授权码</li>
+<li>SMTP 加密模式：SSL 加密</li>
+<li>接收邮箱：你的 QQ 邮箱</li>
+<li>定时任务接口秘钥：第三步获得的授权码</li>
+</ol>
+<p>[note type&#x3D;”info flat”]此插件还有一种备份模式，是检测到新文章或者新评论就备份，那就将<strong>定时任务接口秘钥</strong>留空，打开<strong>监听文章接口</strong>这一开关。[&#x2F;note]</p>
+<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>测试。浏览器访问定时任务接口地址：<code>http://&#123;&#123;你的IPV4&#125;&#125;/index.php/autobackup?taken=&#123;&#123;第三步获得的授权码&#125;&#125;</code>，如果有报错信息，则排查问题。无报错信息，网页一片空白，邮箱里应该就接收成功了。</p>
+<h2 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h2><p>将此网址设置一个定时访问的任务，宝塔面板有图形化设置，我没有安装，直接在 linux 操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="comment"># 进入vim编辑模式，在最后加入新行</span></span><br><span class="line"><span class="comment"># 分钟 小时 日 月 周 命令</span></span><br><span class="line">0 0 * * 3 curl -sSL http://&#123;&#123;你的IPV4&#125;&#125;/index.php/autobackup?taken=&#123;&#123;第三步获得的授权码&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应该就大功告成了。我这个任务是每周三晚上 0 点进行一次，访问这个链接触发备份。</p>
+<h1 id="我碰到的问题"><a href="#我碰到的问题" class="headerlink" title="我碰到的问题"></a>我碰到的问题</h1><p>进行第五步测试的时候，报错了一些什么文件无法创建，无法读取等等一堆错误，找到原因是 web 服务的用户对这个文件夹没有读写权限，简单处理就是直接给他加权限。<br>　　 1. 查看 web 服务的用户名，我使用的是<code>Nginx</code>服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep nginx</span><br></pre></td></tr></table></figure>
+
+<p>得到除了<code>root</code>用户之外的 web 服务用户叫<code>nobody</code>。<br>　　 2. 升级权限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R nobody:nobody /usr/local/lighthouse/softwares/typecho/usr/plugins/AutoBackup/</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>再次测试，成功。<img src="https://s2.loli.net/2024/02/06/z2gay5RpPCrWOEh.png"/></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/06/Typecho%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD%E8%87%B3%E9%82%AE%E7%AE%B1/" data-id="cm5b4yqva0021rw729in17rdl" data-title="Typecho数据库自动备份至邮箱" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-长期更新——win10系统个人常用软件及其配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/06/%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E2%80%94%E2%80%94win10%E7%B3%BB%E7%BB%9F%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-02-06T08:23:00.000Z" itemprop="datePublished">2024-02-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/06/%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E2%80%94%E2%80%94win10%E7%B3%BB%E7%BB%9F%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE/">长期更新——win10系统个人常用软件及其配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h1><p>使用 win10 而非 win11，是因为突然很馋扁平化的风格，所以从 win11 刷回 win10 了。而且 win10 已经停止更新了，能接着用几年就用几年吧。<br>　　桌面基本不放图标，用了一个 dock 栏。后台常驻了一堆软件，都是开机自启的，就是刚开机需要等待一分钟让这些软件全部启动。</p>
+<img src="https://s2.loli.net/2024/02/06/nCf9BXdeaqIhHzc.jpg"/>
+
+<h1 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h1><h2 id="关闭-PowerShell-更新提示"><a href="#关闭-PowerShell-更新提示" class="headerlink" title="关闭 PowerShell 更新提示"></a>关闭 PowerShell 更新提示</h2><p>设置系统环境变量<code>POWERSHELL_UPDATECHECK</code>为<code>off</code>。</p>
+<h1 id="软件列表"><a href="#软件列表" class="headerlink" title="软件列表"></a>软件列表</h1><h2 id="1-Todesk"><a href="#1-Todesk" class="headerlink" title="1.Todesk"></a>1.Todesk</h2><p>远程桌面软件，多端可同步，共享剪贴板，传输文件，免费版基本够用，但是阉割许多功能，价格贵。</p>
+<h2 id="2-火绒"><a href="#2-火绒" class="headerlink" title="2.火绒"></a>2.火绒</h2><p>对 360 沾边的软件都不太有好感，所以火绒。</p>
+<h2 id="3-Quicker"><a href="#3-Quicker" class="headerlink" title="3.Quicker"></a>3.Quicker</h2><p>是一个快捷指令平台，鼠标中键触发，有一个丰富的指令市场，可以下载好别人上传的指令，用法非常多种多样，不过目前我也只是用了几个其中最常用的，但还是给他常驻后台了。</p>
+<img src="https://s2.loli.net/2024/02/06/m8vCwKF1TJBurf4.jpg" style="zoom:40%;"/>
+
+<h2 id="4-Auto-Dark-Mode"><a href="#4-Auto-Dark-Mode" class="headerlink" title="4.Auto Dark Mode"></a>4.Auto Dark Mode</h2><p><a target="_blank" rel="noopener" href="https://github.com/AutoDarkMode/Windows-Auto-Night-Mode">Github 地址</a></p>
+<img src="https://s2.loli.net/2024/02/06/71AnoyTH6YWSBlC.jpg" style="zoom:40%;"/>
+　　这个软件的UI真好看，原生win10风格，很有质感。
+　　可以让windows系统按照时间自动切换深色模式，效果很好。如果将各个软件和Edge浏览器深色模式插件——Dark Reader，都设置为随系统深色模式，就可以做到整台电脑自动切换深色模式。
+
+<p>[note type&#x3D;”info flat”]不过我个人感觉用不用深色模式还是取决于使用电脑的环境的明暗程度，如果是晚上，但是开灯很亮的房间，也还是用浅色模式体验更佳。因此可以设置此软件全局切换的快捷键，一键手动切换。[&#x2F;note]</p>
+<h2 id="5-Watt-Toolkit"><a href="#5-Watt-Toolkit" class="headerlink" title="5.Watt Toolkit"></a>5.Watt Toolkit</h2><p><a target="_blank" rel="noopener" href="https://steampp.net/">官网地址</a><br>　　原名 Steam++。一款免费的 Steam 加速器，同时支持加速 Github，Onedrive，~~ pixiv ~~ 等，非常好用，不用梯子也可以愉快的玩耍了。</p>
+<h2 id="6-Little-Big-Mouse"><a href="#6-Little-Big-Mouse" class="headerlink" title="6.Little Big Mouse"></a>6.Little Big Mouse</h2><p><a target="_blank" rel="noopener" href="https://github.com/mgth/LittleBigMouse">Github 地址</a><br>　　这个软件是用来解决多显示器的问题的。它可以校准多个显示器的物理位置，让鼠标可以在交界处平滑的移动过来，只要校准一次，以后开机自启，就可以无感使用。但是有一点点小 bug，瑕不掩瑜。<br>　　我这些奇奇怪怪的屏幕布局完全少不了它。</p>
+<img src="https://s2.loli.net/2024/02/06/Q2rK1gazUSi6YWM.png" style="zoom:60%;"/>
+
+<img src="https://s2.loli.net/2024/02/06/OVMDh5v4JeiUcSx.jpg" style="zoom:50%;"/>
+
+<h2 id="7-Logitech-G-Hub"><a href="#7-Logitech-G-Hub" class="headerlink" title="7.Logitech G Hub"></a>7.Logitech G Hub</h2><p>依托答辩。<br>　　但是我的 GPW 又只能用这个来驱动，只能忍着用了。<br>　　配置 GPW 的两个侧键为移动软件到下一个显示屏的 win 系统快捷键，一个顺时针( <code>win+shift+←</code> )，一个逆时针(<code>win+shift+→</code>)。这样子在我工位的三个屏幕之间移动软件，就纵享丝滑，非常的方便。<br>　　虽然罗技这个驱动软件做的垃圾，鼠标还是非常的好的，GPW1 代都用的很舒服，现在都出到 3 了。可是 1 又太好用了，罗技还可以两年内直接换新，你说这事儿整的，想换 3 又没理由。</p>
+<h2 id="8-Logi-Options"><a href="#8-Logi-Options" class="headerlink" title="8.Logi Options+"></a>8.Logi Options+</h2><p>没有时间为 GHub 哀悼，接下来登场的是 Options+！<br><img src="https://s2.loli.net/2024/02/06/imSYx2HublnQspq.jpg"/><br><img src="https://s2.loli.net/2024/02/06/tpncsWY5T8gFbRy.jpg"/><br><img src="https://s2.loli.net/2024/02/06/Mvau1Twp4doqkK3.jpg"/><br>　　你就说这个有没有质感吧，看着就舒服，尊贵的 Logi MX Keys Mini 用户。<br>　　主要就是配置一下快捷键。界面动画很好看，大厂风范。这里就要再推一下罗技的产品了。<br>　　其实我之前一直种草了很久 MX Master 3s，但是一直蹲不到好价，每天评论区看到人家低价入手的嘴脸，就不想买了。但是又需要一个办公鼠标，GPW 用久了，手有点疼。后来就发现了这款 M720，便宜很多，有无极滚轮（看芯片手册这种超长 PDF 直接起飞），蓝牙连接切换方便（GPW 必须用接收器，导致我的 macbook 和 ipad 不方便用），而且是人体工学的趴握形状，还是用的电池，一节小电池能用半年以上不充电，总之就是非常喜欢，没有任何不喜欢的点。<br>　　键盘，MX Keys Mini，写本科毕业论文入手的。当时虽然不是史低，但也算个好价吧，就冲了。其实我手里已经有一个机械键盘，柯芝 K75，但是，这款薄膜键盘网上评价实在太好了，怀着好奇的心，就冲了，到手一体验，果然没买错。质感的外观，超轻的质量，超小的体积，背出去连上 ipad 就可以在各种地方码字，它陪着我写完了毕业论文，以及现在读研的大量输入任务。按照范总的话来说，李李和汪小姐固然很好，但是心中永远的玫瑰，还是杭州老家的，罗技 MX Keys Mini。</p>
+<h2 id="9-Lenovo-Legion-Toolkit"><a href="#9-Lenovo-Legion-Toolkit" class="headerlink" title="9.Lenovo Legion Toolkit"></a>9.Lenovo Legion Toolkit</h2><p>这个是一个第三方拯救者控制中心，用来代替 Legion Zone，轻量级，颜值高，好用，没什么好说的，拯救者必备。</p>
+<h2 id="10-Twinkle-Tray"><a href="#10-Twinkle-Tray" class="headerlink" title="10.Twinkle Tray"></a>10.Twinkle Tray</h2><p><a target="_blank" rel="noopener" href="https://twinkletray.com/">官网地址</a><br>　　这是一个亮度调节工具，最核心的功能是它可以调节各个外接显示屏的亮度，就不需要去按显示屏上生涩的物理按键了，既可以调节单个屏幕也可以同步调节，外接显示屏必备软件。</p>
+<h2 id="11-Onedrive"><a href="#11-Onedrive" class="headerlink" title="11.Onedrive"></a>11.Onedrive</h2><p>当初拼了一个家庭版 MicroSoft 365，三年 100 元，送了 1T 的 Onedrive，现在我主要用它来实现多端同步，基本是 win 端和 macos 端都同步的很快，可能是 Watt Toolkit 的缘故，但是手机端访问就很有问题，全靠运气，全局开魔法也不行，就很离谱。<br>　　还是那四个字，瑕不掩瑜，这个价钱，这个同步体验，已经很好了。真正重要的资料还是多处备份吧。</p>
+<h2 id="12-TranslucentTB"><a href="#12-TranslucentTB" class="headerlink" title="12.TranslucentTB"></a>12.TranslucentTB</h2><p>一个任务栏透明的美化小软件，微软商店即可下载汉化版，注意不要下载成盗版。我用很多年了，一般是选亚克力效果，既好看又不影响阅读文字。</p>
+<h2 id="13-Parsec"><a href="#13-Parsec" class="headerlink" title="13.Parsec"></a>13.Parsec</h2><p><a target="_blank" rel="noopener" href="https://parsec.app/">官网地址</a><br>　　这是一个很强大的串流软件，他和 todesk 相比，少了类似于隐私屏，共享剪贴板等实用功能，但是更专注于游戏串流，并非走中转服务器，而是他帮你建立一个 P2P 连接，不限制画质帧率，延迟极低，远程体验更好。建议和 todesk 搭配使用，各取所长。</p>
+<h2 id="14-Wifilian"><a href="#14-Wifilian" class="headerlink" title="14.Wifilian"></a>14.Wifilian</h2><p>是一个自动检测 wifi 信号强度然后切换的小工具。为什么会用他？是当时疫情时期，在亲戚家参加线上考试，他们家 wifi 时好时坏的。然后我就开了个手机热点，用这个软件，设置优先级，和检测时间间隔，他就可以实现优先使用 wifi，当 wifi 信号不好的时候自动切换到热点。当 wifi 好的时候，他又能自己切回去，减少手机流量的消耗，当时也真是帮了我很多。日常网络稳定的环境，也没啥用。</p>
+<h2 id="15-Snipaste"><a href="#15-Snipaste" class="headerlink" title="15.Snipaste"></a>15.Snipaste</h2><p><a target="_blank" rel="noopener" href="https://zh.snipaste.com/">官网地址</a><br>　　截图软件天花板，像素放大镜，取色器，图钉，内置简单的图片编辑器，不必多说，安装就完事了。</p>
+<h2 id="16-PSTools"><a href="#16-PSTools" class="headerlink" title="16.PSTools"></a>16.PSTools</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/sysinternals/downloads/pstools">官网地址</a><br>　　 windows 可执行程序合集，加入系统环境变量之后即可命令行调用。</p>
+<h2 id="17-geek"><a href="#17-geek" class="headerlink" title="17.geek"></a>17.geek</h2><p><a target="_blank" rel="noopener" href="https://geekuninstaller.com/">官网地址</a><br>　　好用的绿色软件卸载工具。</p>
+<h2 id="18-PotPlayer"><a href="#18-PotPlayer" class="headerlink" title="18.PotPlayer"></a>18.PotPlayer</h2><p><a target="_blank" rel="noopener" href="https://potplayer.daum.net/">官网地址</a><br>　　 win 端最好用的播放器，功能齐全，也有很多主题可供选择。</p>
+<h2 id="19-noMeiryoUI"><a href="#19-noMeiryoUI" class="headerlink" title="19.noMeiryoUI"></a>19.noMeiryoUI</h2><p><a target="_blank" rel="noopener" href="https://github.com/Tatsu-syo/noMeiryoUI">Github 地址</a><br>　　用来更换 win 系统字体，win 的原生字体在 4K 屏幕上渲染效果不佳，用 macos 字体苹方就很好 hhh。但是我之前碰到一个 bug，STM32CUBEIDE 打开会乱码，网上也没有解决办法，不知道是不是因为我用这个换过字体导致的。</p>
+<h2 id="20-滴答清单"><a href="#20-滴答清单" class="headerlink" title="20.滴答清单"></a>20.滴答清单</h2><p>付费软件，一年一百多。<br>　　相比于 Microsoft todo 等其他 todo list 软件的优势：</p>
+<ul>
+<li>界面更加美观</li>
+<li>团队更新非常勤快，UI 美化，功能增加，bug 反馈，体验很好。</li>
+<li>可智能识别日期</li>
+</ul>
+<p>[note type&#x3D;”primary flat”]eg. 在创建任务时，直接输入”三天后开会”，”三天后”会被自动识别为时间。[&#x2F;note]</p>
+<ul>
+<li>也有笔记功能，支持 markdown 语法。</li>
+</ul>
+<p>总的来说我认为<strong>非常值得</strong>，可以作为第二大脑，专注于任务本身。</p>
+<h2 id="21-Listary"><a href="#21-Listary" class="headerlink" title="21.Listary"></a>21.Listary</h2><p>用的是 6 的 pro 破解版，比 5 主要多了深色模式。<br>　　目前<strong>最最好用</strong>的 win 端快捷启动器软件，具体使用教程可结合网上的博客和视频。<br>　　解放了电脑桌面，可以不放应用图标。并且查找速度非常快，还支持快捷打开网站和快捷控制系统命令，必装软件。<br>　　详细的配置专门写一篇。</p>
+<h2 id="22-Nexus"><a href="#22-Nexus" class="headerlink" title="22.Nexus"></a>22.Nexus</h2><p><a target="_blank" rel="noopener" href="https://www.winstep.net/nexus.asp">官网地址</a><br>　　一款 Dock 栏软件，可以放一些最常用的快捷方式，自己更换图标。它的动画效果还挺好看的，运行也比较稳定。<br>　　 Steam 上有一款付费同类软件，MyDockFinder，完全对标 macos 的 Dock 栏效果，还支持台前调度的样式，但是很卡，bug 很多，我买了之后火速退款了。</p>
+<h2 id="23-WGestures"><a href="#23-WGestures" class="headerlink" title="23.WGestures"></a>23.WGestures</h2><p><a target="_blank" rel="noopener" href="https://www.yingdev.com/projects/wgestures2">官网地址</a><br>　　是个独立开发者做的软件，真厉害。<br>　　 WG1 是免费的，win 平台独占。WG2 收费，多平台可用，教育邮箱优惠价。我之前用 WG1 用了很久，体验很好，后来我有了一台 macbook pro，mac 平台没有好用的鼠标手势我完全不习惯。最后就是购入了 2。<br>　　这是一个鼠标手势软件。我常用指令如下。按住鼠标右键上拉就是复制，按住鼠标右键下拉就是粘贴，这对于咱们(Ctrl)CV 软件工程师非常有帮助，可以一个手吃东西一个手 CV 代码。</p>
+<blockquote>
+<p>不过根据我的体验下来，大量复制粘贴的时候，即便是用这个也会累，但至少可以左右手休息一下，键盘 CV 和鼠标手势交替使用，体验更佳。</p>
+</blockquote>
+<p>可以注意到，它除了全局手势，可以对某些特定软件进行配置，你可以给一些 IDE 软件设置专用手势，加速你的专业干活速度；而对于福昕 PDF，Altium Designer 等原生需要鼠标右键的软件，则需要禁用鼠标手势，或者你也可以绑定到鼠标中键，侧键，甚至是设置为功能键加鼠标右键触发，还有屏幕边缘角的功能。<br>　　<strong>总之，效率工具是为人服务的，掌握常用指令实际运用到自己的 workflow 比设置一大堆不记得用，更重要。</strong></p>
+<img src="https://s2.loli.net/2024/02/06/we3VIOvuby8jntD.jpg" style="zoom:30%;"/>
+
+<h2 id="24-Altsnap"><a href="#24-Altsnap" class="headerlink" title="24.Altsnap"></a>24.Altsnap</h2><p><a target="_blank" rel="noopener" href="https://github.com/RamonUnch/AltSnap/releases">Github 地址</a><br>　　在 win 端实现 Alt 键加鼠标左键拖拽窗口，Alt 键加鼠标右键更改窗口大小。<br>　　好用是好用，就是里面对某些应用禁用完全是摆设。在使用 AD 的时候，我需要使用 alt 加鼠标左键高亮某个网络，这个时候就会触发这个软件，怎么都禁用不掉，只能手动关闭了。<br>　　总体来说，还是给他开机自启了。希望他速速更新，不要辜负我对它的厚望。</p>
+<h2 id="25-One-Commander"><a href="#25-One-Commander" class="headerlink" title="25.One Commander"></a>25.One Commander</h2><p><a target="_blank" rel="noopener" href="https://one-commander.com/">官网地址</a><br><img src="https://s2.loli.net/2024/02/06/bLEQfnrMj28wHT5.jpg"/></p>
+<p>这个软件也是一个<strong>非常非常非常推荐的好软件</strong>。当我从 win11 刷回 win10 的时候，最痛苦的一点就是，文件管理器的标签页没了，这就很不方便了。当时找了一些解决方案，都效果不佳。而这个，是我用的体验最好的。</p>
+<ul>
+<li>颜值很高，默认的明暗两套主题就很好看，Github 还有第三方主题可以下载。</li>
+<li>可以注册进系统从而替代原生文件管理器。都用第三方了，当然是希望完全替代掉，不要点击某个文件，还是用系统原生的打开，那多么不方便。</li>
+<li>分栏多标签页，开再多标签页也能很方便的切换，和移动复制文件。</li>
+<li>自带一个相当于 quicklook 的空格键预览功能，很轻量级，启动飞快，可以看图也可以记事本格式打开各种文本文件。</li>
+<li>个人版体验就已经 very good，白嫖，还要啥自行车。</li>
+</ul>
+<p>而且使用它的过程还发生了一个小插曲，软件某个界面和多显示器，不太兼容，移动到屏幕之间的时候就会卡死闪退，然后我就用机翻发了一封英语邮件反馈了一下 bug，结果对方居然真的很迅速的回复我了。第一次回复说他无法复现 bug，只是教我如何暂时关闭该功能。第二次回复给了我一个测试链接，让我测试一下是否修复。可惜我很久之后才看到，我给他说抱歉，测试链接已经过期了，大哥说没事儿，已经上线正式版了，让我更新一下就行。很好米洛斯岛邮件，让我心情愉悦，爱来自瓷器。<br>　　企业版对我而言实在用不着，我也只能多多推荐宣传，支持一下这个软件了。</p>
+<img src="https://s2.loli.net/2024/02/06/YsofMk5LFXZtQTl.png"/>
+
+<h2 id="26-Typora"><a href="#26-Typora" class="headerlink" title="26.Typora"></a>26.Typora</h2><p><a target="_blank" rel="noopener" href="https://typoraio.cn/">官网地址</a><br>　　颜值太高了，没办法，买断了，本地写 markdown 笔记基本用它。虽说 vscode 有 markdown 插件，但是还是有一些效果不佳的地方。</p>
+<h2 id="27-知云文献"><a href="#27-知云文献" class="headerlink" title="27.知云文献"></a>27.知云文献</h2><p>划词翻译还是挺好用的。</p>
+<h2 id="28-Bandizip"><a href="#28-Bandizip" class="headerlink" title="28.Bandizip"></a>28.Bandizip</h2><p><a target="_blank" rel="noopener" href="https://www.bandisoft.com/bandizip/">官网地址</a><br>　　感觉它比 7zip 好看，所以选它。</p>
+<h2 id="29-Calibre2"><a href="#29-Calibre2" class="headerlink" title="29.Calibre2"></a>29.Calibre2</h2><p><a target="_blank" rel="noopener" href="https://calibre-ebook.com/zh_CN/download">官网地址</a><br>　　一个电子书管理软件，还可以进行格式转换，当时用来给 kindle 导入电子书用的。</p>
+<h2 id="30-Saturn-PCB-Toolkit"><a href="#30-Saturn-PCB-Toolkit" class="headerlink" title="30.Saturn PCB Toolkit"></a>30.Saturn PCB Toolkit</h2><p><a target="_blank" rel="noopener" href="https://saturnpcb.com/saturn-pcb-toolkit/">官网地址</a><br>　　一个 PCB 工具箱，功能很强，但是我还不太会用。</p>
+<h2 id="31-SourceTree"><a href="#31-SourceTree" class="headerlink" title="31.SourceTree"></a>31.SourceTree</h2><p><a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/">官网地址</a><br>　　一个图形化的 git 工具，颜值高，好用。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>以上这些都是我日常使用觉得很好的软件，自己记录之余，推荐给大家。</p>
+<blockquote>
+<p>君子性非异也，善假于物也。</p>
+</blockquote>
+<p>希望大家都能用上趁手的软件，提高效率。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/06/%E9%95%BF%E6%9C%9F%E6%9B%B4%E6%96%B0%E2%80%94%E2%80%94win10%E7%B3%BB%E7%BB%9F%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%8F%8A%E5%85%B6%E9%85%8D%E7%BD%AE/" data-id="cm5b4yqw4003wrw729z4g0rs5" data-title="长期更新——win10系统个人常用软件及其配置" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-南京游记——和高中好友们的六人行" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/05/%E5%8D%97%E4%BA%AC%E6%B8%B8%E8%AE%B0%E2%80%94%E2%80%94%E5%92%8C%E9%AB%98%E4%B8%AD%E5%A5%BD%E5%8F%8B%E4%BB%AC%E7%9A%84%E5%85%AD%E4%BA%BA%E8%A1%8C/" class="article-date">
+  <time class="dt-published" datetime="2024-02-05T05:20:00.000Z" itemprop="datePublished">2024-02-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/life/">life</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/05/%E5%8D%97%E4%BA%AC%E6%B8%B8%E8%AE%B0%E2%80%94%E2%80%94%E5%92%8C%E9%AB%98%E4%B8%AD%E5%A5%BD%E5%8F%8B%E4%BB%AC%E7%9A%84%E5%85%AD%E4%BA%BA%E8%A1%8C/">南京游记——和高中好友们的六人行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>上一次和这群朋友们一起出去玩，还是 2020 年夏天，当时疫情比较缓和，去了重庆。之后便是考研的考研，考公的考公，二战的二战，加上疫情的限制，最后就是一直没有机会再一起出去玩，见面最多就是网吧五连坐。</p>
+<p>这次终于来到了南京，因为其中一个好朋友在南京上大学还没放假，正好来找他。趁着年前就出发，火速下单了一个豪华电竞五人间，环境比以前住的好多了。当时在重庆住的电竞酒店，还是很窄的爬梯子的上下铺，这次也是上下铺，但是很宽敞，而且是阶梯式的，上床非常的舒适。</p>
+<p>[note type&#x3D;”danger flat”]这里就要点名大运村了，那个上床下桌，那个铁梯，扶手也少，上下一次真是酷刑。[&#x2F;note]</p>
+<p>到南京第一天就把烤鸭火速整了一份，是叫章云板鸭（新街口总店）。</p>
+<img src="https://s2.loli.net/2024/02/04/CWmlLNryoB4t1xs.jpg" alt="微信图片_20240204103946" style="zoom:15%;" />
+
+<p>卤汁一浇，味道很足。但是一个人吃这半只有点腻，最后基本一个人吃完了，往后两三天不想吃鸭子。</p>
+<p>爱吃冰淇淋的 ZHX，每天都积极地带我们买冰淇淋，正好看到肯德基新品，味道也不错，还送了这个闪闪的红包。</p>
+<img src="https://s2.loli.net/2024/02/04/pvM8IycPkFj1w4J.jpg" alt="微信图片_20240204105202" style="zoom:15%;" />
+
+<p>最近临近春节，感觉旅游的人也不少。夫子庙这个好看的灯下面，走都走不动。</p>
+<img src="https://s2.loli.net/2024/02/04/IdwpYsqPLAQCmaf.png" style="zoom:50%;"/>
+
+<p>然后是一些吃吃吃，这次吃的店铺都不错，没有踩雷。名称如下：</p>
+<img src="https://s2.loli.net/2024/02/04/szNG9noHchmlXZg.png" style="zoom:40%;"/>
+
+<p>出来旅游想找个特色菜吃，找到了这家江南灶，确实挺好吃，下面是桂花香酥烤鸭，蟹粉豆腐和妈妈红烧肉。有一道最贵的笋壳鱼，味道反而不咋地，不如吃席的松鼠鳜鱼。</p>
+<img src="https://s2.loli.net/2024/02/05/17vc85SMCVzZNnB.png" style="zoom:30%;"/>
+
+<img src="https://s2.loli.net/2024/02/05/U8qEe2WtITXwAua.png" style="zoom:40%;"/>
+
+<img src="https://s2.loli.net/2024/02/05/qa6SW8mcV9RHCoz.png" style="zoom:40%;"/>
+
+<p>这个冰淇淋店在德基的楼上，主打的是抹茶。我只能吃很淡的抹茶，苦的不爱吃，真的会 yue 出来那种。这家抹茶有 5 个浓度等级，这个是第 3 级，对我来说依旧是有点苦。另外两个味道是生巧和开心果。生巧也苦，好在开心果相当的甜，中和着也算是吃完了。真是神奇，连开心果都可以做冰淇淋。</p>
+<img src="https://s2.loli.net/2024/02/04/eLVpwQmaATyXoCB.png" style="zoom:50%;"/>
+
+<p>总体来说，主要是吃了这些好吃的，然后就是电竞五黑，真的很爽，虽然有的游戏我不怎么玩平时，但是大家一起玩热闹一下还是很宝贵的时光。中途实在无聊的时候也远程了一下家里的电脑敲了一下代码。景点也逛了一些，就随缘啦。</p>
+<p>最后回家的时候发生了一个小插曲，只有我一个人如期赶上了返程的高铁，好朋友们只能在南京多呆了一天，随后回到武汉又面临了冻雨降温，天气非常恶劣，高铁都有停运的可能。好在写这篇 Blog 的时候，我已经润到广东省亲戚家了，这边 10℃ 左右，比较暖和。武汉这种恶劣天气，我长这么大也是第一次见，到处结冰，各种树都倒下，也算是挺新奇的，观赏是挺有趣，出门就很不方便了，还好我爸提醒我将第二天上午的高铁改签到当天下午，趁着下午路上雪处理的差不多了，才可以出发。下面是一些图片，拿的大摄影师脏总 pyq 的图。</p>
+<img src="https://s2.loli.net/2024/02/05/i45FbDzwck3Os8v.png" style="zoom:40%;"/>
+
+<img src="https://s2.loli.net/2024/02/05/vUr4scaDNiFG5VX.png" style="zoom:40%;"/>
+
+<p>一晃自己已经 24 岁了，马上就 25，过了 25 就奔三，现在研一还是一个罕见的没什么太大压力的阶段，可以寒暑假与好友玩耍，学习折腾一些仅凭兴趣而非功利的知识，不知道明年会如何，后年会如何，30 岁的时候又会如何。期待今年暑假，再与好友旅游一次。现在每个人都旅游足迹都不一样，想去的地方可能朋友已经去过了，还真是难找个合适的地儿。</p>
+<p>本次南京之行耗时五天，总共开销大概 1500 多一点，还是非常划算的，我大一的时候也去过一次，这两次去，感兴趣的景点也差不多了，应该不会再去了，拜拜了南京。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/05/%E5%8D%97%E4%BA%AC%E6%B8%B8%E8%AE%B0%E2%80%94%E2%80%94%E5%92%8C%E9%AB%98%E4%B8%AD%E5%A5%BD%E5%8F%8B%E4%BB%AC%E7%9A%84%E5%85%AD%E4%BA%BA%E8%A1%8C/" data-id="cm5b4yqvp002xrw724gi6ecbw" data-title="南京游记——和高中好友们的六人行" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fugu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

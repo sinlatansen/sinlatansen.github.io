@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>基于wsl2的python-opencv的docker开发环境配置 | Fugu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="下学期项目需要学习opencv，打算 python 原型设计，有精力再 CPP 优化。　　 CPP 的环境配置起来麻烦，我选择VS2022作为 IDE。　　 PY 环境不想弄在宿主机，放到 wsl2 的 docker 里面。我的 win10 安装了Ubuntu22.04版本的 wsl2，对于一些 linux 环境下更好做的事就用它。这台云服务器虽说也是 linux 环境，但是性能不如自己电脑。 第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于wsl2的python-opencv的docker开发环境配置">
+<meta property="og:url" content="http://sinlatansen.github.io/2024/02/10/%E5%9F%BA%E4%BA%8Ewsl2%E7%9A%84python-opencv%E7%9A%84docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Fugu&#39;s Blog">
+<meta property="og:description" content="下学期项目需要学习opencv，打算 python 原型设计，有精力再 CPP 优化。　　 CPP 的环境配置起来麻烦，我选择VS2022作为 IDE。　　 PY 环境不想弄在宿主机，放到 wsl2 的 docker 里面。我的 win10 安装了Ubuntu22.04版本的 wsl2，对于一些 linux 环境下更好做的事就用它。这台云服务器虽说也是 linux 环境，但是性能不如自己电脑。 第">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/02/10/1fP6Mel8md742xs.png">
+<meta property="og:image" content="https://s2.loli.net/2024/02/10/iThVjY953ZfPbwO.png">
+<meta property="article:published_time" content="2024-02-10T10:28:00.000Z">
+<meta property="article:modified_time" content="2024-12-30T14:21:28.075Z">
+<meta property="article:author" content="fugu">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="wsl2">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="opencv">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/02/10/1fP6Mel8md742xs.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fugu&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-基于wsl2的python-opencv的docker开发环境配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/10/%E5%9F%BA%E4%BA%8Ewsl2%E7%9A%84python-opencv%E7%9A%84docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-02-10T10:28:00.000Z" itemprop="datePublished">2024-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      基于wsl2的python-opencv的docker开发环境配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>下学期项目需要学习<code>opencv</code>，打算 python 原型设计，有精力再 CPP 优化。<br>　　 CPP 的环境配置起来麻烦，我选择<code>VS2022</code>作为 IDE。<br>　　 PY 环境不想弄在宿主机，放到 wsl2 的 docker 里面。我的 win10 安装了<code>Ubuntu22.04</code>版本的 wsl2，对于一些 linux 环境下更好做的事就用它。这台云服务器虽说也是 linux 环境，但是性能不如自己电脑。</p>
+<h1 id="第一步，win10-准备工作"><a href="#第一步，win10-准备工作" class="headerlink" title="第一步，win10 准备工作"></a>第一步，win10 准备工作</h1><ul>
+<li>安装<code>Xlaunch</code>，<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/vcxsrv/">下载地址</a>。</li>
+<li>运行<code>Xlaunch</code><ol>
+<li>选择<code>Multiple windows</code>，<code>Display number: -1</code>。</li>
+<li><code>Start no client</code>。</li>
+<li>勾选<code>Native opengl</code>，硬件加速。勾选<code>Disable access control</code>，放开安全策略，简单。如果有更高的保密要求，这条不勾选，需要进一步配置。</li>
+</ol>
+</li>
+<li>更改 win10 系统防火墙策略设置，图源知乎。<img src="https://s2.loli.net/2024/02/10/1fP6Mel8md742xs.png"/></li>
+</ul>
+<h1 id="第二步，WSL2-配置"><a href="#第二步，WSL2-配置" class="headerlink" title="第二步，WSL2 配置"></a>第二步，WSL2 配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LIBGL_ALWAYS_INDIRECT=1</span><br><span class="line"><span class="built_in">export</span> DISPLAY=$(ip route | grep default | awk <span class="string">&#x27;&#123;print $3&#125;&#x27;</span>):0.0</span><br><span class="line"><span class="comment"># export DISPLAY=你的win10的IPV4:0.0</span></span><br></pre></td></tr></table></figure>
+
+<p>将这两条命令加入到你的 WSL 的 shell 环境<code>/.bashrc</code>或者<code>/.zshrc</code>最末尾。第二条命令是自动获取主机 IP，如果失效，则用第三条命令，自己在 win 端<code>ipconfig</code>来获取 IPV4，手动填入。<br>　　这时 WSL2 的 GUI 应该可以发送给 win10 了，可以通过<code>xclock</code>小程序来检验。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install x11-apps</span><br><span class="line">xclock</span><br></pre></td></tr></table></figure>
+
+<p>win 系统出现可爱小闹钟即成功，如果卡在 wsl 没有反应，说明 wsl 已经运行<code>xclock</code>但是 x11 转发失败。</p>
+<h1 id="第三步，启动docker"><a href="#第三步，启动docker" class="headerlink" title="第三步，启动docker"></a>第三步，启动<code>docker</code></h1><ol>
+<li>这个版本的 ubuntu 没安装<code>systemd</code>和<code>systemctl</code>，而且安装有一些坑。只能通过<code>sudo service docker install</code>启动 docker。</li>
+<li>构建一个 docker 镜像，配置了 python 和 opencv 环境，以及常用的 zsh，vim 等小工具（这些非必须）。<code>dockerfile</code>如下：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用Ubuntu作为基础镜像</span></span><br><span class="line">FROM ubuntu:20.04</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置非交互式安装以避免安装过程中的交互式询问</span></span><br><span class="line">ENV DEBIAN_FRONTEND=noninteractive</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置为中国国内源</span></span><br><span class="line">RUN sed -i <span class="string">&#x27;s/archive.ubuntu.com/mirrors.aliyun.com/g&#x27;</span> /etc/apt/sources.list</span><br><span class="line">RUN sed -i <span class="string">&#x27;s/security.ubuntu.com/mirrors.aliyun.com/g&#x27;</span> /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装必要的软件包</span></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install -y \</span><br><span class="line">    python3 \</span><br><span class="line">    python3-pip \</span><br><span class="line">    x11-apps \</span><br><span class="line">    vim \</span><br><span class="line">    zsh \</span><br><span class="line">    wget \</span><br><span class="line">    git \</span><br><span class="line">    curl \</span><br><span class="line">    neofetch \</span><br><span class="line">    figlet \</span><br><span class="line">    libgtk2.0-dev \</span><br><span class="line">    pkg-config \</span><br><span class="line">    libgl1-mesa-glx &amp;&amp; \</span><br><span class="line">    <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置时区，例如设置为&quot;Asia/Shanghai&quot;</span></span><br><span class="line">RUN <span class="built_in">ln</span> -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; dpkg-reconfigure --frontend noninteractive tzdata</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Python的OpenCV库（带GUI支持）</span></span><br><span class="line">RUN pip3 install opencv-python</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装和配置oh-my-zsh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># RUN sh -c &quot;$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)&quot; || true \</span></span><br><span class="line"><span class="comment">#     &amp;&amp; git clone https://gitee.com/zjy_1671/zsh-syntax-highlighting.git $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-syntax-highlighting \</span></span><br><span class="line"><span class="comment">#     &amp;&amp; git clone https://gitee.com/chenweizhen/zsh-autosuggestions.git $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-autosuggestions</span></span><br><span class="line"></span><br><span class="line">RUN sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)</span>&quot;</span> || <span class="literal">true</span> \</span><br><span class="line">    &amp;&amp; git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions \</span><br><span class="line">    &amp;&amp; git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制.zshrc文件到容器</span></span><br><span class="line">COPY .zshrc /root/.zshrc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置默认shell为zsh</span></span><br><span class="line">ENV SHELL /bin/zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line">WORKDIR /workspace</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认命令启动zsh</span></span><br><span class="line">CMD [<span class="string">&quot;zsh&quot;</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>构建镜像，快慢取决于网速。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t pycv2 .</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>根据镜像启动容器，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39998006/article/details/99680522">docker run 命令参数</a>。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name pycv2 \</span><br><span class="line">    -e DISPLAY=<span class="variable">$DISPLAY</span> \</span><br><span class="line">    -v /tmp/.X11-unix:/tmp/.X11-unix \</span><br><span class="line">    pycv2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>-itd</code>：这个组合参数使容器以交互模式运行，并分配一个伪终端（-it），同时-d 参数使容器在后台运行。</p>
+</li>
+<li><p><code>--name pycv2</code>：为容器指定一个名称。</p>
+</li>
+<li><p><code>-e DISPLAY=$DISPLAY</code>：设置环境变量 DISPLAY，以便容器内的应用程序知道如何连接到 X 服务器。</p>
+</li>
+<li><p><code>-v /tmp/.X11-unix:/tmp/.X11-unix</code>：将宿主机上的 X11 套接字目录挂载到容器内，以实现 X11 转发。</p>
+</li>
+<li><p><code>pycv2</code>：指定要运行的 Docker 镜像及其标签。</p>
+</li>
+</ul>
+<ol start="4">
+<li>在 docker 内重复前面的步骤，安装 X11-apps，运行 xclock，如果 win10 出现熟悉的小闹钟，则说明成功。</li>
+</ol>
+<h1 id="第四步，vscode-进行-docker-开发。"><a href="#第四步，vscode-进行-docker-开发。" class="headerlink" title="第四步，vscode 进行 docker 开发。"></a>第四步，vscode 进行 docker 开发。</h1><p>vscode 安装 docker 插件，可以直接识别 WSL 中的正在运行的 docker，将文件挂载到工作区，也可以进入 shell。<br>　　创建一个目录，传一个图片进去，再创建一个 py 文件，做一个简单的测试。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载图片</span></span><br><span class="line">image = cv2.imread(<span class="string">&#x27;fulilian.png&#x27;</span>) <span class="comment"># 绝对路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取图片的原始高度和宽度</span></span><br><span class="line">original_height, original_width = image.shape[:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置最大高度为600像素</span></span><br><span class="line">max_height = <span class="number">300</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果原始高度大于最大高度，则计算缩放比例</span></span><br><span class="line"><span class="keyword">if</span> original_height &gt; max_height:</span><br><span class="line">    <span class="comment"># 计算缩放比例</span></span><br><span class="line">    scaling_factor = max_height / original_height</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算新的宽度，保持宽高比不变</span></span><br><span class="line">    new_width = <span class="built_in">int</span>(original_width * scaling_factor)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调整图片大小</span></span><br><span class="line">    resized_image = cv2.resize(image, (new_width, max_height))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 如果原始高度小于或等于最大高度，则不需要缩放</span></span><br><span class="line">    resized_image = image</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示调整大小后的图片</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;Resized Image&#x27;</span>, resized_image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>成功运行！<br><img src="https://s2.loli.net/2024/02/10/iThVjY953ZfPbwO.png"/></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/10/%E5%9F%BA%E4%BA%8Ewsl2%E7%9A%84python-opencv%E7%9A%84docker%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="cm5b4yqvt0038rw72clpbfmu2" data-title="基于wsl2的python-opencv的docker开发环境配置" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/02/15/CentOS7%E9%85%8D%E7%BD%AEClash%E4%BB%A3%E7%90%86%EF%BC%88docker%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          CentOS7配置Clash代理（docker）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/02/09/vscode%E2%80%94%E2%80%94Ctrl%20-%20Shift%20-%20P%E5%A4%B1%E6%95%88%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">vscode——Ctrl - Shift - P失效记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fugu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

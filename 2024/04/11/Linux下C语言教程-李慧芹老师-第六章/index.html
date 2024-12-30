@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux下C语言教程-李慧芹老师-第六章 | Fugu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="配套代码笔记仓库。 目录 目录 指针 变量与地址 指针与指针变量 直接访问与间接访问 空指针与野指针 空类型 定义与初始化的书写规则 指针运算 指针与数组 指针与一维数组 指针与二维数组 指针与字符数组   const 与指针 指针数组与数组指针 多级指针    指针变量与地址int i&#x3D;100; i是变量名，也就是地址。 100是存放在这个地址的变量的值。 指针与指针变量123int   i &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下C语言教程-李慧芹老师-第六章">
+<meta property="og:url" content="http://sinlatansen.github.io/2024/04/11/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%85%AD%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Fugu&#39;s Blog">
+<meta property="og:description" content="配套代码笔记仓库。 目录 目录 指针 变量与地址 指针与指针变量 直接访问与间接访问 空指针与野指针 空类型 定义与初始化的书写规则 指针运算 指针与数组 指针与一维数组 指针与二维数组 指针与字符数组   const 与指针 指针数组与数组指针 多级指针    指针变量与地址int i&#x3D;100; i是变量名，也就是地址。 100是存放在这个地址的变量的值。 指针与指针变量123int   i &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-11T09:37:24.000Z">
+<meta property="article:modified_time" content="2024-12-30T14:21:26.703Z">
+<meta property="article:author" content="fugu">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="c">
+<meta property="article:tag" content="李慧芹">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fugu&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux下C语言教程-李慧芹老师-第六章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/11/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%85%AD%E7%AB%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-04-11T09:37:24.000Z" itemprop="datePublished">2024-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux下C语言教程-李慧芹老师-第六章
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记仓库</a>。</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E6%8C%87%E9%92%88">指针</a><ul>
+<li><a href="#%E5%8F%98%E9%87%8F%E4%B8%8E%E5%9C%B0%E5%9D%80">变量与地址</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E4%B8%8E%E6%8C%87%E9%92%88%E5%8F%98%E9%87%8F">指针与指针变量</a></li>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E4%B8%8E%E9%97%B4%E6%8E%A5%E8%AE%BF%E9%97%AE">直接访问与间接访问</a></li>
+<li><a href="#%E7%A9%BA%E6%8C%87%E9%92%88%E4%B8%8E%E9%87%8E%E6%8C%87%E9%92%88">空指针与野指针</a></li>
+<li><a href="#%E7%A9%BA%E7%B1%BB%E5%9E%8B">空类型</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99">定义与初始化的书写规则</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E8%BF%90%E7%AE%97">指针运算</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84">指针与数组</a><ul>
+<li><a href="#%E6%8C%87%E9%92%88%E4%B8%8E%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84">指针与一维数组</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E4%B8%8E%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84">指针与二维数组</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84">指针与字符数组</a></li>
+</ul>
+</li>
+<li><a href="#const-%E4%B8%8E%E6%8C%87%E9%92%88">const 与指针</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%E4%B8%8E%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88">指针数组与数组指针</a></li>
+<li><a href="#%E5%A4%9A%E7%BA%A7%E6%8C%87%E9%92%88">多级指针</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><h2 id="变量与地址"><a href="#变量与地址" class="headerlink" title="变量与地址"></a>变量与地址</h2><p><code>int i=100;</code></p>
+<p><code>i</code>是变量名，也就是地址。</p>
+<p><code>100</code>是存放在这个地址的变量的值。</p>
+<h2 id="指针与指针变量"><a href="#指针与指针变量" class="headerlink" title="指针与指针变量"></a>指针与指针变量</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>   i = <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span>  *p = &amp;i;</span><br><span class="line"><span class="type">int</span> **q = &amp;p;</span><br></pre></td></tr></table></figure>
+
+<p>p是一个指针变量，他所存放的值是指针，指向另一个变量<code>i</code>的地址。</p>
+<h2 id="直接访问与间接访问"><a href="#直接访问与间接访问" class="headerlink" title="直接访问与间接访问"></a>直接访问与间接访问</h2><p>同样对于上面那个存放值为<code>100</code>的变量，既可以通过<code>i</code>直接访问，也可以通过<code>*p, **q</code>来间接访问。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> *p = &amp;i;</span><br><span class="line">    <span class="comment">// 相当于</span></span><br><span class="line">    <span class="comment">// int *p;</span></span><br><span class="line">    <span class="comment">// p = &amp;i;</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> **q = &amp;p;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>, i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;i = %d\n&quot;</span>, &amp;i);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p = %d\n&quot;</span>, p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;p = %d\n&quot;</span>, &amp;p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*p = %d\n&quot;</span>, *p);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;q = %d\n&quot;</span>, q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*q = %d\n&quot;</span>, *q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;**q = %d\n&quot;</span>, **q);</span><br><span class="line">    <span class="comment">// i = 1</span></span><br><span class="line">    <span class="comment">// &amp;i = 1175115956</span></span><br><span class="line">    <span class="comment">// p = 1175115956</span></span><br><span class="line">    <span class="comment">// &amp;p = 1175115944</span></span><br><span class="line">    <span class="comment">// *p = 1</span></span><br><span class="line">    <span class="comment">// q = 1175115944</span></span><br><span class="line">    <span class="comment">// *q = 1175115956</span></span><br><span class="line">    <span class="comment">// **q = 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">float</span>  *q;</span><br><span class="line">    <span class="type">double</span> *d;</span><br><span class="line">    <span class="type">char</span>   *c;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(i));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(p));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(q));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(d));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="keyword">sizeof</span>(c));</span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// 4</span></span><br><span class="line">    <span class="comment">// 8</span></span><br><span class="line">    <span class="comment">// 8</span></span><br><span class="line">    <span class="comment">// 8</span></span><br><span class="line">    <span class="comment">// 8</span></span><br><span class="line">    <span class="comment">/* 指针在某一个平台所占的大小是一样的 */</span></span><br><span class="line">    <span class="comment">/* 其指向的类型的空间的大小，由指针的类型决定 */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>, i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;i = %d\n&quot;</span>, &amp;i);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;p = %d\n&quot;</span>, p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;p = %d\n&quot;</span>, &amp;p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;*p = %d\n&quot;</span>, *p);</span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// i = 1</span></span><br><span class="line">    <span class="comment">// &amp;i = 1343894748</span></span><br><span class="line">    <span class="comment">// p = 1343894748</span></span><br><span class="line">    <span class="comment">// &amp;p = 1343894736</span></span><br><span class="line">    <span class="comment">// *p = 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="空指针与野指针"><a href="#空指针与野指针" class="headerlink" title="空指针与野指针"></a>空指针与野指针</h2><ul>
+<li>野指针：<code>int *p = 0x14532534</code>，不确定这个地址的情况，盲目的指过去，那么读或者写都是非法的。</li>
+<li>空指针：<code>int *p = NULL</code>，避免野指针。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line"></span><br><span class="line">    *p = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p --&gt; %d\n&quot;</span>, p, *p);</span><br><span class="line">    <span class="comment">// 有的编译器报段错误，有的编译器能输出</span></span><br><span class="line">    <span class="comment">// 0x7feb1910dad0 -- &gt; 420327424</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="空类型"><a href="#空类型" class="headerlink" title="空类型"></a>空类型</h2><p><code>void *q</code></p>
+<p>万能类型。</p>
+<h2 id="定义与初始化的书写规则"><a href="#定义与初始化的书写规则" class="headerlink" title="定义与初始化的书写规则"></a>定义与初始化的书写规则</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;</span><br><span class="line"><span class="type">int</span>* p;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="指针运算"><a href="#指针运算" class="headerlink" title="指针运算"></a>指针运算</h2><p><code>&amp;</code>    <code> *</code>     关系运算     <code>++</code>     <code>--</code></p>
+<h2 id="指针与数组"><a href="#指针与数组" class="headerlink" title="指针与数组"></a>指针与数组</h2><h3 id="指针与一维数组"><a href="#指针与一维数组" class="headerlink" title="指针与一维数组"></a>指针与一维数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// TYPE NAME = VALUE;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a[i]value: a[i] = *(a+i) = *(p+i) = p[i]</span></span><br><span class="line"><span class="comment">// &amp;a[i]: &amp;a[i] = a+i = p+i = &amp;p[i]</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>  a[] = &#123;<span class="number">5</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    <span class="type">int</span>  y;</span><br><span class="line">    <span class="type">int</span> *p = &amp;a[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    y = (*--p)++;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;y = %d\n&quot;</span>, y);         <span class="comment">// out: y = 5</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a[0] = %d\n&quot;</span>, a[<span class="number">0</span>]);   <span class="comment">// out: a[0] = 6</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">int</span> *p = (<span class="type">int</span>[<span class="number">3</span>])&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    <span class="comment">// 只是不要数组名了</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%p --&gt; %d\n&quot;</span>, &amp;p[i], p[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 0x7ffd12681964 --&gt; 1</span></span><br><span class="line">    <span class="comment">// 0x7ffd12681968 --&gt; 2</span></span><br><span class="line">    <span class="comment">// 0x7ffd1268196c --&gt; 3</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">int</span>  a[<span class="number">3</span>];</span><br><span class="line">    <span class="type">int</span> *p = a;</span><br><span class="line">    <span class="type">int</span>  i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(*a); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%p --&gt; %d\n&quot;</span>, &amp;a[i], a[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(*a); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, p++);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    p = a;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(*a); i++, p++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// printf(&quot;%d\n&quot;, *p++);</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%p --&gt; %d\n&quot;</span>, p, *p);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// 0x7ffdad36c478 --&gt; -563487456</span></span><br><span class="line">    <span class="comment">// 0x7ffdad36c47c --&gt; 32710</span></span><br><span class="line">    <span class="comment">// 0x7ffdad36c480 --&gt; 0</span></span><br><span class="line">    <span class="comment">// 1</span></span><br><span class="line">    <span class="comment">// 2</span></span><br><span class="line">    <span class="comment">// 3</span></span><br><span class="line">    <span class="comment">// 0x7ffdad36c478 --&gt; 1</span></span><br><span class="line">    <span class="comment">// 0x7ffdad36c47c --&gt; 2</span></span><br><span class="line">    <span class="comment">// 0x7ffdad36c480 --&gt; 3</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> *p = a;</span><br><span class="line"></span><br><span class="line">    p++;   <span class="comment">// p从a[0]挪到a[1]</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p,%p\n&quot;</span>, p, p + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// *a相当于*(a+0)相当于a[0]</span></span><br><span class="line">    <span class="comment">// for (i = 0; i &lt; sizeof(a) / sizeof(a[0]); i++)</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(*a); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// printf(&quot;%p--&gt; %d\n&quot;, &amp;a[i], a[i]);</span></span><br><span class="line">        <span class="comment">// printf(&quot;%p--&gt; %d\n&quot;, a + i, a[i]);</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%p--&gt; %d\n&quot;</span>, p + i, *(p + i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="指针与二维数组"><a href="#指针与二维数组" class="headerlink" title="指针与二维数组"></a>指针与二维数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span>  a[<span class="number">2</span>][<span class="number">3</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;;</span><br><span class="line">    <span class="type">int</span>  i, j;</span><br><span class="line">    <span class="type">int</span> *p     = *a;</span><br><span class="line">    <span class="type">int</span>(*q)[<span class="number">3</span>] = a;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="comment">//(W) int *p = a;</span></span><br><span class="line">    <span class="comment">// 报错，不兼容</span></span><br><span class="line">    <span class="comment">// 因为a是行指针，不是int类型指针</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// int *p = *a;</span></span><br><span class="line">    *p = &amp;a[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// for (i = 0; i &lt; 6; i++, p++)</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// printf(&quot;%d &quot;, *p);</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 1</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p %p\n&quot;</span>, a, a + <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%p %p\n\n&quot;</span>, q, q + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// printf(&quot;%p --&gt; %d &quot;, &amp;a[i][j], a[i][j]);</span></span><br><span class="line">            <span class="comment">// printf(&quot;%p --&gt; %d &quot;, *(a + i) + j, *(*(a + i) + j));</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%p --&gt; %d &quot;</span>, *(q + i) + j, *(*(q + i) + j));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="指针与字符数组"><a href="#指针与字符数组" class="headerlink" title="指针与字符数组"></a>指针与字符数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> *str = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, <span class="keyword">sizeof</span>(str), <span class="built_in">strlen</span>(str));</span><br><span class="line">    <span class="comment">// out: 8 5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//(F) strcpy(str, &quot;world&quot;);</span></span><br><span class="line">    <span class="comment">// 这里企图把 &quot;world&quot; 覆盖 &quot;hello&quot;这个串常量</span></span><br><span class="line"></span><br><span class="line">    str = <span class="string">&quot;world&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// char str[] = &quot;hello&quot;;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%d %d\n&quot;, sizeof(str), strlen(str));</span></span><br><span class="line">    <span class="comment">// out :6 5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">char</span> str[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    <span class="comment">// str[6]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//(F) str = &quot;world&quot;;</span></span><br><span class="line">    <span class="built_in">strcpy</span>(str, <span class="string">&quot;world&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(str);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">char</span> str[] = <span class="string">&quot;I love china!&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> *p = str + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">puts</span>(str);</span><br><span class="line">    <span class="built_in">puts</span>(p);</span><br><span class="line">    <span class="comment">// I love china!</span></span><br><span class="line">    <span class="comment">// china!</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="const-与指针"><a href="#const-与指针" class="headerlink" title="const 与指针"></a>const 与指针</h2><ul>
+<li><p>常量指针：<strong>指向常量的指针</strong></p>
+<p>const修饰*p，指针指向的值不能变</p>
+</li>
+<li><p>指针常量：<strong>这个指针是一个常量</strong></p>
+<p>const修饰指针，指针指向不能变</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *   const int a;</span></span><br><span class="line"><span class="comment"> *   int const a;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   常量指针</span></span><br><span class="line"><span class="comment"> *   const int *p;</span></span><br><span class="line"><span class="comment"> *   int const *p;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   指针常量</span></span><br><span class="line"><span class="comment"> *   int *const p;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   const int *const p;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> *<span class="type">const</span> p = &amp;i;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//(F) p = &amp;j;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//(F) *p = 10;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">int</span> *<span class="type">const</span> p = &amp;i;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//(T) *p = 10;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//(F) p = &amp;j;</span></span><br><span class="line">    <span class="comment">// [main][~/workspace/Linux-C-Notes/Chapter6]$ make const</span></span><br><span class="line">    <span class="comment">// cc     const.c   -o const</span></span><br><span class="line">    <span class="comment">// const.c: In function ‘main’:</span></span><br><span class="line">    <span class="comment">// const.c:29:7: error: assignment of read-only variable ‘p’</span></span><br><span class="line">    <span class="comment">//    29 |     p = &amp;j;</span></span><br><span class="line">    <span class="comment">//       |       ^</span></span><br><span class="line">    <span class="comment">// make: *** [&lt;builtin&gt;: const] Error 1</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>, *p);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 常量指针</span></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> *p = &amp;i;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//(T) i = 2;</span></span><br><span class="line">    <span class="comment">// 直接用i改还是可以改成功的</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//(F) *p = 2;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//(T) p = &amp;j;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>, i);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="type">const</span> <span class="type">float</span> pi = <span class="number">3.14</span>;</span><br><span class="line">    <span class="comment">// const 将变量常量化，相比于宏，多了检查语法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//(F) pi = 3.14159;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// float *p = &amp;pi;</span></span><br><span class="line">    <span class="type">const</span> <span class="type">float</span> *p = &amp;pi;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// *p = 3.14159;</span></span><br><span class="line">    <span class="comment">// [main][~/workspace/Linux-C-Notes/Chapter6]$ make const</span></span><br><span class="line">    <span class="comment">// cc     const.c   -o const</span></span><br><span class="line">    <span class="comment">// const.c: In function ‘main’:</span></span><br><span class="line">    <span class="comment">// const.c:28:16: warning: initialization discards ‘const’ qualifier from</span></span><br><span class="line">    <span class="comment">// pointer target type [-Wdiscarded-qualifiers]</span></span><br><span class="line">    <span class="comment">//    28 |     float *p = &amp;pi;</span></span><br><span class="line">    <span class="comment">//       |</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="指针数组与数组指针"><a href="#指针数组与数组指针" class="headerlink" title="指针数组与数组指针"></a>指针数组与数组指针</h2><ul>
+<li><p>数组指针：指向数组的<strong>指针</strong>。</p>
+<p>【存储类型】 数据类型 （*指针名）【下标】 &#x3D; 值</p>
+<p>如：<code>int (*p)[3];</code>  看成  <code>int[3] *p;</code></p>
+</li>
+<li><p>指针数组：</p>
+<p>【存储类型】 数据类型 * 数组名【长度】</p>
+<p>如：<code>int *arr[3];</code> 看成 <code>int *[3] arr;</code></p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *name[<span class="number">5</span>] = &#123;<span class="string">&quot;Follow me&quot;</span>, <span class="string">&quot;Basic&quot;</span>, <span class="string">&quot;Great&quot;</span>, <span class="string">&quot;Fortran&quot;</span>, <span class="string">&quot;Computer&quot;</span>&#125;;</span><br><span class="line">    <span class="comment">// 指针数组</span></span><br><span class="line">    <span class="type">int</span>   i, j, k;</span><br><span class="line">    <span class="type">char</span> *tmp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span> - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        k = i;</span><br><span class="line">        <span class="keyword">for</span> (j = i + <span class="number">1</span>; j &lt; <span class="number">5</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strcmp</span>(name[k], name[j]) &gt; <span class="number">0</span>)</span><br><span class="line">                k = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k != j)</span><br><span class="line">        &#123;</span><br><span class="line">            tmp     = name[i];</span><br><span class="line">            name[i] = name[k];</span><br><span class="line">            name[k] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(name[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/04/11/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%85%AD%E7%AB%A0/" data-id="cm5b4yqun000wrw72hnhjh98t" data-title="Linux下C语言教程-李慧芹老师-第六章" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/12/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%83%E7%AB%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Linux下C语言教程-李慧芹老师-第七章
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/01/%E4%B8%80%E6%AC%BE%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84FreeRTOS%EF%BC%88cmsis_os2%EF%BC%89%E7%9A%84%E6%97%A5%E5%BF%97%E8%B0%83%E8%AF%95%E5%BA%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">一款线程安全的FreeRTOS（cmsis_os2）的日志调试库</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fugu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

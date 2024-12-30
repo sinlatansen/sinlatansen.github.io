@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux下C语言教程-李慧芹老师-第三章 | Fugu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="配套代码笔记Github地址。 目录 目录 第三章 输入输出专题 内容 格式化输入输出函数 printf scanf   字符输入输出函数    第三章 输入输出专题input &amp; output -&gt; I&#x2F;O(标准IO，文件IO) 内容 格式化输入输出函数：scanf, printf 字符输入输出函数：getchar, putchar 字符串输入输出函数：gets(!),p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下C语言教程-李慧芹老师-第三章">
+<meta property="og:url" content="http://sinlatansen.github.io/2024/03/20/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
+<meta property="og:site_name" content="Fugu&#39;s Blog">
+<meta property="og:description" content="配套代码笔记Github地址。 目录 目录 第三章 输入输出专题 内容 格式化输入输出函数 printf scanf   字符输入输出函数    第三章 输入输出专题input &amp; output -&gt; I&#x2F;O(标准IO，文件IO) 内容 格式化输入输出函数：scanf, printf 字符输入输出函数：getchar, putchar 字符串输入输出函数：gets(!),p">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2024/03/18/OMiu6CUDZy5RH3P.png">
+<meta property="og:image" content="https://s2.loli.net/2024/03/18/Z6gVaw1AOJ87Uil.png">
+<meta property="article:published_time" content="2024-03-20T10:07:00.000Z">
+<meta property="article:modified_time" content="2024-12-30T14:21:26.347Z">
+<meta property="article:author" content="fugu">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="c">
+<meta property="article:tag" content="李慧芹">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/03/18/OMiu6CUDZy5RH3P.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fugu&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux下C语言教程-李慧芹老师-第三章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/20/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%89%E7%AB%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-20T10:07:00.000Z" itemprop="datePublished">2024-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux下C语言教程-李慧芹老师-第三章
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记Github地址</a>。</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%93%E9%A2%98">第三章 输入输出专题</a><ul>
+<li><a href="#%E5%86%85%E5%AE%B9">内容</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0">格式化输入输出函数</a><ul>
+<li><a href="#printf"><code>printf</code></a></li>
+<li><a href="#scanf"><code>scanf</code></a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0">字符输入输出函数</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="第三章-输入输出专题"><a href="#第三章-输入输出专题" class="headerlink" title="第三章 输入输出专题"></a>第三章 输入输出专题</h1><p>input &amp; output -&gt; I&#x2F;O(标准IO，文件IO)</p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ol>
+<li>格式化输入输出函数：<code>scanf</code>, <code>printf</code></li>
+<li>字符输入输出函数：<code>getchar</code>, <code>putchar</code></li>
+<li>字符串输入输出函数：<code>gets(!)</code>,<code>puts</code></li>
+</ol>
+<h2 id="格式化输入输出函数"><a href="#格式化输入输出函数" class="headerlink" title="格式化输入输出函数"></a>格式化输入输出函数</h2><p><img src="https://s2.loli.net/2024/03/18/OMiu6CUDZy5RH3P.png" alt="标准输出格式字符"></p>
+<p><img src="https://s2.loli.net/2024/03/18/Z6gVaw1AOJ87Uil.png" alt="标准输出修饰符"></p>
+<h3 id="printf"><a href="#printf" class="headerlink" title="printf"></a><code>printf</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">printf</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *format, ...)</span>;</span><br><span class="line">format: <span class="string">&quot;%【修饰符】格式字符&quot;</span>，参照图片标准输出修饰符和格式字符</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>有关<code>l</code>修饰符的提醒</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    <span class="type">long</span> a = <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line">    fp = fopen();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可行，a定义了long型，与函数要求一致</span></span><br><span class="line">    func(fp, a);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 早期的编译器不认可，这个12没有单位，不同编译器默认类型不同</span></span><br><span class="line">    <span class="comment">// 需要加上L修饰符</span></span><br><span class="line">    func(fp, <span class="number">12</span>);</span><br><span class="line">    func(fp, <span class="number">12L</span>);</span><br><span class="line">    <span class="comment">// 对于func(FILE *fp, long long i)</span></span><br><span class="line">    func(fp, <span class="number">12LL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>传输一个5G的文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5LL</span>*<span class="number">1204LL</span>*<span class="number">1204LL</span>*<span class="number">1204LL</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>定义一个宏，表示一年有多少秒</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一年有多少秒</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SEC_YEAR (60LL * 60LL * 24LL * 365LL)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>函数 变参与定参重载的区别</p>
+<ul>
+<li><p>变参：编译器只报警告，函数自己都不知道自己有多少个参数</p>
+</li>
+<li><p>定参重载：编译报错</p>
+</li>
+</ul>
+</li>
+<li><p><code>\n</code>的作用</p>
+</li>
+</ul>
+<p>强制刷新缓冲区，以死循环调试举例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不加\n，before while()存入了缓冲区，故不输出</span></span><br><span class="line"><span class="comment">// printf(&quot;[%s:%d]before while().&quot;, __FUNCTION__, __LINE__);</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;[%s:%d]before while().\n&quot;</span>, __FUNCTION__, __LINE__);</span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// printf(&quot;[%s:%d]after while().&quot;, __FUNCTION__, __LINE__);</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;[%s:%d]after while().\n&quot;</span>, __FUNCTION__, __LINE__);</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>完整代码</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * printf(&quot;%[修饰符]格式字符&quot;, 输出表项);</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STRSIZE 10</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// printf(&quot;hello world\n&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// char ch = 65;</span></span><br><span class="line">    <span class="comment">// printf(&quot;%c\n&quot;, ch);</span></span><br><span class="line">    <span class="comment">// out: A</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = <span class="number">255</span>;</span><br><span class="line">    <span class="type">float</span> f = <span class="number">123.45678</span>;</span><br><span class="line">    <span class="type">char</span> str[STRSIZE] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">    <span class="type">double</span> dou = <span class="number">123.456</span>;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> l = <span class="number">123456</span>;</span><br><span class="line">    <span class="comment">// 不加\n，before while()存入了缓冲区，故不输出</span></span><br><span class="line">    <span class="comment">// printf(&quot;[%s:%d]before while().&quot;, __FUNCTION__, __LINE__);</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[%s:%d]before while().\n&quot;</span>, __FUNCTION__, __LINE__);</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// printf(&quot;[%s:%d]after while().&quot;, __FUNCTION__, __LINE__);</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[%s:%d]after while().\n&quot;</span>, __FUNCTION__, __LINE__);</span><br><span class="line">    <span class="comment">// printf(&quot;f = %8.1f\n&quot;, f);</span></span><br><span class="line">    <span class="comment">// out:f =    123.5</span></span><br><span class="line">    <span class="comment">// printf(&quot;i = %2d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// out: i = 123</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%-10.5s[over]\n&quot;, str);</span></span><br><span class="line">    <span class="comment">// printf(&quot;%+10.5s[over]\n&quot;, str);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// hello     [over]</span></span><br><span class="line">    <span class="comment">//      hello[over]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 同样对于i进行八进制核对十六进制的输出</span></span><br><span class="line">    <span class="comment">//  printf(&quot;i = %#o\n&quot;, i);</span></span><br><span class="line">    <span class="comment">//  out: i = 0377</span></span><br><span class="line">    <span class="comment">//  printf(&quot;i = %#x\n&quot;, i);</span></span><br><span class="line">    <span class="comment">//  out: i = 0xff</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;dou = %lf\n&quot;, dou);</span></span><br><span class="line">    <span class="comment">// printf(&quot;l = %ld\n&quot;, l);</span></span><br><span class="line">    <span class="comment">// out:</span></span><br><span class="line">    <span class="comment">// dou = 123.456000</span></span><br><span class="line">    <span class="comment">// l = 123456</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;hello world!\n&quot;);</span></span><br><span class="line">    <span class="comment">// 实参过多或者过少都会警告</span></span><br><span class="line">    <span class="comment">// printf(&quot;#d #e\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// printf(&quot;#d #e\n&quot;, i, f, l);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">func(FILE *fp, <span class="type">long</span> i)</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    <span class="type">long</span> a = <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line">    fp = fopen();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可行，a定义了long型，与函数要求一致</span></span><br><span class="line">    func(fp, a);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 早期的编译器不认可，这个12没有单位，不同编译器默认类型不同</span></span><br><span class="line">    <span class="comment">// 需要加上L修饰符</span></span><br><span class="line">    func(fp, <span class="number">12</span>);</span><br><span class="line">    func(fp, <span class="number">12L</span>);</span><br><span class="line">    <span class="comment">// 对于func(FILE *fp, long long i)</span></span><br><span class="line">    func(fp, <span class="number">12LL</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一年有多少秒</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SEC_YEAR (60LL * 60LL * 24LL * 365LL)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="scanf"><a href="#scanf" class="headerlink" title="scanf"></a><code>scanf</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">scanf</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *format, 地址表)</span>;</span><br><span class="line">format:抑制符*</span><br><span class="line">%s非常危险，因为不知道储存空间的大小</span><br><span class="line">放在循环结构中时要注意能否接收到正常内容</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>完整代码</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  int scanf(const char *format, 地址表);</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define STRSIZE 32</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STRSIZE 3</span></span><br><span class="line"><span class="comment">// 除掉尾0占一个</span></span><br><span class="line"><span class="comment">// 相当于只能两个字符</span></span><br><span class="line"><span class="comment">// 但是这时候运行输入hello，不会报错</span></span><br><span class="line"><span class="comment">// 实际上是越界了</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">float</span> f;</span><br><span class="line">    <span class="type">char</span> str[STRSIZE];</span><br><span class="line">    <span class="type">int</span> ret;</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Please enter:\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// scanf(&quot;%d&quot;, &amp;i);</span></span><br><span class="line">    <span class="comment">// ch = getchar();</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;i = %d, ch = %c\n&quot;, i, ch);</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    out:</span></span><br><span class="line"><span class="comment">    Please enter:</span></span><br><span class="line"><span class="comment">    4 h</span></span><br><span class="line"><span class="comment">    i = 4, ch =</span></span><br><span class="line"><span class="comment">    ch被吞掉了</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// scanf(&quot;%d&quot;, &amp;i);</span></span><br><span class="line">    <span class="comment">// scanf(&quot;%*c%c&quot;, &amp;ch);</span></span><br><span class="line">    <span class="comment">// 用 &#x27;%*c&#x27; 吃掉回车</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    out:</span></span><br><span class="line"><span class="comment">    Please enter:</span></span><br><span class="line"><span class="comment">    5</span></span><br><span class="line"><span class="comment">    h</span></span><br><span class="line"><span class="comment">    i = 5, ch = h</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i = %d, ch = %c\n&quot;</span>, i, ch);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    <span class="comment">// 输入a直接卡死，scanf直接放在循环中很危险</span></span><br><span class="line">    <span class="comment">// 需要加入校验，用ret接收scanf返回值</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// scanf(&quot;%d&quot;, &amp;i);</span></span><br><span class="line"></span><br><span class="line">        ret = <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;i);</span><br><span class="line">        <span class="keyword">if</span> (ret != <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Enter Error!\n&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;Please enter fot str:\n&quot;);</span></span><br><span class="line">    <span class="comment">// 这种情况下，不能有任何间隔符</span></span><br><span class="line">    <span class="comment">// 输入hello world，只会得到hello</span></span><br><span class="line">    <span class="comment">// 对于scanf，不建议&#x27;%s&#x27;</span></span><br><span class="line">    <span class="comment">// scanf(&quot;%s&quot;, str);</span></span><br><span class="line">    <span class="comment">// printf(&quot;%s\n&quot;, str);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;Please enter for i[int]:\n&quot;);</span></span><br><span class="line">    <span class="comment">// 这里两个数字之间有&#x27;,&#x27;，输入就一定要有&#x27;,&#x27;</span></span><br><span class="line">    <span class="comment">// 最好不加，空格符可以是空格 回车 tab</span></span><br><span class="line">    <span class="comment">// scanf(&quot;%d,%f&quot;, &amp;i, &amp;f);</span></span><br><span class="line">    <span class="comment">// printf(&quot;i = %d\n&quot;, i);</span></span><br><span class="line">    <span class="comment">// printf(&quot;f = %f\n&quot;, f);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="字符输入输出函数"><a href="#字符输入输出函数" class="headerlink" title="字符输入输出函数"></a>字符输入输出函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">getchar</span><span class="params">(<span class="type">void</span>)</span>;<span class="comment">// 返回int型是考虑出错的情况</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">putchar</span><span class="params">(<span class="type">int</span> c)</span>; </span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> ch;</span><br><span class="line">    ch = getchar();</span><br><span class="line">    <span class="built_in">putchar</span>(ch);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串输入输出函数"><a href="#字符串输入输出函数" class="headerlink" title="字符串输入输出函数"></a>字符串输入输出函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">gets</span><span class="params">(<span class="type">char</span> *s)</span>;</span><br><span class="line"><span class="comment">// 从标准输入读到内容放到s指针指向的缓冲区</span></span><br><span class="line"><span class="comment">// 停止条件：换行或者EOF</span></span><br><span class="line"><span class="comment">// 尾部会追加&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">puts</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s)</span>;</span><br><span class="line"><span class="comment">// 将s指针缓冲区内容往外写</span></span><br><span class="line"><span class="comment">// 以换行符中止</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STRSIZE 32</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> str[STRSIZE];</span><br><span class="line">    gets(str);</span><br><span class="line">    <span class="built_in">puts</span>(str);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>gets</code>非常危险，不会检查是否越界。使用的话用<code>fgets</code>来代替。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">fgets</span><span class="params">(<span class="type">char</span> *s, <span class="type">int</span> size, FILE *stream)</span>;<span class="comment">// 最多读到&#x27;size-1&#x27;个</span></span><br></pre></td></tr></table></figure>
+
+<p><code>getline</code>是<code>GNU libc</code>的方言，可以动态内存保证读取一整行。</p>
+<h2 id="练习专题"><a href="#练习专题" class="headerlink" title="练习专题"></a>练习专题</h2><h3 id="夸脱水"><a href="#夸脱水" class="headerlink" title="夸脱水"></a>夸脱水</h3><blockquote>
+<p>一个水分子3.0e-23g，一夸脱水约950g。</p>
+<p>变成，输入水的夸脱数，输出其包含的水分子质量。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">water</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> num;</span><br><span class="line">    <span class="type">float</span> sum;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Please input for num:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%f&quot;</span>, &amp;num);</span><br><span class="line"></span><br><span class="line">    sum = num * KQ / WEIGHT;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Total = %e\n&quot;</span>, sum);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三角形面积"><a href="#三角形面积" class="headerlink" title="三角形面积"></a>三角形面积</h3><blockquote>
+<p>输入三角形的三边长，求三角形面积。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">area</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> a, b, c;</span><br><span class="line">    <span class="type">float</span> s, area;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Please input:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%f%f%f&quot;</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">    <span class="comment">// 对scanf做好校验是好习惯</span></span><br><span class="line">    <span class="keyword">if</span> (a + b &lt;= c || b + c &lt;= a || a + c &lt;= b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;EINVAL!\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %f\n&quot;</span>, a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;b = %f\n&quot;</span>, b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;c = %f\n&quot;</span>, c);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// s = 1 / 2 * (a + b + c);</span></span><br><span class="line">    s = <span class="number">1.0</span> / <span class="number">2</span> * (a + b + c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;s = %f\n&quot;</span>, s);</span><br><span class="line">    <span class="comment">// s=0.000000</span></span><br><span class="line">    <span class="comment">// 1 / 2是int型计算，得到的是商0余1</span></span><br><span class="line"></span><br><span class="line">    area = <span class="built_in">sqrt</span>(s * (s - a) * (s - b) * (s - c));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;area = %f\n&quot;</span>, area);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>编译需要<code>-lm</code>。<code>makefile</code>如下，千万要注意<code>makefile</code>要使用<strong>制表符</strong>缩进，而非空格。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CC=cc</span><br><span class="line">CFLAGS=</span><br><span class="line">LDFLAGS=-lm</span><br><span class="line">TARGET=test</span><br><span class="line">SRC=test.c</span><br><span class="line">OBJ=$(SRC:.c=.o)</span><br><span class="line"></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJ)</span></span><br><span class="line">	<span class="variable">$(CC)</span> -o <span class="variable">$@</span> <span class="variable">$^</span> <span class="variable">$(LDFLAGS)</span></span><br><span class="line"></span><br><span class="line"><span class="section">%.o: %.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -c <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f <span class="variable">$(TARGET)</span> <span class="variable">$(OBJ)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="求根公式"><a href="#求根公式" class="headerlink" title="求根公式"></a>求根公式</h3><blockquote>
+<p>ax^2^ + bx + c &#x3D; 0，假设b^2^ - 4ac &gt;0</p>
+<p>x<del>1</del> &#x3D; (-b + sqrt( b*b - 4ac )) &#x2F; 2a</p>
+<p>x<del>2</del> &#x3D; (-b - sqrt( b*b - 4ac )) &#x2F; 2a</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">root</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> a, b, c;</span><br><span class="line">    <span class="type">float</span> disc;</span><br><span class="line">    <span class="type">float</span> p, q;</span><br><span class="line">    <span class="type">float</span> x1, x2;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Please input :\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%f%f%f&quot;</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (b * b - <span class="number">4</span> * a * c &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;EINVAL\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    disc = b * b - <span class="number">4</span> * a * c;</span><br><span class="line">    p = -b / <span class="number">2</span> * a;</span><br><span class="line">    q = <span class="built_in">sqrt</span>(disc) / <span class="number">2</span> * a;</span><br><span class="line"></span><br><span class="line">    x1 = p + q;</span><br><span class="line">    x2 = p - q;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;x1 = %f\n&quot;</span>, x1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;x2 = %f\n&quot;</span>, x2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/03/20/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%89%E7%AB%A0/" data-id="cm5b4yquc000erw721gzr29sn" data-title="Linux下C语言教程-李慧芹老师-第三章" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/23/%E6%88%91%E5%BC%80%E5%8F%91%E4%BA%86%E4%B8%80%E6%AC%BE%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84Typora%E4%B8%BB%E9%A2%98%EF%BC%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          我开发了一款属于自己的Typora主题！
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/15/%E9%80%9A%E8%BF%87stow%E9%9B%86%E4%B8%AD%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84dotfiles/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">通过stow集中管理你的dotfiles</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fugu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

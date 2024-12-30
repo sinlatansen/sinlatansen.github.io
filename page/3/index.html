@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Fugu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Fugu&#39;s Blog">
+<meta property="og:url" content="http://sinlatansen.github.io/page/3/index.html">
+<meta property="og:site_name" content="Fugu&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="fugu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Fugu's Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Fugu&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sinlatansen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Linux下C语言教程-李慧芹老师-第一章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-10T09:05:00.000Z" itemprop="datePublished">2024-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第一章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://github.com/sinlatansen/Linux-C-Notes">配套代码笔记Github地址</a>。</p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA">第一章 绪论</a><ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E8%8A%82">第一节</a><ul>
+<li><a href="#c%E8%AF%AD%E8%A8%80%E5%8F%91%E5%B1%95%E5%8F%B2">C语言发展史</a></li>
+<li><a href="#c%E8%AF%AD%E8%A8%80%E7%89%B9%E7%82%B9">C语言特点</a></li>
+<li><a href="#c%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE">C语言学习建议</a></li>
+<li><a href="#%E8%AF%BE%E7%A8%8B%E6%80%9D%E8%B7%AF">课程思路</a></li>
+<li><a href="#%E8%AF%BE%E7%A8%8B%E5%B9%B3%E5%8F%B0">课程平台</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E8%8A%82">第二节</a><ul>
+<li><a href="#%E7%A5%9E%E4%B8%80%E8%88%AC%E7%9A%84hello-world">神一般的<code>Hello world!</code></a></li>
+<li><a href="#%E6%BA%90%E6%96%87%E4%BB%B6%E5%88%B0%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6">源文件到可执行文件</a><ul>
+<li><a href="#gcc">gcc</a></li>
+<li><a href="#make">make</a></li>
+</ul>
+</li>
+<li><a href="#vim">vim</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E8%8A%82">第三节</a><ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a><ul>
+<li><a href="#%E4%BB%A5hello-world%E4%B8%BA%E4%BE%8B%E5%AF%B9%E5%86%99%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%80%9D%E8%B7%AF%E6%8F%90%E5%87%BA%E5%A6%82%E4%B8%8B%E8%A6%81%E6%B1%82">以<code>Hello world</code>为例对写程序的思路提出如下要求</a><ul>
+<li><a href="#1-%E5%A4%B4%E6%96%87%E4%BB%B6%E6%AD%A3%E7%A1%AE%E5%8C%85%E5%90%AB%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7">1. 头文件正确包含的重要性</a></li>
+<li><a href="#2-%E4%BB%A5%E5%87%BD%E6%95%B0%E4%B8%BA%E5%8D%95%E4%BD%8D%E6%9D%A5%E8%BF%9B%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%BC%96%E5%86%99">2. 以函数为单位来进行程序编写</a></li>
+<li><a href="#3-%E5%A3%B0%E6%98%8E%E9%83%A8%E5%88%86%E5%AE%9E%E7%8E%B0%E9%83%A8%E5%88%86">3. 声明部分+实现部分</a></li>
+<li><a href="#4-return-0exit0">4. <code>return 0/exit(0)</code></a></li>
+<li><a href="#5-%E5%A4%9A%E7%94%A8%E7%A9%BA%E6%A0%BC%E7%A9%BA%E8%A1%8C">5. 多用空格空行</a></li>
+<li><a href="#6-%E6%B7%BB%E5%8A%A0%E6%B3%A8%E9%87%8A">6. 添加注释</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AE%97%E6%B3%95">算法</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F">程序</a></li>
+<li><a href="#%E8%BF%9B%E7%A8%8B">进程</a></li>
+<li><a href="#%E9%98%B2%E6%AD%A2%E5%86%99%E8%B6%8A%E7%95%8C%E9%98%B2%E6%AD%A2%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E8%B0%81%E6%89%93%E5%BC%80%E8%B0%81%E5%85%B3%E9%97%AD%E8%B0%81%E7%94%B3%E8%AF%B7%E8%B0%81%E9%87%8A%E6%94%BE">防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h1><p>课程地址，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p4y167Md/?spm_id_from=333.999.0.0&vd_source=4e03f52e94cfa281cde032856b1f93a7">史上最强最细腻的linux嵌入式C语言学习教程【李慧芹老师】_哔哩哔哩_bilibili</a>。</p>
+<h2 id="第一节"><a href="#第一节" class="headerlink" title="第一节"></a>第一节</h2><h3 id="C语言发展史"><a href="#C语言发展史" class="headerlink" title="C语言发展史"></a>C语言发展史</h3><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>发展</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1960</td>
+<td>原型A语言-&gt;ALGOL语言</td>
+</tr>
+<tr>
+<td>1963</td>
+<td>CPL语言</td>
+</tr>
+<tr>
+<td>1967</td>
+<td>BCPL</td>
+</tr>
+<tr>
+<td>1967</td>
+<td>B语言</td>
+</tr>
+<tr>
+<td>1973</td>
+<td>C语言</td>
+</tr>
+</tbody></table>
+<h3 id="C语言特点"><a href="#C语言特点" class="headerlink" title="C语言特点"></a>C语言特点</h3><ol>
+<li>基础性语言</li>
+<li>语法间接、紧凑、方便、灵活</li>
+<li>运算符，数据结构丰富</li>
+<li>结构化，模块化编程</li>
+<li>移植性好，执行效率高</li>
+<li>允许直接对硬件操作</li>
+</ol>
+<h3 id="C语言学习建议"><a href="#C语言学习建议" class="headerlink" title="C语言学习建议"></a>C语言学习建议</h3><ol>
+<li>概念的正确性</li>
+<li>动手能力</li>
+<li>阅读优秀的程序段</li>
+<li>大量练习，面试题</li>
+</ol>
+<h3 id="课程思路"><a href="#课程思路" class="headerlink" title="课程思路"></a>课程思路</h3><ol>
+<li>基础概念</li>
+<li>数据类型，运算符和表达式</li>
+<li>输入输出专题</li>
+<li>流程控制</li>
+<li>数组</li>
+<li>指针</li>
+<li>函数</li>
+<li>构造类型</li>
+<li>动态内存管理</li>
+<li>调试工具（gdb，make)</li>
+<li>常用库函数</li>
+</ol>
+<h3 id="课程平台"><a href="#课程平台" class="headerlink" title="课程平台"></a>课程平台</h3><ul>
+<li>老师：64位的<code>redhat6</code>，<code>vim</code>，<code>gcc4.4.6(make)</code></li>
+<li>本人：<code>WSL-debian</code>，<code>vscode(remote ssh)</code>，<code>gcc12.2.0(make)</code>，<code>ohmyzsh(theme:eastwood)</code></li>
+</ul>
+<p>我的<code>gcc</code>版本比较新，所以很多提示比较完善，老师这个课程是很早的课，那个时候的gcc提示没有现在厉害，所以还是要结合老师的视频的思路，在当时提示不完善的时候是如何手撕代码分析出来的。</p>
+<h2 id="第二节"><a href="#第二节" class="headerlink" title="第二节"></a>第二节</h2><h3 id="神一般的Hello-world"><a href="#神一般的Hello-world" class="headerlink" title="神一般的Hello world!"></a>神一般的<code>Hello world!</code></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hello.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>;<span class="comment">// char *argv[]</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用那种<code>main</code>得看编译器环境，目前在<code>linux</code>的<code>gcc</code>下，<code>int main(void);</code>常用，需要传参用<code>int main(int argc, char **argv);</code>。</p>
+<h3 id="源文件到可执行文件"><a href="#源文件到可执行文件" class="headerlink" title="源文件到可执行文件"></a>源文件到可执行文件</h3><h4 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h4><p>C源文件&#x3D;&gt;预处理&#x3D;&gt;编译&#x3D;&gt;汇编&#x3D;&gt;链接&#x3D;&gt;可执行文件</p>
+<blockquote>
+<p>所有<code>#</code>后面的代码都在预处理解决</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单步执行</span></span><br><span class="line">gcc -E hello.c &gt; hello.i <span class="comment"># 预处理生成hello.i</span></span><br><span class="line">gcc -S hello.i <span class="comment"># 编译生成hello.s</span></span><br><span class="line">gcc -c hello.s <span class="comment"># 汇编生成hello.o</span></span><br><span class="line">gcc hello.o -o hello <span class="comment"># 链接生成hello</span></span><br><span class="line">./hello <span class="comment"># 运行</span></span><br><span class="line">Hello world!</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一次到位</span></span><br><span class="line">gcc hello.c <span class="comment"># 得到a.out可执行文件</span></span><br><span class="line"><span class="comment"># 指定名字</span></span><br><span class="line">gcc hello.c -o myhello <span class="comment"># 得到myhello可执行文件</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="make"><a href="#make" class="headerlink" title="make"></a>make</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ make hello</span><br><span class="line">cc  hello.c  -o hello</span><br><span class="line"><span class="comment"># cc就是make选择的编译器，这里是gcc</span></span><br><span class="line">$ <span class="built_in">ls</span></span><br><span class="line">hello hello.c</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>老师对于常用的<code>.vimrc</code>做了一些介绍，笔者建议<code>vscode</code>的<code>remote-ssh</code>插件，可以在win的vscode编辑器享受linux的环境。</p>
+<h2 id="第三节"><a href="#第三节" class="headerlink" title="第三节"></a>第三节</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="以Hello-world为例对写程序的思路提出如下要求"><a href="#以Hello-world为例对写程序的思路提出如下要求" class="headerlink" title="以Hello world为例对写程序的思路提出如下要求"></a>以<code>Hello world</code>为例对写程序的思路提出如下要求</h4><h5 id="1-头文件正确包含的重要性"><a href="#1-头文件正确包含的重要性" class="headerlink" title="1. 头文件正确包含的重要性"></a>1. 头文件正确包含的重要性</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> *p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    p = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我的gcc版本比较新，所以和老师的不一致，总之老师的意思就是</p>
+<blockquote>
+<p> 不要忽略gcc的警告！！！</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 -Wall 参数让gcc显示全部警告</span></span><br><span class="line"><span class="comment"># 注意&#x27;W&#x27;要大写</span></span><br><span class="line">$ gcc hello.c -Wall</span><br><span class="line">hello.c: In <span class="keyword">function</span> ‘main’:</span><br><span class="line">hello.c:7:9: warning: implicit declaration of <span class="keyword">function</span> ‘malloc’ [-Wimplicit-function-declaration]</span><br><span class="line">    7 |     p = malloc(sizeof(int));</span><br><span class="line">      |         ^~~~~~</span><br><span class="line">hello.c:2:1: note: include ‘&lt;stdlib.h&gt;’ or provide a declaration of ‘malloc’</span><br><span class="line">    1 | <span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">  +++ |+#include &lt;stdlib.h&gt;</span><br><span class="line">    2 | </span><br><span class="line">hello.c:7:9: warning: incompatible implicit declaration of built-in <span class="keyword">function</span> ‘malloc’ [-Wbuiltin-declaration-mismatch]</span><br><span class="line">    7 |     p = malloc(sizeof(int));</span><br><span class="line">      |         ^~~~~~</span><br><span class="line">hello.c:7:9: note: include ‘&lt;stdlib.h&gt;’ or provide a declaration of ‘malloc’</span><br><span class="line">hello.c:6:9: warning: unused variable ‘i’ [-Wunused-variable]</span><br><span class="line">    6 |     int i;</span><br><span class="line">      |         ^</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>例如说这个变量<code>i</code>定义了但是没用上，就是你清楚来龙去脉可以忽略的警告。</li>
+<li>而<code>malloc</code>那个警告就是在告诉你<code>malloc</code>所属的<code>stdlib.h</code>库未引入。</li>
+<li>C语言程序往往如果能把警告都消除，错误也能解决。例如：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    FILE *fp;</span><br><span class="line"></span><br><span class="line">    fp = fopen(<span class="string">&quot;tmp&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;fopen():%s\n&quot;</span>, strerror(errno));</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;ok!&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个程序运行报段错误，这个时候，查看一下警告就是问题所在。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ ./a</span><br><span class="line">[1]    1960 segmentation fault  ./a</span><br><span class="line"></span><br><span class="line">$ gcc a.c -Wall    </span><br><span class="line">a.c: In <span class="keyword">function</span> ‘main’:</span><br><span class="line">a.c:12:41: warning: implicit declaration of <span class="keyword">function</span> ‘strerror’; did you mean ‘perror’? [-Wimplicit-function-declaration]</span><br><span class="line">   12 |         fprintf(stderr, <span class="string">&quot;fopen():%s\n&quot;</span>, strerror(errno));</span><br><span class="line">      |                                         ^~~~~~~~</span><br><span class="line">      |                                         perror</span><br><span class="line">a.c:12:35: warning: format ‘%s’ expects argument of <span class="built_in">type</span> ‘char *’, but argument 3 has <span class="built_in">type</span> ‘int’ [-Wformat=]</span><br><span class="line">   12 |         fprintf(stderr, <span class="string">&quot;fopen():%s\n&quot;</span>, strerror(errno));</span><br><span class="line">      |                                  ~^     ~~~~~~~~~~~~~~~</span><br><span class="line">      |                                   |     |</span><br><span class="line">      |                                   |     int</span><br><span class="line">      |                                   char *</span><br><span class="line">      |                                  %d</span><br></pre></td></tr></table></figure>
+
+<p>用<code>%s</code>需要的类型是<code>char *</code>，但是<code>strerror(errno)</code>的类型是<code>int</code>，它是所以是<code>int</code>，是因为C语言对没有找到原型的函数返回值都是<code>int</code>，所以根源在于<code>strerror</code>函数没有原型，没有引入需要的<code>string.h</code>库。加入这个库重新运行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[main][~/LinuxC/Chapter1/Section3]$ make a</span><br><span class="line">cc     a.c   -o a</span><br><span class="line">[main][~/LinuxC/Chapter1/Section3]$ ./a     </span><br><span class="line">fopen():No such file or directory</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-以函数为单位来进行程序编写"><a href="#2-以函数为单位来进行程序编写" class="headerlink" title="2. 以函数为单位来进行程序编写"></a>2. 以函数为单位来进行程序编写</h5><p>main&#96;是特殊的定义，其实就是一个正在运行的线程。其实对于内核而言，是只有进程的概念，且与我们理解的进程、线程不一样。</p>
+<h5 id="3-声明部分-实现部分"><a href="#3-声明部分-实现部分" class="headerlink" title="3. 声明部分+实现部分"></a>3. 声明部分+实现部分</h5><p>早期的编译器要求变量先定义后使用。</p>
+<h5 id="4-return-0-exit-0"><a href="#4-return-0-exit-0" class="headerlink" title="4. return 0/exit(0)"></a>4. <code>return 0/exit(0)</code></h5><p>结束当前进程，是给父进程看的。</p>
+<p>对于带有<code>return 0</code>的程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[main][~/LinuxC/Chapter1/Section3]$ ./hello</span><br><span class="line">Hello world!</span><br><span class="line">[main][~/LinuxC/Chapter1/Section3]$ <span class="built_in">echo</span> $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>如果不带<code>return 0</code>：</p>
+<p>老师演示的返回值是13，是<code>printf</code>的返回的<code>Hello world!\n</code>的长度。</p>
+<p>在我本地无法复现，新版本可能改了。</p>
+<h5 id="5-多用空格空行"><a href="#5-多用空格空行" class="headerlink" title="5. 多用空格空行"></a>5. 多用空格空行</h5><h5 id="6-添加注释"><a href="#6-添加注释" class="headerlink" title="6. 添加注释"></a>6. 添加注释</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 多行注释</span></span><br><span class="line"><span class="comment"> * 多行注释</span></span><br><span class="line"><span class="comment"> * 多行注释</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//大段的注释</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">func()&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>解决问题的方法。（流程图，NS图，FSM有限状态机）</p>
+<h4 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h4><p>用某种语言实现算法</p>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><h4 id="防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放"><a href="#防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放" class="headerlink" title="防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放"></a>防止写越界，防止内存泄漏，谁打开谁关闭，谁申请谁释放</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/03/10/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-id="cm5b4yqu90009rw728fpt94tx" data-title="Linux下C语言教程-李慧芹老师-第一章" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-npm报错：OpenSSL版本错误" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/07/npm%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF/" class="article-date">
+  <time class="dt-published" datetime="2024-03-07T11:03:00.000Z" itemprop="datePublished">2024-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/07/npm%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF/">npm报错：OpenSSL版本错误</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm -v</span><br><span class="line">node: /usr/local/lighthouse/softwares/openssl/lib/libcrypto.so.1.1: version `OPENSSL_1_1_1e<span class="string">&#x27; not found (required by /lib64/libnode.so.93)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>npm</code>报错，发现<code>openssl</code>版本有问题。</p>
+<p>进入<code>openssl</code>目录发现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ openssl version</span><br><span class="line">OpenSSL 1.1.1e  17 Mar 2020 (Library: OpenSSL 1.1.1d  10 Sep 2019)</span><br></pre></td></tr></table></figure>
+
+<p><code>openssl</code>的版本和库的版本不一致。</p>
+<p>处理办法：删除<code>1.1.1d</code>。</p>
+<p>在<code>/usr/local/lighthouse/softwares/openssl/lib</code>和<code>/usr/local/lib64</code>都有<code>openssl</code>的库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings /usr/local/lib64/libcrypto.so.1.1 | grep <span class="string">&quot;OpenSSL&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过这个命令找到<code>openssl</code>字符串所在行，里面就找到了版本号，发现<code>/usr/local/lighthouse/softwares/openssl/lib是1.1.1d</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /backup/openssl</span><br><span class="line"><span class="built_in">cp</span> -R /usr/local/lighthouse/softwares/openssl /backup/openssl/</span><br><span class="line"><span class="built_in">rm</span> -rf /usr/local/lighthouse/softwares/openssl/lib/*</span><br></pre></td></tr></table></figure>
+
+<p>备份且删除即可，删除之后发现一切正常了，即可删除备份。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/03/07/npm%E6%8A%A5%E9%94%99%EF%BC%9AOpenSSL%E7%89%88%E6%9C%AC%E9%94%99%E8%AF%AF/" data-id="cm5b4yqvd0026rw72biw2dn1y" data-title="npm报错：OpenSSL版本错误" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-通过nginx实现对web应用的js注入和在线人数限制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/06/%E9%80%9A%E8%BF%87nginx%E5%AE%9E%E7%8E%B0%E5%AF%B9web%E5%BA%94%E7%94%A8%E7%9A%84js%E6%B3%A8%E5%85%A5%E5%92%8C%E5%9C%A8%E7%BA%BF%E4%BA%BA%E6%95%B0%E9%99%90%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2024-03-06T09:15:46.000Z" itemprop="datePublished">2024-03-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/06/%E9%80%9A%E8%BF%87nginx%E5%AE%9E%E7%8E%B0%E5%AF%B9web%E5%BA%94%E7%94%A8%E7%9A%84js%E6%B3%A8%E5%85%A5%E5%92%8C%E5%9C%A8%E7%BA%BF%E4%BA%BA%E6%95%B0%E9%99%90%E5%88%B6/">通过nginx实现对web应用的js注入和在线人数限制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>通过<code>docker</code>运行的<code>cogpt</code>和<code>chatgpt next web</code>不太好改源码，无法从后端或者前端限制人数。只能曲线救国，通过<code>nginx</code>进行 js 注入<code>umami</code>跟踪代码，然后加一个 php 中转界面进行鉴定是否跳转。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nginxconf配置文件</span></span><br><span class="line">server &#123;</span><br><span class="line">        listen 80; <span class="comment"># 或者443如果你使用SSL</span></span><br><span class="line">        server_name gpt.lzyyyyyy.fun;</span><br><span class="line">        root /var/gpt-boss;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 所有其他请求都重定向到boss.php，包括 /api 和 /guest</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$http_cookie</span> !~* <span class="string">&quot;auth=&quot;</span>) &#123;</span><br><span class="line">                rewrite ^/(.*)$ /boss.php last;</span><br><span class="line">            &#125;</span><br><span class="line">            proxy_pass http://localhost:3000;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        location /api/ &#123;</span><br><span class="line">           proxy_pass http://localhost:3000;</span><br><span class="line">           proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">           proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">           proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">           proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        location /admin &#123;</span><br><span class="line">            <span class="comment"># 当访问 /admin 时，直接跳转到 localhost:3000</span></span><br><span class="line">            proxy_pass http://localhost:3000/;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location /guest &#123;</span><br><span class="line">            <span class="comment"># 检查是否存在通过验证的 cookie</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable">$http_cookie</span> !~* <span class="string">&quot;auth&quot;</span>) &#123;</span><br><span class="line">                <span class="comment"># return 302 /boss.php;</span></span><br><span class="line">                rewrite ^/(.*)$ /boss.php last;</span><br><span class="line">            &#125;</span><br><span class="line">            proxy_pass http://localhost:3000/;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 开启响应内容替换</span></span><br><span class="line">            sub_filter_once on;</span><br><span class="line">            <span class="comment"># sub_filter_types text/html;</span></span><br><span class="line">            sub_filter <span class="string">&#x27;&lt;/head&gt;&#x27;</span> <span class="string">&#x27;&lt;script async src=&quot;http://umami.lzyyyyyy.fun/script.js&quot; data-website-id=&quot;cd2c9621-98e6-440b-9e10-fb5269721d31&quot;&gt;&lt;/script&gt;&lt;/head&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 以下配置确保内容长度正确</span></span><br><span class="line">            proxy_set_header Accept-Encoding <span class="string">&quot;&quot;</span>;</span><br><span class="line">            sub_filter_last_modified on;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location /_next/ &#123;</span><br><span class="line">            proxy_pass http://localhost:3000;</span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为 PHP 文件添加新的 location 块</span></span><br><span class="line">        location ~ .*\.php(/.*)*$ &#123;</span><br><span class="line">            include fastcgi.conf;</span><br><span class="line">            fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后是<code>boss.php</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取 config.json 文件内容</span></span><br><span class="line"><span class="variable">$jsonString</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;config.json&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析 JSON 数据为 PHP 数组</span></span><br><span class="line"><span class="variable">$config</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$jsonString</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="variable">$username</span> = <span class="variable">$config</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$config</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"><span class="variable">$loginUrl</span> = <span class="variable">$config</span>[<span class="string">&#x27;loginUrl&#x27;</span>];</span><br><span class="line"><span class="variable">$activeUsersUrl</span> = <span class="variable">$config</span>[<span class="string">&#x27;activeUsersUrl&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Function to perform a cURL request</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curlRequest</span>(<span class="params"><span class="variable">$url</span>, <span class="variable">$postFields</span> = <span class="literal">null</span>, <span class="variable">$headers</span> = []</span>) </span>&#123;</span><br><span class="line">    <span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>();</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$url</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">is_null</span>(<span class="variable">$postFields</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_POST, <span class="literal">true</span>);</span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_POSTFIELDS, <span class="title function_ invoke__">json_encode</span>(<span class="variable">$postFields</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$headers</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HTTPHEADER, <span class="variable">$headers</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$response</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="comment">// echo $response;</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">curl_errno</span>(<span class="variable">$ch</span>)) &#123;</span><br><span class="line">        <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">json_decode</span>(<span class="variable">$response</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成一个随机的字符串作为 cookie 值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateRandomString</span>(<span class="params"><span class="variable">$length</span> = <span class="number">50</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$characters</span> = <span class="string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>;</span><br><span class="line">    <span class="variable">$charactersLength</span> = <span class="title function_ invoke__">strlen</span>(<span class="variable">$characters</span>);</span><br><span class="line">    <span class="variable">$randomString</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$length</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$randomString</span> .= <span class="variable">$characters</span>[<span class="title function_ invoke__">rand</span>(<span class="number">0</span>, <span class="variable">$charactersLength</span> - <span class="number">1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$randomString</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Get authentication token</span></span><br><span class="line"><span class="variable">$authResponse</span> = <span class="title function_ invoke__">curlRequest</span>(<span class="variable">$loginUrl</span>, [<span class="string">&#x27;username&#x27;</span> =&gt; <span class="variable">$username</span>, <span class="string">&#x27;password&#x27;</span> =&gt; <span class="variable">$password</span>], [<span class="string">&#x27;Content-Type: application/json&#x27;</span>]);</span><br><span class="line"><span class="variable">$token</span> = <span class="variable">$authResponse</span>[<span class="string">&#x27;token&#x27;</span>] ?? <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$token</span>) &#123;</span><br><span class="line">    <span class="comment">// Fetch active users</span></span><br><span class="line">    <span class="comment">// Fetch active users</span></span><br><span class="line">    <span class="variable">$activeUsersData</span> = <span class="title function_ invoke__">curlRequest</span>(<span class="variable">$activeUsersUrl</span>, <span class="literal">null</span>, [<span class="string">&#x27;Authorization: Bearer &#x27;</span> . <span class="variable">$token</span>]);</span><br><span class="line">    <span class="comment">// 假设我们只关心第一个元素的 &#x27;x&#x27; 值</span></span><br><span class="line">    <span class="variable">$activeUsers</span> = <span class="keyword">isset</span>(<span class="variable">$activeUsersData</span>[<span class="number">0</span>][<span class="string">&#x27;x&#x27;</span>]) ? <span class="variable">$activeUsersData</span>[<span class="number">0</span>][<span class="string">&#x27;x&#x27;</span>] : <span class="string">&#x27;Unavailable&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//支持最多&#123;&#123;people+1&#125;&#125;人同时使用</span></span><br><span class="line">    <span class="variable">$people</span>=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 根据在线用户数显示不同的消息</span></span><br><span class="line">    <span class="variable">$message</span> = <span class="variable">$activeUsers</span> &gt; <span class="variable">$people</span> ?  <span class="string">&quot;抱歉，当前在线用户数已达到限制。&quot;</span>: <span class="string">&quot;在线用户数少于指定人数，欢迎访问。&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">    &lt;html&gt;</span></span><br><span class="line"><span class="string">    &lt;head&gt;</span></span><br><span class="line"><span class="string">        &lt;title&gt;LZY&#x27;s GPT 在线用户检查&lt;/title&gt;</span></span><br><span class="line"><span class="string">        &lt;style&gt;</span></span><br><span class="line"><span class="string">            body &#123;</span></span><br><span class="line"><span class="string">                font-family: &#x27;Arial&#x27;, sans-serif;</span></span><br><span class="line"><span class="string">                margin: 0;</span></span><br><span class="line"><span class="string">                padding: 0;</span></span><br><span class="line"><span class="string">                background-color: #f4f4f4;</span></span><br><span class="line"><span class="string">                color: #333;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            .container &#123;</span></span><br><span class="line"><span class="string">                max-width: 600px;</span></span><br><span class="line"><span class="string">                margin: 50px auto;</span></span><br><span class="line"><span class="string">                padding: 20px;</span></span><br><span class="line"><span class="string">                background-color: #fff;</span></span><br><span class="line"><span class="string">                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            h1 &#123;</span></span><br><span class="line"><span class="string">                color: #0066cc;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            p &#123;</span></span><br><span class="line"><span class="string">                line-height: 1.6;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            .alert &#123;</span></span><br><span class="line"><span class="string">                padding: 20px;</span></span><br><span class="line"><span class="string">                background-color: #f44336; /* Red */</span></span><br><span class="line"><span class="string">                color: white;</span></span><br><span class="line"><span class="string">                margin-bottom: 15px;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            .info &#123;</span></span><br><span class="line"><span class="string">                padding: 20px;</span></span><br><span class="line"><span class="string">                background-color: #2196F3; /* Blue */</span></span><br><span class="line"><span class="string">                color: white;</span></span><br><span class="line"><span class="string">                margin-bottom: 15px;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            a &#123;</span></span><br><span class="line"><span class="string">                color: #2196F3;</span></span><br><span class="line"><span class="string">                text-decoration: none;</span></span><br><span class="line"><span class="string">                font-weight: bold;</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &lt;/style&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$activeUsers</span> &lt; <span class="variable">$people</span>+<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="variable">$randomString</span> = <span class="title function_ invoke__">generateRandomString</span>(); <span class="comment">// 默认长度为 50</span></span><br><span class="line">        <span class="title function_ invoke__">setcookie</span>(<span class="string">&quot;auth&quot;</span>, <span class="variable">$randomString</span>, <span class="title function_ invoke__">time</span>() + <span class="number">1800</span>); <span class="comment">// 设置 cookie，有效期为 30 分钟</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;meta http-equiv=&#x27;refresh&#x27; content=&#x27;3; url=http://gpt.lzyyyyyy.fun/guest&#x27;&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;/head&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">        &lt;div class=&#x27;container&#x27;&gt;</span></span><br><span class="line"><span class="string">            &lt;h1&gt;欢迎使用LZY&#x27;s GPT。&lt;/h1&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$activeUsers</span> &lt; <span class="variable">$people</span>+<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;info&#x27;&gt;<span class="subst">&#123;$message&#125;</span>&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;三秒后将自动跳转...&lt;/p&gt;&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;alert&#x27;&gt;<span class="subst">&#123;$message&#125;</span>&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;p&gt;这会使用人数有点多噢，不如去 &lt;a href=&#x27;https://lzyyyyyy.fun&#x27;&gt;fugu&#x27;s 博客&lt;/a&gt;逛逛叭~&lt;/p&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">    &lt;/html&gt;&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// Handle error in getting auth token</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;div class=&#x27;container&#x27;&gt;</span></span><br><span class="line"><span class="string">                &lt;div class=&#x27;alert&#x27;&gt;无法认证，请检查配置。&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现了中转鉴定。然后通过设置<code>cookie</code>避免短时间内多次鉴定。</p>
+<hr>
+<p>后来发现登陆界面<code>/#/auth</code>无法正常跳转，关键点：</p>
+<ol>
+<li>对 cookie 进行鉴定，避免再次到达 boss 界面。</li>
+<li>这种包含<code>#</code>的路径，是前端内部路由，对于服务器而言依旧是<code>/</code>路径，需要正确转发到<code>3000</code>端口，否则页面请求资源会到<code>root /var/gpt-boss</code>这个路径下请求了，而不会进入容器内部。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/03/06/%E9%80%9A%E8%BF%87nginx%E5%AE%9E%E7%8E%B0%E5%AF%B9web%E5%BA%94%E7%94%A8%E7%9A%84js%E6%B3%A8%E5%85%A5%E5%92%8C%E5%9C%A8%E7%BA%BF%E4%BA%BA%E6%95%B0%E9%99%90%E5%88%B6/" data-id="cm5b4yqw1003prw72d2vy4piv" data-title="通过nginx实现对web应用的js注入和在线人数限制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-通过Edge开发工具在iPhone真机Safari中调试网页" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/28/%E9%80%9A%E8%BF%87Edge%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%9C%A8iPhone%E7%9C%9F%E6%9C%BASafari%E4%B8%AD%E8%B0%83%E8%AF%95%E7%BD%91%E9%A1%B5/" class="article-date">
+  <time class="dt-published" datetime="2024-02-28T07:52:00.000Z" itemprop="datePublished">2024-02-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/28/%E9%80%9A%E8%BF%87Edge%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%9C%A8iPhone%E7%9C%9F%E6%9C%BASafari%E4%B8%AD%E8%B0%83%E8%AF%95%E7%BD%91%E9%A1%B5/">通过Edge开发工具在iPhone真机Safari中调试网页</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>有关响应式布局的问题，虽然 edge 开发者工具可以提供各种尺寸来模拟，但是我的背景图片模拟的时候是正常的，到手机上就是不正常，实在是找不出问题，不得不真机进行调试。</p>
+<h1 id="win10-端安装相关工具"><a href="#win10-端安装相关工具" class="headerlink" title="win10 端安装相关工具"></a>win10 端安装相关工具</h1><p>我的电脑端早就安装了<code>scroop</code>和<code>nodejs</code>，所以安装起来很简单。</p>
+<p>[note type&#x3D;”warning flat”]需要以管理员方式打开终端才能正常使用 npm。[&#x2F;note]</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scoop install ios-webkit-debug-proxy</span><br><span class="line">npm install vs-libimobile -g</span><br><span class="line">npm install remotedebug-ios-webkit-adapter -g</span><br></pre></td></tr></table></figure>
+
+<h1 id="准备好-iPhone"><a href="#准备好-iPhone" class="headerlink" title="准备好 iPhone"></a>准备好 iPhone</h1><ol>
+<li>将 iPhone 通过数据线连接到电脑，打开爱思助手或者<code>iTunes</code>（如果有什么问题，就全部都打开），信任此电脑。</li>
+<li>进入 iPhone-&gt;设置-&gt;safari 浏览器-&gt;高级，将网页检查器和<code>JavaScript</code>打开。</li>
+</ol>
+<h1 id="开始调试"><a href="#开始调试" class="headerlink" title="开始调试"></a>开始调试</h1><ul>
+<li>终端开启调试监听端口<code>9222</code>。网上教程都是用的默认端口是<code>9000</code>，一直报错，最后在<code>Github</code>的一篇<code>issue</code>找到解决办法，改用<code>9222</code>端口即可。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找到你的node安装路径</span></span><br><span class="line"><span class="built_in">cd</span> E:/NODE/node_global</span><br><span class="line">remotedebug_ios_webkit_adapter --port=9222</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>edge</code>浏览器进入<code>edge://inspect/#devices</code>，理论上来讲要输入<code>localhost:9222</code>连接一下，但是我的连接不上。iPhone 直接在<code>safari</code>浏览网页，下面就出现了，<code>inspect</code>进去就可以调试啦。</li>
+</ul>
+<h1 id="依旧存在的问题"><a href="#依旧存在的问题" class="headerlink" title="依旧存在的问题"></a>依旧存在的问题</h1><p>现在能进入调试界面，但是只能查看元素，无法进行一些改动。一改动就报错，导致调试断开。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># remotedebug_ios_webkit_adapter --port=9222</span></span><br><span class="line">remotedebug-ios-webkit-adapter is listening on port 9222</span><br><span class="line">node:internal/process/promises:289</span><br><span class="line">            triggerUncaughtException(err, <span class="literal">true</span> /* fromPromise */);</span><br><span class="line">            ^</span><br><span class="line"></span><br><span class="line">[UnhandledPromiseRejection: This error originated either by throwing inside of an async <span class="keyword">function</span> without a catch block,</span><br><span class="line">or by rejecting a promise <span class="built_in">which</span> was not handled with .catch(). The promise rejected with the reason <span class="string">&quot;#&lt;Object&gt;&quot;</span>.] &#123;</span><br><span class="line">  code: <span class="string">&#x27;ERR_UNHANDLED_REJECTION&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node.js v20.11.0</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/28/%E9%80%9A%E8%BF%87Edge%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E5%9C%A8iPhone%E7%9C%9F%E6%9C%BASafari%E4%B8%AD%E8%B0%83%E8%AF%95%E7%BD%91%E9%A1%B5/" data-id="cm5b4yqvx003hrw723qm826p4" data-title="通过Edge开发工具在iPhone真机Safari中调试网页" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/safari/" rel="tag">safari</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-tmux终端复用器安装及简单配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/26/tmux%E7%BB%88%E7%AB%AF%E5%A4%8D%E7%94%A8%E5%99%A8%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-02-26T10:54:00.000Z" itemprop="datePublished">2024-02-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/26/tmux%E7%BB%88%E7%AB%AF%E5%A4%8D%E7%94%A8%E5%99%A8%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/">tmux终端复用器安装及简单配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>有时候一个终端命令需要运行很久，如果中途 ssh 断掉的话，就会丢失会话。<code>tmux</code>可以很好的解决这一个痛点。</p>
+<ol>
+<li>安装<br>　　<code>CentOS7</code>的<code>yum</code>软件仓库实在是老旧，直接<code>yum install</code>下载的居然是<em>1.8</em>版本。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新仓库</span></span><br><span class="line">yum install http://galaxy4.net/repo/galaxy4-release-7-current.noarch.rp</span><br><span class="line">yum install tmux</span><br><span class="line"><span class="comment"># 检查版本</span></span><br><span class="line">tmux -V</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置<br>　　参考 b 站<strong>TheCW</strong>大佬的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ML411h7tF/?p=1">视频</a>，加入了一些简单的配置。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建配置文件</span></span><br><span class="line">vim ~/.tmux.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载配置文件（在tmux外）</span></span><br><span class="line">tmux source-file ~/.tmux.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># 配置文件如下</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 鼠标支持</span></span><br><span class="line"><span class="built_in">set</span> -g mouse on</span><br><span class="line"></span><br><span class="line"><span class="comment"># -- prefix</span></span><br><span class="line">unbind C-b</span><br><span class="line"><span class="built_in">set</span> -g prefix <span class="string">&#x27;C-j&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 窗口间切换</span></span><br><span class="line"><span class="comment"># bind -r是指可以在一次前缀键后多次切换</span></span><br><span class="line"><span class="built_in">bind</span> -r C-p previous-window</span><br><span class="line"><span class="built_in">bind</span> -r C-n next-window</span><br><span class="line"></span><br><span class="line"><span class="comment"># pane间切换</span></span><br><span class="line"><span class="comment"># M是指alt键</span></span><br><span class="line"><span class="built_in">bind</span> -n M-h select-pane -L</span><br><span class="line"><span class="built_in">bind</span> -n M-j select-pane -D</span><br><span class="line"><span class="built_in">bind</span> -n M-k select-pane -U</span><br><span class="line"><span class="built_in">bind</span> -n M-l select-pane -R</span><br><span class="line"></span><br><span class="line"><span class="comment"># window分割</span></span><br><span class="line"><span class="built_in">bind</span> | split-window -h  <span class="comment"># 水平分割窗口</span></span><br><span class="line"><span class="built_in">bind</span> - split-window -v  <span class="comment"># 垂直分割窗口</span></span><br><span class="line">unbind <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">unbind %</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动窗口重新编号</span></span><br><span class="line"><span class="built_in">set</span> -g renumber-windows on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义状态栏</span></span><br><span class="line"><span class="built_in">set</span> -g status-right <span class="string">&#x27;Session: #S | Window: #I | Pane: #P | %d %b %Y %H:%M&#x27;</span></span><br><span class="line"><span class="built_in">set</span> -g status-interval 60  <span class="comment"># 状态栏刷新间隔</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用快捷键r重新读取配置文件</span></span><br><span class="line"><span class="built_in">bind</span> r source-file ~/.tmux.conf\; display <span class="string">&quot;Reloaded!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>系统默认快捷键<br>　　参考另外两篇文章。 1. <a target="_blank" rel="noopener" href="https://blog.csdn.net/web_snail/article/details/108390645">tmux 常用配置与快捷键使用</a>。 2. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137715607">Tmux 的常用快捷键</a>。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/26/tmux%E7%BB%88%E7%AB%AF%E5%A4%8D%E7%94%A8%E5%99%A8%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/" data-id="cm5b4yqvh002drw72eddp09f3" data-title="tmux终端复用器安装及简单配置" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-（本地部署+Vercel部署）Umami开源网站统计分析工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/21/%EF%BC%88%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2+Vercel%E9%83%A8%E7%BD%B2%EF%BC%89Umami%E5%BC%80%E6%BA%90%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time class="dt-published" datetime="2024-02-21T10:17:00.000Z" itemprop="datePublished">2024-02-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/21/%EF%BC%88%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2+Vercel%E9%83%A8%E7%BD%B2%EF%BC%89Umami%E5%BC%80%E6%BA%90%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">（本地部署+Vercel部署）Umami开源网站统计分析工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>之前了解过有 51la 这种第三方的网站统计分析工具，不想用，偶然看到这个开源自部署的，就弄了一个，<a target="_blank" rel="noopener" href="https://umami.is/">umami 官网</a>。<br>　　<a href="http://%E3%80%80%E3%80%80https://hub.docker.com/r/elestio/umami">dockerhub 地址</a>，用的这个老哥的镜像，跟着说明来就完事了。</p>
+<ol>
+<li>老朋友 docker-compose 启动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line">  umami:</span><br><span class="line">    image: ghcr.io/umami-software/umami:postgresql-latest</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;3956:3000&quot;</span></span><br><span class="line">    environment:</span><br><span class="line">      DATABASE_URL: postgresql://umami:<span class="variable">$&#123;ADMIN_PASSWORD&#125;</span>@db:5432/umami</span><br><span class="line">      DATABASE_TYPE: postgresql</span><br><span class="line">      APP_SECRET: <span class="variable">$&#123;SECRET_KEY_BASE&#125;</span></span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - umami-network</span><br><span class="line">    container_name: umami_app</span><br><span class="line">  db:</span><br><span class="line">    image: postgres:15-alpine</span><br><span class="line">    environment:</span><br><span class="line">      POSTGRES_DB: umami</span><br><span class="line">      POSTGRES_USER: umami</span><br><span class="line">      POSTGRES_PASSWORD: <span class="variable">$&#123;ADMIN_PASSWORD&#125;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./umami-db-data:/var/lib/postgresql/data</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - umami-network</span><br><span class="line">    container_name: umami_db</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  umami-network:</span><br></pre></td></tr></table></figure>
+
+<p>里面<code>$&#123;XXX&#125;</code>的变量你可以写在同目录<code>.env</code>文件更安全，也可以直接写进 docker-compose。<br>　　<code>docker-compose up -d</code>启动，这个过程有点慢，忘记开全局魔法了。成功启动之后，访问端口<code>3956</code>即可，初始账号<code>admin</code>，初始密码<code>umami</code>，进去可以改成中文然后改一下密码。</p>
+<ol start="2">
+<li>链接到自己的网站。<br>　　在管理界面添加网站绑定域名，即可获得一个<code>script</code>脚本，添加到网页的<code>header</code>部分即可。<br>　　我平时自己开发网站的主题是直接服务器上改的，所以会不停的刷新网页，这样会导致浏览量会加太多，都是自己刷的，没有意义。所以加入了一个 cookie 验证的办法。<br>　　首先，<code>F12</code>进入 edge 浏览器开发者工具，在<strong>应用程序</strong>的<code>Cookies</code>栏添加一个<code>cookie</code>，名称就是<code>disableUmami</code>，值可以设置为<code>true</code>或任何非空字符串。将路径设置为<code>/</code>。<br>　　然后网页头部的脚本套上一个判断，这样访客基本都是货真价实的啦。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 检查 Cookie 是否设置了 disableUmami</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">checkCookie</span>(<span class="params">name</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">document</span>.<span class="property">cookie</span>.<span class="title function_">split</span>(<span class="string">&#x27;;&#x27;</span>).<span class="title function_">some</span>(<span class="keyword">function</span> (<span class="params">item</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> item.<span class="title function_">trim</span>().<span class="title function_">startsWith</span>(name + <span class="string">&#x27;=&#x27;</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_">checkCookie</span>(<span class="string">&#x27;disableUmami&#x27;</span>)) &#123;</span><br><span class="line">      <span class="comment">// 如果没有禁用 Umami，动态加载跟踪脚本</span></span><br><span class="line">      <span class="keyword">var</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">      script.<span class="property">async</span> = <span class="literal">true</span>;</span><br><span class="line">      script.<span class="property">src</span> = <span class="string">&quot;http://&#123;&#123;你的umami域名&#125;&#125;/script.js&quot;</span>;</span><br><span class="line">      script.<span class="title function_">setAttribute</span>(<span class="string">&quot;data-website-id&quot;</span>, <span class="string">&quot;&#123;&#123;你的网站id&#125;&#125;&quot;</span>);</span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(script);</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>调用 API 前台显示<br>　　目前这个样子只是在<code>umami</code>后台可以看到统计数据，如果有些数据想展示到前端，<code>umami</code>提供了 API，文档很详细。不过要注意的是请求数据之前首先要请求<code>TOKEN</code>，下面是一个获取网站在线人数的脚本，这个只在网页刷新时更新，目前还没有做实时更新。</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">webinfo</span>-<span class="title">item</span>&quot;&gt;</span></span><br><span class="line"><span class="class">    &lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class">    // <span class="title">Umami</span> <span class="title">API</span> 的基本信息</span></span><br><span class="line"><span class="class">    $<span class="title">loginUrl</span> = &#x27;<span class="title">http</span>://</span>&#123;&#123;你的umami域名&#125;&#125;/api/auth/login<span class="string">&#x27;; // 登录端点</span></span><br><span class="line"><span class="string">    $activeUsersUrl = &#x27;</span>http:<span class="comment">//&#123;&#123;你的umami域名&#125;&#125;/api/websites/&#123;&#123;你的网站ID&#125;&#125;/active&#x27;; // 获取在线用户数的端点</span></span><br><span class="line">    <span class="variable">$username</span> = <span class="string">&#x27;&#123;&#123;Umami 用户名&#125;&#125;&#x27;</span>;</span><br><span class="line">    <span class="variable">$password</span> = <span class="string">&#x27;&#123;&#123;Umami 密码&#125;&#125;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 cURL 获取授权令牌</span></span><br><span class="line">    <span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>();</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$loginUrl</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_POST, <span class="literal">true</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_POSTFIELDS, <span class="title function_ invoke__">json_encode</span>(<span class="keyword">array</span>(<span class="string">&#x27;username&#x27;</span> =&gt; <span class="variable">$username</span>, <span class="string">&#x27;password&#x27;</span> =&gt; <span class="variable">$password</span>)));</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="literal">true</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">&#x27;Content-Type: application/json&#x27;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="variable">$response</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">curl_errno</span>(<span class="variable">$ch</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;登录请求错误：&#x27;</span> . <span class="title function_ invoke__">curl_error</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 解码 JSON 响应以获取令牌</span></span><br><span class="line">    <span class="variable">$authResponse</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$response</span>, <span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$authResponse</span>[<span class="string">&#x27;token&#x27;</span>])) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;无法获取授权令牌&#x27;</span>;</span><br><span class="line">        <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$token</span> = <span class="variable">$authResponse</span>[<span class="string">&#x27;token&#x27;</span>];</span><br><span class="line">    <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用授权令牌获取当前在线用户数</span></span><br><span class="line">    <span class="variable">$ch</span> = <span class="title function_ invoke__">curl_init</span>();</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$activeUsersUrl</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="literal">true</span>);</span><br><span class="line">    <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_HTTPHEADER, <span class="keyword">array</span>(<span class="string">&#x27;Authorization: Bearer &#x27;</span> . <span class="variable">$token</span>));</span><br><span class="line"></span><br><span class="line">    <span class="variable">$response</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$ch</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">curl_errno</span>(<span class="variable">$ch</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;获取在线用户数请求错误：&#x27;</span> . <span class="title function_ invoke__">curl_error</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">curl_close</span>(<span class="variable">$ch</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 展示在线用户数</span></span><br><span class="line">    <span class="variable">$activeUsers</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$response</span>, <span class="literal">true</span>);</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">item</span>-<span class="title">name</span>&quot;&gt;当前在线用户数 :&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">div</span> <span class="title">class</span>=&quot;<span class="title">item</span>-<span class="title">count</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class">        <span class="title">if</span> (<span class="title">isset</span>($<span class="title">activeUsers</span>[0][&#x27;<span class="title">x</span>&#x27;])) </span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$activeUsers</span>[<span class="number">0</span>][<span class="string">&#x27;x&#x27;</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果响应中没有 &#x27;x&#x27; 键，可以输出一个错误消息或者一个默认值</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;无法获取&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">?&gt;</span></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>后来发现自己服务器 2G 内存好像不是很够用，umami 的 app 容器居然就占了 200 多 M，于是把 app 改为部署到 vercel 了，毕竟网站统计只是给自己看的。好在之前 umami_db 的数据是挂载到本地的，这次迁移几乎不会丢失之前的数据。</p>
+<ol>
+<li>关闭本地两个容器，重启 db 容器。<br>　　原来本地两个容器只有他们之间可以通信，没有暴露端口到宿主机，现在需要部署在 vercel 的 app 层和在我服务器的 db 层通信，所以重启 db 容器，暴露端口，命令如下。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name umami_db \</span><br><span class="line">  -e POSTGRES_DB=umami \</span><br><span class="line">  -e POSTGRES_USER=umami \</span><br><span class="line">  -e POSTGRES_PASSWORD=<span class="string">&#x27;&#123;&#123;密码&#125;&#125;&#x27;</span> \</span><br><span class="line">  -v ./umami-db-data:/var/lib/postgresql/data \</span><br><span class="line">  -p &#123;&#123;自己设一个端口&#125;&#125;:5432 \</span><br><span class="line">  --restart always \</span><br><span class="line">  postgres:15-alpine</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>部署 app 层到 vercel。<br>　　官方给出了一键部署，很方便，<a target="_blank" rel="noopener" href="https://vercel.com/new/clone?repository-url=https://github.com/umami-software/umami&env=DATABASE_URL">点击这里</a>。<br>　　登录自己的 github 账号，新建一个 umami 仓库。<br>　　关键在于配置这个环境变量，其中包含的变量来自上面拆创建 db 容器时的数据库相关参数。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DATABASE_URL:postgres://&#123;&#123;POSTGRES_USER&#125;&#125;:&#123;&#123;POSTGRES_PASSWORD&#125;&#125;@&#123;&#123;你的服务器IP地址&#125;&#125;:&#123;&#123;db容器端口&#125;&#125;/&#123;&#123;POSTGRES_DB&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>DATABASE_URL</code>配置正确，vercel 就会编译部署成功，登录进去就可以继续访问 db 数据库的数据啦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/21/%EF%BC%88%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2+Vercel%E9%83%A8%E7%BD%B2%EF%BC%89Umami%E5%BC%80%E6%BA%90%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" data-id="cm5b4yqw60045rw72akryh68u" data-title="（本地部署+Vercel部署）Umami开源网站统计分析工具" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/umami/" rel="tag">umami</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-新春小记，在武汉冻雨卷土重来的这一天" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/20/%E6%96%B0%E6%98%A5%E5%B0%8F%E8%AE%B0%EF%BC%8C%E5%9C%A8%E6%AD%A6%E6%B1%89%E5%86%BB%E9%9B%A8%E5%8D%B7%E5%9C%9F%E9%87%8D%E6%9D%A5%E7%9A%84%E8%BF%99%E4%B8%80%E5%A4%A9/" class="article-date">
+  <time class="dt-published" datetime="2024-02-20T06:30:41.000Z" itemprop="datePublished">2024-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/life/">life</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/20/%E6%96%B0%E6%98%A5%E5%B0%8F%E8%AE%B0%EF%BC%8C%E5%9C%A8%E6%AD%A6%E6%B1%89%E5%86%BB%E9%9B%A8%E5%8D%B7%E5%9C%9F%E9%87%8D%E6%9D%A5%E7%9A%84%E8%BF%99%E4%B8%80%E5%A4%A9/">新春小记，在武汉冻雨卷土重来的这一天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>年前去南方亲戚家的那一天正是武汉开始下冻雨的时候，当时在高铁站等着晚点了半小时，还在是成功发车了，有的车次就因为天气原因完全停掉了。<br>　　一直到大年初三才回到了武汉这边，度过了最冷的一段日子。但是好景不长，今天又开始下了。听说武汉有一些高校推迟了开学，还挺好的。毕竟那么多冰锥，不是闹着好玩的，有的树压倒了会砸到车，人走在路上也要小心。<br>　　在南方总共呆了一周多，主要是想去陪伴一下爷爷奶奶，年纪大了。有的时候挺羡慕堂哥的，爷爷奶奶八十多岁的时候，他已经三十多岁了，可是我才二十出头。我羡慕他可以在自己有能力的时候，可以让老人看着他，还有机会回报，而我却要和时间赛跑。<br><img style="zoom:60%;" src="https://s2.loli.net/2024/02/20/gDUewyxokiJAbzR.png"/><br>　　久违地陪奶奶上街，我就拿手机偷偷录像，摄像头，出列！此时不用，更待何时，开启 4K60 帧，拍一拍人，也拍一拍沿路的风景。去的是小超市和菜市场，很有广式人文风情，和《狂飙》里面高启强卖鱼摊那个场景差不多。虽然视频体积超大，但是真的很清晰，是最值得存储的东西。<br>　　年前那几天也是一直下雨，没怎么出门，一直到除夕才晴天，然后年初那几天就每天出去溜溜，年初一的晚上和表弟看了《热辣滚烫》，我是认为不谈别的，作为喜剧片，能让观众笑出来，就是不错的电影。<br>&lt;img style&#x3D;”zoom:40%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/qR4dFabPmiSjtfZ.jpg%22/%3E">https://s2.loli.net/2024/02/20/qR4dFabPmiSjtfZ.jpg&quot;/&gt;</a><br>　　藕夹还是自己家的做的最好吃，感觉武汉还是有很多吃的很吸引我的。<br>&lt;img style&#x3D;”zoom:40%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/emdECGKUsyAVOol.jpg%22/%3E">https://s2.loli.net/2024/02/20/emdECGKUsyAVOol.jpg&quot;/&gt;</a><br>　　可是肠粉也是 very 的 good。图里面这个，不是我挑的，怎么会有青菜，异端。睡懒觉了是亲戚买回来吃的，不然必须鸡蛋肠！要在肠粉和热干面之间做选择的话真的好难。<br>&lt;img style&#x3D;”zoom:40%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/l9B6GRWznE1Z8cC.jpg%22/%3E">https://s2.loli.net/2024/02/20/l9B6GRWznE1Z8cC.jpg&quot;/&gt;</a><br>　　表弟从广州一家小店订购空运的冰淇淋，咱就是跟着富哥尝尝。<br>&lt;img style&#x3D;”zoom:40%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/c6IXV2df4vYtGZs.jpg%22/%3E">https://s2.loli.net/2024/02/20/c6IXV2df4vYtGZs.jpg&quot;/&gt;</a><br>　　金色的坤汤，也是来广东这边才喝的得到的，湖北的坤坤还是比不了这边的坤坤鲜嫩，狂喝 3 大碗。但是话又说回来，湖北的藕汤也是我生命中重要的角色。<br>&lt;img style&#x3D;”zoom:30%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/EhVafHeK8w4GYF5.jpg%22/%3E">https://s2.loli.net/2024/02/20/EhVafHeK8w4GYF5.jpg&quot;/&gt;</a><br>&lt;img style&#x3D;”zoom:30%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/eCgEakivlX7Dsoh.jpg%22/%3E">https://s2.loli.net/2024/02/20/eCgEakivlX7Dsoh.jpg&quot;/&gt;</a><br>&lt;img style&#x3D;”zoom:30%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/219e3QBXKFRjWlE.jpg%22/%3E">https://s2.loli.net/2024/02/20/219e3QBXKFRjWlE.jpg&quot;/&gt;</a><br>　　这边的一家烟花网红店，还是挺有趣的，种类非常的齐全，还有奥特曼大礼包，Boy 诱捕器。我不爱玩烟花，但是爱看，可能还是懒的。烟花店养的大鸡毛怎么红得跟个耗牛肉干似的。看起来就很有食欲！<br>&lt;img style&#x3D;”zoom:30%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/7kvcYWH3G4TyIFx.jpg%22/%3E">https://s2.loli.net/2024/02/20/7kvcYWH3G4TyIFx.jpg&quot;/&gt;</a><br>　　初二去逛花市的时候还看到一只拉布拉多，四处寻找它的主人，好在后来找到了。自己养太麻烦，看看别人的狗狗过过瘾还是极具性价比的。<br>&lt;img style&#x3D;”zoom:30%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/diw68mNcAWe7GE2.png%22/%3E">https://s2.loli.net/2024/02/20/diw68mNcAWe7GE2.png&quot;/&gt;</a><br>　　到了初二的时候，温度就极具上升了，高达二十多度，可以在外面晒太阳也不冷。（给咱奶打个码）<br>&lt;img style&#x3D;”zoom:40%;”src&#x3D;”<a target="_blank" rel="noopener" href="https://s2.loli.net/2024/02/20/dA7OHq165Fg3z8j.jpg%22/%3E">https://s2.loli.net/2024/02/20/dA7OHq165Fg3z8j.jpg&quot;/&gt;</a><br>　　然后初三就回武汉了，因为还想参加一些同学的社交。带了一些好东西回去，这个袋子就是奶奶缠好胶带，包装好的，最上面还加了一块布防止勒手。我在旁边就看着的时候，就有一种“临行密密缝”的感觉，要是可以分身，就放一个分身一直在爷爷奶奶旁边了。<br>　　回来以后和好朋友们见了几次，无外乎就是篮球，吃饭，网吧三件套，但是在网吧一起玩就是比自己在家好玩，也算是一期一会，念念不忘了。<br>　　没几天就要开学了，但是武汉又开始天气恶化，最后这些天也就是每天在家了，折腾一下网站的美化，看到别人写得好看的前端就学过来哈哈哈。在家呆久了，也挺期待开学的，想念我的工位。<br>　　初中阅读理解做了不少龙应台的文章，看的感动的唏哩呱啦的，真会写。等到年纪逐渐增加，才真正读懂了一些话，理解了一些情绪，虽然很俗套，但是还是要说，珍惜眼前人，过好每一天。</p>
+<blockquote>
+<p>所谓父女母子一场，只不过意味着，你和他的缘分就是今生今世不断地在目送他的背影渐行渐远。你站立在小路的这一端，看着他逐渐消失在小路转弯的地方，而且，他用背影默默告诉你：不必追。”——龙应台《目送》</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/20/%E6%96%B0%E6%98%A5%E5%B0%8F%E8%AE%B0%EF%BC%8C%E5%9C%A8%E6%AD%A6%E6%B1%89%E5%86%BB%E9%9B%A8%E5%8D%B7%E5%9C%9F%E9%87%8D%E6%9D%A5%E7%9A%84%E8%BF%99%E4%B8%80%E5%A4%A9/" data-id="cm5b4yqvv003crw723gom757r" data-title="新春小记，在武汉冻雨卷土重来的这一天" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-通过Github Copilot搭建个人ChatGPT4服务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/18/%E9%80%9A%E8%BF%87Github%20Copilot%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAChatGPT4%E6%9C%8D%E5%8A%A1/" class="article-date">
+  <time class="dt-published" datetime="2024-02-18T14:54:00.000Z" itemprop="datePublished">2024-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/18/%E9%80%9A%E8%BF%87Github%20Copilot%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAChatGPT4%E6%9C%8D%E5%8A%A1/">通过Github Copilot搭建个人ChatGPT4服务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>起因是晚饭后刷 b 站的时候看到了一个大佬的视频，可以通过 Github Copilot 白嫖 GPT4。我本来自己是二者都有的，以前看到的一些标题带“白嫖”字样的感觉大多数都不靠谱，但是这个还挺有意思的，如果能一直用的话，GPT4 那边倒是可以停一阵子哈哈哈。<br>　　这是原大佬的[视频链接][1]。有很详细的教程，如果大家只是想在本地部署<code>cogpt</code>，然后直接使用<code>chatgpt-next-web</code>的客户端的话，可以跟着大佬的视频和博客教程就行了，[博客地址][2]。<br>　　本文用于记录<code>centos</code>云服务器环境搭建<code>cogpt</code>和<code>chatgpt-next-web</code>的<code>docker</code>服务，可以完全部署在自己手中，给亲朋好友使用。</p>
+<p>[note type&#x3D;”info flat”]首先，你得有<strong>Github Copilot</strong>才行！！！这个可以进行教育认证之后白嫖，一年认证一次。认证过程还挺麻烦的，可以网上搜索教程。[&#x2F;note]</p>
+<ol>
+<li>部署<code>cogpt</code>服务并创建一个<code>docker network</code>。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml</span></span><br><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  cogpt-api:</span><br><span class="line">    image: geniucker/cogpt:latest</span><br><span class="line">    environment:</span><br><span class="line">      - HOST=0.0.0.0</span><br><span class="line">      - share-xxxxxxx1:&#123;&#123;你的token&#125;&#125;</span><br><span class="line">    ports:</span><br><span class="line">      - &#123;&#123;主机挑一个空闲端口&#125;&#125;:8080</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db:/app/db</span><br><span class="line">      - ./log:/app/log</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    container_name: cogpt-api</span><br><span class="line">    networks:</span><br><span class="line">      - my-gpt</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  my-gpt:</span><br><span class="line">    external: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运行docker-compose</span></span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>token</code>是你的<strong>Github Copilot</strong>的<code>token</code>，需要大佬编写的软件获取，详情见其博客。<br>　　创建了一个<code>my-gpt</code>网络为了待会与<code>chatgpt-next-web</code>页面进行通信。<br>　　这样就在服务器运行好了<code>cogpt</code>服务，访问你设置的端口可以收到<code>Hi, it&#39;s CoGPT!</code>。</p>
+<ol start="2">
+<li>创建聊天界面。<br>　　<code>chatgpt-next-web</code>的[Github 地址][3]。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  -e BASE_URL=<span class="string">&quot;http://cogpt-api:&#123;&#123;刚刚设置的端口&#125;&#125;&quot;</span> \</span><br><span class="line">  -e OPENAI_API_KEY=<span class="string">&quot;&#123;&#123;你的token&#125;&#125;&quot;</span> \</span><br><span class="line">  -e CODE=<span class="string">&quot;&#123;&#123;设置一个10位以上的密码&#125;&#125;&quot;</span> \</span><br><span class="line">  -e ENABLE_BALANCE_QUERY=<span class="literal">true</span> \</span><br><span class="line">  -p 3000:3000 \</span><br><span class="line">  --network my-gpt \</span><br><span class="line">  --name chatgpt-next-web \</span><br><span class="line">  yidadaa/chatgpt-next-web</span><br></pre></td></tr></table></figure>
+
+<p>成功运行后，访问 3000 端口，输入密码，就可以愉快的玩耍啦！<br><img src="https://s2.loli.net/2024/02/18/bTgXU2A38yzuaBP.png" alt="image.png"><br>[1]: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mK421k7xA/?p=1&vd_source=4e03f52e94cfa281cde032856b1f93a7">https://www.bilibili.com/video/BV1mK421k7xA/?p=1&amp;vd_source=4e03f52e94cfa281cde032856b1f93a7</a><br>[2]: <a target="_blank" rel="noopener" href="https://blog.geniucker.top/2024/01/26/%E9%80%9A%E8%BF%87-GitHub-Copilot-%E5%85%8D%E8%B4%B9%E4%BD%BF%E7%94%A8-gpt-4/#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE">https://blog.geniucker.top/2024/01/26/%E9%80%9A%E8%BF%87-GitHub-Copilot-%E5%85%8D%E8%B4%B9%E4%BD%BF%E7%94%A8-gpt-4/#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE</a><br>[3]: <a target="_blank" rel="noopener" href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web?tab=readme-ov-file">https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web?tab=readme-ov-file</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/18/%E9%80%9A%E8%BF%87Github%20Copilot%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAChatGPT4%E6%9C%8D%E5%8A%A1/" data-id="cm5b4yqvz003lrw729cifblhz" data-title="通过Github Copilot搭建个人ChatGPT4服务" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-win10定时任务：调用python程序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/15/win10%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%9A%E8%B0%83%E7%94%A8python%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2024-02-15T05:11:00.000Z" itemprop="datePublished">2024-02-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/technology/">technology</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/15/win10%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%9A%E8%B0%83%E7%94%A8python%E7%A8%8B%E5%BA%8F/">win10定时任务：调用python程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在计划任务中，新建任务，选择每月。<br><img src="https://s2.loli.net/2024/02/15/U1EX7OWzDPm4sFi.png"/></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/15/win10%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%9A%E8%B0%83%E7%94%A8python%E7%A8%8B%E5%BA%8F/" data-id="cm5b4yqvl002orw72187mgp02" data-title="win10定时任务：调用python程序" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/win/" rel="tag">win</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CentOS7配置Clash代理（docker）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/15/CentOS7%E9%85%8D%E7%BD%AEClash%E4%BB%A3%E7%90%86%EF%BC%88docker%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2024-02-15T04:58:06.000Z" itemprop="datePublished">2024-02-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/geek/">geek</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/15/CentOS7%E9%85%8D%E7%BD%AEClash%E4%BB%A3%E7%90%86%EF%BC%88docker%EF%BC%89/">CentOS7配置Clash代理（docker）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>clash 的 github 仓库已经挂掉了，作者删库了。只能找以前的版本还能继续用，找的过程中发现有打包好的 docker 版本，可以一键配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name clash \</span><br><span class="line">  --restart=always \</span><br><span class="line">  --log-opt max-size=1m \</span><br><span class="line">  -v /root/.config/clash/config.yaml:/root/.config/clash/config.yaml \</span><br><span class="line">  -p 7888:8080 -p 7890:7890 \</span><br><span class="line">  laoyutang/clash-and-dashboard:latest</span><br></pre></td></tr></table></figure>
+
+<p>需要把机场的 yaml 文件放到宿主机的<code>/root/.config/clash/</code>目录下，创建容器时挂载进去。<br>　　运行成功后，访问宿主机<code>7888</code>端口即可进入 clash 控制面板，选择节点，开启代理。<br><img src="https://s2.loli.net/2024/02/15/f3aP7vRlJFsWg2m.png"/><br>　　进入宿主机的<code>~/.bashrc</code>或者<code>~/.zshrc</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">&quot;http://127.0.0.1:7890&quot;</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">&quot;http://127.0.0.1:7890&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">☁  ~  curl -I https://www.google.com</span><br><span class="line">HTTP/1.1 200 Connection established</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/html; charset=ISO-8859-1</span><br><span class="line">Content-Security-Policy-Report-Only: object-src <span class="string">&#x27;none&#x27;</span>;base-uri <span class="string">&#x27;self&#x27;</span>;script-src <span class="string">&#x27;nonce-AOy0_Lb_CokxfUGDy6DQ_g&#x27;</span> <span class="string">&#x27;strict-dynamic&#x27;</span> <span class="string">&#x27;report-sample&#x27;</span> <span class="string">&#x27;unsafe-eval&#x27;</span> <span class="string">&#x27;unsafe-inline&#x27;</span> https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp</span><br><span class="line">P3P: CP=<span class="string">&quot;This is not a P3P policy! See g.co/p3phelp for more info.&quot;</span></span><br><span class="line">Date: Thu, 15 Feb 2024 04:54:50 GMT</span><br><span class="line">Server: gws</span><br><span class="line">X-XSS-Protection: 0</span><br><span class="line">X-Frame-Options: SAMEORIGIN</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Expires: Thu, 15 Feb 2024 04:54:50 GMT</span><br><span class="line">Cache-Control: private</span><br><span class="line">Set-Cookie: 1P_JAR=2024-02-15-04; expires=Sat, 16-Mar-2024 04:54:50 GMT; path=/; domain=.google.com; Secure</span><br><span class="line">Set-Cookie: AEC=Ae3NU9PkxZXsavIE1i87-bIS96xRW1GTL7sZcwHmIKL3WqKVCDteL_vKUbs; expires=Tue, 13-Aug-2024 04:54:50 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax</span><br><span class="line">Set-Cookie: NID=511=svJ0Zakh7gQbZ_od1Mom5rEFyRtwmKP5na5-bwvWUu5Sced8AhXmC3hzJCyfmtPuwz0v9SIpeOJicYQdWneLn3wxffNoge90YzG6deCZlzpfGzBZEreX3AmxXpcym8lvyR7nkljLO02kefqX-oYlTSxjqPsOWPXIPrr3IkNzYiw; expires=Fri, 16-Aug-2024 04:54:50 GMT; path=/; domain=.google.com; HttpOnly</span><br><span class="line">Alt-Svc: h3=<span class="string">&quot;:443&quot;</span>; ma=2592000,h3-29=<span class="string">&quot;:443&quot;</span>; ma=2592000</span><br></pre></td></tr></table></figure>
+
+<p>测试成功。然后配置一个自动任务进行定期更新机场 yaml 文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="comment"># 加入每日任务：更新机场文件，重启docker</span></span><br><span class="line">0 0 * * 0 /usr/bin/curl -o /root/.config/clash/config.yaml 机场配置文件下载链接 &amp;&amp; /usr/bin/docker restart clash</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sinlatansen.github.io/2024/02/15/CentOS7%E9%85%8D%E7%BD%AEClash%E4%BB%A3%E7%90%86%EF%BC%88docker%EF%BC%89/" data-id="cm5b4yqu60006rw72byc1bneo" data-title="CentOS7配置Clash代理（docker）" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/geek/">geek</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/technology/">technology</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChatGPT/" rel="tag">ChatGPT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clash/" rel="tag">Clash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMTP/" rel="tag">SMTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Typecho/" rel="tag">Typecho</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli/" rel="tag">cli</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfile/" rel="tag">dotfile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dotfiles/" rel="tag">dotfiles</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/edge/" rel="tag">edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freertos/" rel="tag">freertos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/" rel="tag">ios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macos/" rel="tag">macos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openssl/" rel="tag">openssl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/picgo/" rel="tag">picgo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/portainer/" rel="tag">portainer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/safari/" rel="tag">safari</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/self-hosted/" rel="tag">self-hosted</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stow/" rel="tag">stow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typora/" rel="tag">typora</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/umami/" rel="tag">umami</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win/" rel="tag">win</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wsl2/" rel="tag">wsl2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%88%E7%8E%87/" rel="tag">效率</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" rel="tag">李慧芹</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ChatGPT/" style="font-size: 10px;">ChatGPT</a> <a href="/tags/Clash/" style="font-size: 10px;">Clash</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Nginx/" style="font-size: 12.86px;">Nginx</a> <a href="/tags/SMTP/" style="font-size: 10px;">SMTP</a> <a href="/tags/Typecho/" style="font-size: 11.43px;">Typecho</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/centos7/" style="font-size: 12.86px;">centos7</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 15.71px;">docker</a> <a href="/tags/dotfile/" style="font-size: 10px;">dotfile</a> <a href="/tags/dotfiles/" style="font-size: 10px;">dotfiles</a> <a href="/tags/edge/" style="font-size: 10px;">edge</a> <a href="/tags/freertos/" style="font-size: 10px;">freertos</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/linux/" style="font-size: 18.57px;">linux</a> <a href="/tags/macos/" style="font-size: 11.43px;">macos</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/openssl/" style="font-size: 10px;">openssl</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/picgo/" style="font-size: 10px;">picgo</a> <a href="/tags/portainer/" style="font-size: 10px;">portainer</a> <a href="/tags/python/" style="font-size: 11.43px;">python</a> <a href="/tags/safari/" style="font-size: 10px;">safari</a> <a href="/tags/self-hosted/" style="font-size: 10px;">self-hosted</a> <a href="/tags/stm32/" style="font-size: 11.43px;">stm32</a> <a href="/tags/stow/" style="font-size: 10px;">stow</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/typora/" style="font-size: 10px;">typora</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/umami/" style="font-size: 10px;">umami</a> <a href="/tags/vscode/" style="font-size: 14.29px;">vscode</a> <a href="/tags/win/" style="font-size: 11.43px;">win</a> <a href="/tags/wsl2/" style="font-size: 10px;">wsl2</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">插件</a> <a href="/tags/%E6%95%88%E7%8E%87/" style="font-size: 10px;">效率</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 10px;">旅行</a> <a href="/tags/%E6%9D%8E%E6%85%A7%E8%8A%B9/" style="font-size: 17.14px;">李慧芹</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">软件推荐</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/22/6%E6%9C%88%E9%97%B2%E8%B0%88%EF%BC%9A%E5%8D%8E%E5%AD%90%E4%BD%A0%E5%B8%A6%E6%88%91%E8%B5%B0%E5%90%A7/">6月闲谈：华子你带我走吧</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/19/%E9%98%85%E8%AF%BBnginx%E6%BA%90%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E2%80%94%E2%80%94%E5%9F%BA%E4%BA%8Evscode+clangd+bear/">阅读nginx源码环境搭建——基于vscode+clangd+bear</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十五章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十四章</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/16/Linux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E6%95%99%E7%A8%8B-%E6%9D%8E%E6%85%A7%E8%8A%B9%E8%80%81%E5%B8%88-%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0/">Linux下C语言教程-李慧芹老师-第十二章</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fugu<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
